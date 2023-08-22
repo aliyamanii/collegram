@@ -1,0 +1,123 @@
+/* @import url("../fonts/fonts.css");
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f1ebe3;
+}
+
+.app__container {
+  width: 100vw;
+  height: 500px;
+  top: 0;
+  background-color: #f3f0ee;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-input {
+  width: 277px;
+  height: hug 36px;
+  margin-bottom: 34px;
+  padding: 8px 16px 8px 16px;
+  border-radius: 16px;
+  border: 1px solid #cdcdcd;
+  gap: 8px;
+}
+
+.text-input::placeholder {
+  text-align: right;
+  font-family: IRANYekanXFaNum;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+  color: #cdcdcd;
+}
+
+.logo {
+  top: 70px;
+  width: 60px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.switch-mode {
+  display: flex;
+  justify-content: space-between;
+  max-width: 277px;
+  margin-bottom: 20px;
+}
+
+.signup__button,
+.login__button {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  font-family: IRANYekanXFaNum;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  text-decoration: none;
+}
+
+.signup__button {
+  color: #2b2b2b;
+}
+
+.login__button {
+  color: #a5a5a5;
+  border-left: 1px solid #587052;
+  margin-left: 10px;
+}
+
+.signup__form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-top: 20px;
+}
+
+.submit__button {
+  margin-top: auto;
+  margin-bottom: 20px;
+  width: 84px;
+  height: 36px;
+  padding: 8px 16px;
+  border: none;
+  background-color: #c19008;
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 16px;
+  font-family: IRANYekanXFaNum;
+}
+
+.submit__button:hover {
+  background-color: #9e780d;
+}
+
+.tree {
+  margin-top: 70px;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+} */
