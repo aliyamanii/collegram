@@ -7,7 +7,7 @@ import tree from "../photos/tree.png";
 function SignUp() {
   return (
     <>
-      <div className="app__container w-full h-500 top-0 bg-red-500 text-center flex flex-col items-center justify-center">
+      <div className="app__container">
         <img src={logo} className="logo" alt="Rahnema Logo"></img>
         <section className="switch-mode">
           <Link to="/signup" className="signup__button">
@@ -21,7 +21,7 @@ function SignUp() {
           <input
             type="text"
             placeholder="نام کاربری"
-            className="username__input text-input bg-red-500"
+            className="username__input text-input"
           ></input>
           <input
             type="text"
