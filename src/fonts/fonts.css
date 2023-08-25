@@ -1,7 +1,9 @@
-/* fonts.css */
-
 @font-face {
   font-family: "IRANYekanXFaNum";
   src: url("IRANYekanXFaNum.ttf") format("truetype");
-  /* You might need to adjust the path based on your project's file structure */
+}
+
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("Vazirmatn-Regular.ttf") format("opentype");
 }
