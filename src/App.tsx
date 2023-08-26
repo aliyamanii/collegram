@@ -22,7 +22,7 @@ function App() {
             <h1>check for token if existed go to home else go to login</h1>
           }
         />
-        <Route path="Auth" element={<Auth />}>
+        <Route path="auth" element={<Auth />}>
           <Route path="login" element={<Login />}></Route>
           <Route path="signup" element={<SignUp />}></Route>
           <Route path="recover-password" element={<RecoverPassword />}></Route>
