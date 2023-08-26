@@ -1,18 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import userIcon from "../photos/person.svg";
-import key from "../photos/key.svg";
-import logo from "../photos/logo.png";
+import InputContainer from "../components/InputContainer";
+import userIcon from "../assets/photos/person.svg";
+import key from "../assets/photos/key.svg";
+import arrowback from "../assets/photos/arrow-back.svg";
 
 function Login() {
+  const [rememberMe, setRememberMe] = useState(false);
+
+  const handleRememberChange = () => {
+    setRememberMe(!rememberMe);
+  };
+
   return (
-    <div className="flex flex-col justify-center items-center w-full h-full p-5 bg-[#f3f0ee] font-primary ">
-      <img
-        src={logo}
-        alt="Rahnema Logo"
-        id="logo"
-        className=" w-[60px] mb-[20px]"
-      />
+    <div className="flex flex-col  items-center w-full h-full p-5 bg-[#f3f0ee] font-primary ">
       <section
         id="switch-mode"
         className="flex justify-between w-full mb-[20px]"
@@ -28,60 +29,49 @@ function Login() {
         <Link
           to="/auth/login"
           id="login__button"
-          className="text-4 font-normal leading-[20px] tracking-[-0.02em] text-center cursor-pointer text-[#2b2b2b] hover:font-semibold"
+          className="text-4 font-normal leading-[20px] tracking-[-0.02em] text-center cursor-pointer text-[#2b2b2b] hover:font-semibold "
         >
           ورود به کالج گرام
         </Link>
       </section>
       <form
         id="login-form"
-        className="flex flex-col items-start justify-start mt-[20px]"
+        className="flex flex-col items-start justify-start mt-[20px] "
       >
-        <div id="input__container" className="relative">
-          <input
-            type="text"
-            placeholder="نام کاربری یا ایمیل"
-            className="w-[277px] h-[36px] mb-[34px] py-[8px] px-[16px] rounded-[16px] border-solid border-[1px] border-color[#cdcdcd] gap-[8px] placeholder:text-right placeholder:font-normal placeholder:text-[12px] placeholder:leading-[20px] placeholder:text-[#cdcdcd] placeholder:mr-[20px]"
-          />
-          <div
-            id="icon__placeholder"
-            className="absolute top-[50%] left-[10px] translate-y-[-150%] translate-x-[1500%]"
-          >
-            <img src={userIcon} alt="email Icon" className="email-icon" />
-          </div>
-        </div>
-        <div id="input__container" className="relative">
-          <input
-            type="text"
-            placeholder="رمز عبور"
-            className="w-[277px] h-[36px] mb-[34px] py-[8px] px-[16px] rounded-[16px] border-solid border-[1px] border-color[#cdcdcd] gap-[8px] placeholder:text-right placeholder:font-normal placeholder:text-[12px] placeholder:leading-[20px] placeholder:text-[#cdcdcd] placeholder:mr-[20px] "
-          />
-          <div
-            id="icon__placeholder"
-            className="absolute top-[50%] left-[10px] translate-y-[-150%] translate-x-[1500%] "
-          >
-            <img src={key} alt="Key Icon" className="key-icon" />
-          </div>
-        </div>
+        <InputContainer
+          placeholder="نام کاربری یا ایمیل"
+          icon={userIcon}
+          type="text"
+        />
+        <InputContainer placeholder="رمز عبور" icon={key} type="password" />
         <section
           id="remember__section"
           className="flex items-center justify-end w-full"
         >
-          <text
-            id="remember__text"
-            className="text-[12px] leading-[20px] text-[#2b2b2b]"
-          >
-            من را به خاطر بسپار
-          </text>
           <input
             type="checkbox"
             id="remember__checkbox"
-            className="w-[12px] h-[12px] rounded-[4px] ml-[8px] border-none bg-[#cdcdcd]"
-          ></input>
+            className="hidden"
+            checked={rememberMe}
+            onChange={handleRememberChange}
+          />
+          <label
+            htmlFor="remember__checkbox"
+            className="inline-flex items-center ml-[8px] cursor-pointer"
+          >
+            <span className="text-[12px] leading-[20px] text-[#2b2b2b] ml-[6px]">
+              من را به خاطر بسپار
+            </span>
+            <div
+              className={`w-[12px] h-[12px] rounded-[4px] ${
+                rememberMe ? "bg-[#ffffff] shadow-checkbox" : "bg-[#c19008]"
+              } flex-shrink-0 ml-2 transition-all duration-300 hover:border`}
+            />
+          </label>
         </section>
         <button
           id="submit__button"
-          className="mt-auto mb-[20px] w-[84px] h-[36px] py-[8px] px-[16px] border-none bg-[#c19008] text-[#ffffff] rounded-[16px] hover:bg-[#ffc72d] hover:text-black hover:transition-all"
+          className="mt-auto mb-[20px] w-[84px] h-[36px] py-[8px] px-[16px] border-none bg-[#c19008] text-[#ffffff] rounded-[16px] hover:bg-[#ffc72d] hover:text-black hover:transition-all duration-300 "
         >
           ورود
         </button>
@@ -92,16 +82,18 @@ function Login() {
           <Link
             to="/auth/recover-password"
             id="recoverpassword__link"
-            className="text-[#c19008] no-underline"
+            className="text-[#c19008] no-underline flex items-center hover:font-semibold"
           >
             رمز عبورم رو فراموش کردم
+            <img src={arrowback} alt="Back Icon" className="h-[8px] ml-2" />
           </Link>
           <Link
             to="/auth/signup"
             id="signup__link"
-            className="text-[#c19008] no-underline"
+            className="text-[#c19008] no-underline flex items-center hover:font-semibold"
           >
             ثبت نام در کالج گرام
+            <img src={arrowback} alt="Back Icon" className="h-[8px] ml-2" />
           </Link>
         </section>
       </form>

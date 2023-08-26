@@ -1,19 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../photos/logo.png";
-import userIcon from "../photos/person.svg";
-import email from "../photos/email.svg";
-import key from "../photos/key.svg";
+import userIcon from "../assets/photos/person.svg";
+import email from "../assets/photos/email-light.svg";
+import key from "../assets/photos/key.svg";
+import InputContainer from "../components/InputContainer";
 
 function SignUp() {
   return (
-    <div className="flex flex-col justify-center items-center w-full h-full p-5 bg-[#f3f0ee] font-primary ">
-      <img
-        src={logo}
-        alt="Rahnema Logo"
-        id="logo"
-        className=" w-[60px] mb-[20px]"
-      />
+    <div className="flex flex-col items-center w-full h-full p-5 bg-[#f3f0ee] font-primary ">
       <section
         id="switch-mode"
         className="flex justify-between w-full mb-[20px]"
@@ -29,7 +23,7 @@ function SignUp() {
         <Link
           to="/auth/login"
           id="login__button"
-          className="text-4 font-normal leading-[20px] tracking-[-0.02em] text-center cursor-pointer text-[#a5a5a5]"
+          className="text-4 font-normal leading-[20px] tracking-[-0.02em] text-center cursor-pointer text-[#a5a5a5] hover:font-semibold"
         >
           ورود به کالج گرام
         </Link>
@@ -38,61 +32,18 @@ function SignUp() {
         id="signup__form"
         className="flex flex-col items-start justify-start mt-[20px]"
       >
-        <div id="input__container" className="relative">
-          <input
-            type="text"
-            placeholder="نام کاربری"
-            className="w-[277px] h-[36px] mb-[34px] py-[8px] px-[16px] rounded-[16px] border-solid border-[1px] border-color[#cdcdcd] gap-[8px] placeholder:text-right placeholder:font-normal placeholder:text-[12px] placeholder:leading-[20px] placeholder:text-[#cdcdcd] placeholder:mr-[20px]"
-          />
-          <div
-            id="icon__placeholder"
-            className="absolute top-[50%] left-[10px] translate-y-[-150%] translate-x-[1500%]"
-          >
-            <img src={userIcon} alt="User Icon" className="user-icon" />
-          </div>
-        </div>
-        <div id="input__container" className="relative">
-          <input
-            type="text"
-            placeholder="ایمیل"
-            className="w-[277px] h-[36px] mb-[34px] py-[8px] px-[16px] rounded-[16px] border-solid border-[1px] border-color[#cdcdcd] gap-[8px] placeholder:text-right placeholder:font-normal placeholder:text-[12px] placeholder:leading-[20px] placeholder:text-[#cdcdcd] placeholder:mr-[20px]"
-          />
-          <div
-            id="icon__placeholder"
-            className="absolute top-[50%] left-[10px] translate-y-[-150%] translate-x-[1500%]"
-          >
-            <img src={email} alt="email Icon" className="email-icon" />
-          </div>
-        </div>
-        <div id="input__container" className="relative">
-          <input
-            type="text"
-            placeholder="رمز عبور"
-            className="w-[277px] h-[36px] mb-[34px] py-[8px] px-[16px] rounded-[16px] border-solid border-[1px] border-color[#cdcdcd] gap-[8px] placeholder:text-right placeholder:font-normal placeholder:text-[12px] placeholder:leading-[20px] placeholder:text-[#cdcdcd] placeholder:mr-[20px]"
-          />
-          <div
-            id="icon__placeholder"
-            className="absolute top-[50%] left-[10px] translate-y-[-150%] translate-x-[1500%]"
-          >
-            <img src={key} alt="Key Icon" className="key-icon" />
-          </div>
-        </div>
-        <div id="input__container" className="relative">
-          <input
-            type="text"
-            placeholder="تکرار رمز عبور"
-            className="w-[277px] h-[36px] mb-[34px] py-[8px] px-[16px] rounded-[16px] border-solid border-[1px] border-color[#cdcdcd] gap-[8px] placeholder:text-right placeholder:font-normal placeholder:text-[12px] placeholder:leading-[20px] placeholder:text-[#cdcdcd] placeholder:mr-[20px]"
-          />
-          <div
-            id="icon__placeholder"
-            className="absolute top-[50%] left-[10px] translate-y-[-150%] translate-x-[1500%]"
-          >
-            <img src={key} alt="Key Icon" className="key-icon" />
-          </div>
-        </div>
+        <InputContainer placeholder="نام کاربری" icon={userIcon} type="text" />
+        <InputContainer placeholder="ایمیل" icon={email} type="text" />
+        <InputContainer placeholder="رمز عبور" icon={key} type="password" />
+        <InputContainer
+          placeholder="تکرار رمز عبور"
+          icon={key}
+          type="password"
+        />
+
         <button
           id="submit__button"
-          className="mt-auto mb-[20px] w-[84px] h-[36px] py-[8px] px-[16px] border-none bg-[#c19008] text-[#ffffff] rounded-[16px] hover:bg-[#ffc72d] hover:text-black hover:transition-all"
+          className="mt-auto mb-[20px] w-[84px] h-[36px] py-[8px] px-[16px] border-none bg-[#c19008] text-[#ffffff] rounded-[16px] hover:bg-[#ffc72d] hover:text-black hover:transition-all duration-300"
         >
           ثبت نام
         </button>
