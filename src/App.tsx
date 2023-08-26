@@ -6,9 +6,11 @@ import {
   Navigate,
   Outlet,
 } from "react-router-dom";
-import SignUp from "./pages/SignUp";
-import Login from "./pages/Login";
-import RecoverPassword from "./pages/RecoverPassword";
+import SignUp from "./pages/SignUpPage";
+import Login from "./pages/LoginPage";
+import RecoverPassword from "./pages/RecoverPasswordPage";
+import Auth from "./pages/AuthLayout";
+import NewPassword from "./pages/NewPasswordPage";
 
 function App() {
   return (
@@ -20,19 +22,11 @@ function App() {
             <h1>check for token if existed go to home else go to login</h1>
           }
         />
-        <Route
-          path="auth"
-          element={
-            <div>
-              {/* to do => cut the design to 2 part of common layout and outlet */}
-              <Outlet></Outlet>
-            </div>
-          }
-        >
+        <Route path="Auth" element={<Auth />}>
           <Route path="login" element={<Login />}></Route>
           <Route path="signup" element={<SignUp />}></Route>
-          <Route path="forget-pass" element={<div>forget pass</div>}></Route>
-          <Route path="recover-pass" element={<RecoverPassword />}></Route>
+          <Route path="recover-password" element={<RecoverPassword />}></Route>
+          <Route path="new-pass" element={<NewPassword />}></Route>
         </Route>
         <Route
           path="app"
