@@ -26,7 +26,7 @@ function RecoverPassword() {
           <input
             type="text"
             placeholder="نام کاربری یا ایمیل"
-            className="w-[277px] h-[36px] mb-[34px] py-[8px] px-[16px] rounded-[16px] border-solid border-[1px] border-color[#cdcdcd] gap-[8px] placeholder:text-right placeholder:font-normal placeholder:text-[12px] placeholder:leading-[20px] placeholder:text-[#cdcdcd] placeholder:mr-[20px]"
+            className="w-[277px] h-[36px] mb-[34px] py-[8px] px-[16px] rounded-[16px] border-solid border-[1px] gap-[8px] placeholder:text-right placeholder:font-normal placeholder:text-[12px] placeholder:leading-[20px] placeholder:text-[#cdcdcd] placeholder:mr-[20px]"
           />
           <div
             id="icon__placeholder"
@@ -38,12 +38,12 @@ function RecoverPassword() {
         <section id="buttons">
           <button
             id="submit__button"
-            className="mt-auto mb-[20px] w-[184px] h-[36px] py-[8px] px-[16px] border-none bg-[#c19008] text-[14px] text-[#ffffff] rounded-[16px] hover:bg-[#9e780d]"
+            className="mt-auto mb-[20px] w-[184px] h-[36px] py-[8px] px-[16px] border-none bg-[#c19008] text-[14px] text-[#ffffff] rounded-[16px] hover:bg-[#ffc72d] hover:text-black hover:transition-all"
           >
             ارسال لینک بازیابی رمز عبور
           </button>
           <Link
-            to="/login"
+            to="/auth/login"
             id="cancel__link"
             className="text-[#2B2B2B] no-underline w-[104px] h-[36px] ml-[10px]"
           >

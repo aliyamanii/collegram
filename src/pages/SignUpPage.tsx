@@ -19,15 +19,15 @@ function SignUp() {
         className="flex justify-between w-full mb-[20px]"
       >
         <Link
-          to="/signup"
+          to="/auth/signup"
           id="signup__button"
-          className="text-base font-normal leading-[20px] tracking-[-0.02em] text-center cursor-pointer text-[#2b2b2b] "
+          className="text-base font-normal leading-[20px] tracking-[-0.02em] text-center cursor-pointer text-[#2b2b2b] hover:font-semibold "
         >
           ثبت نام در کالج گرام
         </Link>
         <div className="w-[1px] h-full bg-[black]"></div>
         <Link
-          to="/login"
+          to="/auth/login"
           id="login__button"
           className="text-4 font-normal leading-[20px] tracking-[-0.02em] text-center cursor-pointer text-[#a5a5a5]"
         >
@@ -92,7 +92,7 @@ function SignUp() {
         </div>
         <button
           id="submit__button"
-          className="mt-auto mb-[20px] w-[84px] h-[36px] py-[8px] px-[16px] border-none bg-[#c19008] text-[#ffffff] rounded-[16px] hover:bg-[#9e780d]"
+          className="mt-auto mb-[20px] w-[84px] h-[36px] py-[8px] px-[16px] border-none bg-[#c19008] text-[#ffffff] rounded-[16px] hover:bg-[#ffc72d] hover:text-black hover:transition-all"
         >
           ثبت نام
         </button>

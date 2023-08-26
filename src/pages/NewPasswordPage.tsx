@@ -51,7 +51,7 @@ function NewPassword() {
         <section id="buttons">
           <button
             id="submit__button"
-            className="mt-auto mb-[20px] w-[139px] h-[36px] py-[8px] px-[16px] border-none bg-[#c19008] text-[14px] text-[#ffffff] rounded-[16px] hover:bg-[#9e780d]"
+            className="mt-auto mb-[20px] w-[139px] h-[36px] py-[8px] px-[16px] border-none bg-[#c19008] text-[14px] text-[#ffffff] rounded-[16px] hover:bg-[#ffc72d] hover:text-black hover:transition-all"
           >
             ثبت رمز عبور جدید
           </button>

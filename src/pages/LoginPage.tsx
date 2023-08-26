@@ -18,17 +18,17 @@ function Login() {
         className="flex justify-between w-full mb-[20px]"
       >
         <Link
-          to="/signup"
+          to="/auth/signup"
           id="signup__button"
-          className="text-base font-normal leading-[20px] tracking-[-0.02em] text-center cursor-pointer text-[#2b2b2b] "
+          className="text-base font-normal leading-[20px] tracking-[-0.02em] text-center cursor-pointer text-[#a5a5a5] hover:font-semibold "
         >
           ثبت نام در کالج گرام
         </Link>
         <div className="w-[1px] h-full bg-[black]"></div>
         <Link
-          to="/login"
+          to="/auth/login"
           id="login__button"
-          className="text-4 font-normal leading-[20px] tracking-[-0.02em] text-center cursor-pointer text-[#a5a5a5]"
+          className="text-4 font-normal leading-[20px] tracking-[-0.02em] text-center cursor-pointer text-[#2b2b2b] hover:font-semibold"
         >
           ورود به کالج گرام
         </Link>
@@ -54,11 +54,11 @@ function Login() {
           <input
             type="text"
             placeholder="رمز عبور"
-            className="w-[277px] h-[36px] mb-[34px] py-[8px] px-[16px] rounded-[16px] border-solid border-[1px] border-color[#cdcdcd] gap-[8px] placeholder:text-right placeholder:font-normal placeholder:text-[12px] placeholder:leading-[20px] placeholder:text-[#cdcdcd] placeholder:mr-[20px]"
+            className="w-[277px] h-[36px] mb-[34px] py-[8px] px-[16px] rounded-[16px] border-solid border-[1px] border-color[#cdcdcd] gap-[8px] placeholder:text-right placeholder:font-normal placeholder:text-[12px] placeholder:leading-[20px] placeholder:text-[#cdcdcd] placeholder:mr-[20px] "
           />
           <div
             id="icon__placeholder"
-            className="absolute top-[50%] left-[10px] translate-y-[-150%] translate-x-[1500%]"
+            className="absolute top-[50%] left-[10px] translate-y-[-150%] translate-x-[1500%] "
           >
             <img src={key} alt="Key Icon" className="key-icon" />
           </div>
@@ -81,7 +81,7 @@ function Login() {
         </section>
         <button
           id="submit__button"
-          className="mt-auto mb-[20px] w-[84px] h-[36px] py-[8px] px-[16px] border-none bg-[#c19008] text-[#ffffff] rounded-[16px] hover:bg-[#9e780d]"
+          className="mt-auto mb-[20px] w-[84px] h-[36px] py-[8px] px-[16px] border-none bg-[#c19008] text-[#ffffff] rounded-[16px] hover:bg-[#ffc72d] hover:text-black hover:transition-all"
         >
           ورود
         </button>
@@ -90,14 +90,14 @@ function Login() {
           className="w-full h-[56px] gap-[16px] flex items-end justify-end flex-col font-medium text-[12px] leading-[20px] tracking-[-2%]"
         >
           <Link
-            to="/recoverpassword"
+            to="/auth/recover-password"
             id="recoverpassword__link"
             className="text-[#c19008] no-underline"
           >
             رمز عبورم رو فراموش کردم
           </Link>
           <Link
-            to="/signup"
+            to="/auth/signup"
             id="signup__link"
             className="text-[#c19008] no-underline"
           >

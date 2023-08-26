@@ -1,11 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import logo from "../photos/logo.png";
+import { Link, Outlet } from "react-router-dom";
 import tree from "../photos/tree.png";
-import SignUp from "./SignUpPage";
-import Login from "./LoginPage";
-import RecoverPassword from "./RecoverPasswordPage";
-import NewPassword from "./NewPasswordPage";
 
 function AUTH() {
   return (
@@ -15,7 +10,7 @@ function AUTH() {
         className=" w-screen h-[55vh] mt-0 flex bg-[#f3f0ee] text-center flex-col items-center justify-center"
       >
         <div className="w-[320px] h-[55vh] bg-[red]">
-          <RecoverPassword />
+          <Outlet />
         </div>
       </div>
       <div className="h-[45vh] w-auto flex justify-center items-center">
