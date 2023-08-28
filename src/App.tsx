@@ -1,4 +1,3 @@
-import React from "react";
 import {
   BrowserRouter,
   Route,
@@ -11,6 +10,8 @@ import Login from "./pages/LoginPage";
 import RecoverPassword from "./pages/RecoverPasswordPage";
 import Auth from "./pages/AuthLayout";
 import NewPassword from "./pages/NewPasswordPage";
+import Home from "./pages/HomePage";
+import AppLayout from "./pages/AppLayout";
 
 function App() {
   return (
@@ -28,19 +29,11 @@ function App() {
           <Route path="recover-password" element={<RecoverPassword />}></Route>
           <Route path="new-pass" element={<NewPassword />}></Route>
         </Route>
-        <Route
-          path="app"
-          element={
-            <div>
-              <h1>app Layout</h1>
-              <Outlet />
-            </div>
-          }
-        >
+        <Route path="app" element={<AppLayout />}>
           <Route index={true} element={<Navigate to="home" replace />} />
-          <Route path="home" element={<div>Home Page</div>} />
+          <Route path="home" element={<Home />} />
           <Route path="my-college-gram" element={<div>my College gram</div>} />
-          <Route path="my-college-gram" element={<div>my College gram</div>} />
+          <Route path="people" element={<div>کالج گرامی ها</div>} />
           <Route
             path="post/:id"
             element={<div>post page for specefic id</div>}

@@ -20,6 +20,7 @@ function RecoverPassword() {
           placeholder="نام کاربری یا ایمیل"
           icon={userIcon}
           type="text"
+          width="320px"
         />
         <section id="buttons">
           <button

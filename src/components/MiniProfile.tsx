@@ -1,36 +1,35 @@
 import React, { FC } from "react";
 import arrowDown from "../assets/photos/arrow-down-yellow.svg";
 import { Link } from "react-router-dom";
+import { User } from "../types/types.ts";
 
 interface MiniProfileProps {
-  username: string;
-  displayName: string;
-  bio: string;
-  followers: number;
-  following: number;
-  profilePicture: string;
+  user: User;
 }
 
-const MiniProfile: FC<MiniProfileProps> = ({
-  username,
-  displayName,
-  bio,
-  followers,
-  following,
-  profilePicture,
-}) => {
+const MiniProfile: FC<MiniProfileProps> = ({ user }) => {
+  const {
+    userName,
+    firstName,
+    lastName,
+    bio,
+    profileUrl,
+    followers,
+    following,
+  } = user;
+  const displayName = `${firstName} ${lastName}`;
   return (
-    <div className="w-[256px] h-[403px] p-[15px] flex flex-col items-center bg-[#F1EBE3] border border-[#cdcdcd]">
+    <div className="w-[256px] h-[403px] p-[15px] flex flex-col items-center bg-[#F1EBE3] border border-[#cdcdcd] font-primary">
       <div className="w-[133.42]] h-[133.42] p-1 rounded-full mb-[20px] object-cover ring-gray-300 dark:ring-gray-500">
         <img
-          src={profilePicture}
+          src={profileUrl}
           alt={`${displayName}'s Profile`}
           className="w-[133.42px] h-[133.42px] p-1 rounded-full object-cover"
         />
       </div>
       <div className=" flex flex-col gap-[15px]">
         <div className="w-full flex items-center justify-center  text-[14px] text-[#C19008] font-montserrat font-normal text-center leading-[17.07px]">
-          @{username}
+          @{userName}
           <img
             src={arrowDown}
             alt="Back Icon"

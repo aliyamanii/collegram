@@ -4,14 +4,17 @@ interface InputContainerProps {
   placeholder: string;
   icon: string;
   type: string;
+  width: string;
 }
 
-function InputContainer({ placeholder, icon, type }: InputContainerProps) {
+function InputContainer({
+  placeholder,
+  icon,
+  type,
+  width,
+}: InputContainerProps) {
   return (
-    <div
-      id="input__container"
-      className="relative w-[277px] h-[36px] mb-[30px]"
-    >
+    <div id="input__container" className={`relative w-[${width}] mb-[30px]`}>
       <input
         type={type}
         placeholder={placeholder}
