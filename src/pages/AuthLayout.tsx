@@ -1,11 +1,9 @@
-import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import tree from "../assets/photos/tree.svg";
 import logo from "../assets/photos/logo.svg";
-import pfp from "../assets/photos/pfp.svg";
-import MiniProfile from "../components/MiniProfile";
+import Header from "../components/AppHeader";
 
-function AUTH() {
+function Auth() {
   return (
     <div className="flex flex-col h-screen justify-center bg-[#f1ebe3] font-primary">
       <div
@@ -26,7 +24,7 @@ function AUTH() {
         <img
           src={tree}
           id="tree"
-          className="mx-auto hover:animate-bounce"
+          className="mx-auto hover:animate-spin"
           alt="Tree"
         />
       </div>
@@ -34,4 +32,4 @@ function AUTH() {
   );
 }
 
-export default AUTH;
+export default Auth;

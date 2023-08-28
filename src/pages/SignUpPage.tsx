@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import userIcon from "../assets/photos/person.svg";
 import email from "../assets/photos/email-light.svg";
 import key from "../assets/photos/key.svg";
 import InputContainer from "../components/InputContainer";
 
-function SignUp() {
   return (
     <div className="flex flex-col items-center w-full h-full p-5 bg-[#f3f0ee] font-primary ">
       <section
@@ -14,7 +13,7 @@ function SignUp() {
       >
         <Link
           to="/auth/signup"
-          id="signup__button"
+          id="signup-button"
           className="text-base font-normal leading-[20px] tracking-[-0.02em] text-center cursor-pointer text-[#2b2b2b] hover:font-semibold "
         >
           ثبت نام در کالج گرام
@@ -22,23 +21,40 @@ function SignUp() {
         <div className="w-[1px] h-full bg-[black]"></div>
         <Link
           to="/auth/login"
-          id="login__button"
+          id="login-button"
           className="text-4 font-normal leading-[20px] tracking-[-0.02em] text-center cursor-pointer text-[#a5a5a5] hover:font-semibold"
         >
           ورود به کالج گرام
         </Link>
       </section>
       <form
-        id="signup__form"
+        onSubmit={handleSubmit}
+        id="signup-form"
         className="flex flex-col items-start justify-start mt-[20px]"
       >
-        <InputContainer placeholder="نام کاربری" icon={userIcon} type="text" />
-        <InputContainer placeholder="ایمیل" icon={email} type="text" />
-        <InputContainer placeholder="رمز عبور" icon={key} type="password" />
+        <InputContainer
+          placeholder="نام کاربری"
+          icon={userIcon}
+          type="text"
+          width="320px"
+        />
+        <InputContainer
+          placeholder="ایمیل"
+          icon={emailIcon}
+          type="text"
+          width="320px"
+        />
+        <InputContainer
+          placeholder="رمز عبور"
+          icon={key}
+          type="password"
+          width="320px"
+        />
         <InputContainer
           placeholder="تکرار رمز عبور"
           icon={key}
           type="password"
+          width="320px"
         />
 
         <button

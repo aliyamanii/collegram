@@ -42,8 +42,14 @@ function Login() {
           placeholder="نام کاربری یا ایمیل"
           icon={userIcon}
           type="text"
+          width="320px"
         />
-        <InputContainer placeholder="رمز عبور" icon={key} type="password" />
+        <InputContainer
+          placeholder="رمز عبور"
+          icon={key}
+          type="password"
+          width="320px"
+        />
         <section
           id="remember__section"
           className="flex items-center justify-end w-full"

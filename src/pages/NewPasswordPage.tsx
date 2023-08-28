@@ -16,8 +16,18 @@ function NewPassword() {
         id="recover-form"
         className="flex flex-col items-start justify-start mt-[20px]"
       >
-        <InputContainer placeholder="رمز عبور" icon={key} type="text" />
-        <InputContainer placeholder="تکرار رمز عبور" icon={key} type="text" />
+        <InputContainer
+          placeholder="رمز عبور"
+          icon={key}
+          type="text"
+          width="320px"
+        />
+        <InputContainer
+          placeholder="تکرار رمز عبور"
+          icon={key}
+          type="text"
+          width="320px"
+        />
         <section id="buttons">
           <button
             id="submit__button"
