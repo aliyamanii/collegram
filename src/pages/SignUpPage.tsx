@@ -5,6 +5,7 @@ import email from "../assets/photos/email-light.svg";
 import key from "../assets/photos/key.svg";
 import InputContainer from "../components/InputContainer";
 
+function SignUp() {
   return (
     <div className="flex flex-col items-center w-full h-full p-5 bg-[#f3f0ee] font-primary ">
       <section
@@ -28,7 +29,6 @@ import InputContainer from "../components/InputContainer";
         </Link>
       </section>
       <form
-        onSubmit={handleSubmit}
         id="signup-form"
         className="flex flex-col items-start justify-start mt-[20px]"
       >
@@ -40,7 +40,7 @@ import InputContainer from "../components/InputContainer";
         />
         <InputContainer
           placeholder="ایمیل"
-          icon={emailIcon}
+          icon={email}
           type="text"
           width="320px"
         />
