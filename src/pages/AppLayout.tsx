@@ -28,7 +28,7 @@ function AppLayout() {
     <div className="w-screen h-screen py-[52px] px-[204px] flex justify-center bg-[#F3F0EE]">
       <div id="page" className="w-[1000px] h-full mr-[50px]">
         <AppHeader />
-        <Home />
+        <Outlet />
       </div>
       <div
         id="navbar"
