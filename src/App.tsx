@@ -12,6 +12,7 @@ import Auth from "./pages/AuthLayout";
 import NewPassword from "./pages/NewPasswordPage";
 import Home from "./pages/HomePage";
 import AppLayout from "./pages/AppLayout";
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
   return (
@@ -39,7 +40,7 @@ function App() {
             element={<div>post page for specefic id</div>}
           />
         </Route>
-        <Route path="error" element={<div>Error page</div>} />
+        <Route path="error" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
   );
