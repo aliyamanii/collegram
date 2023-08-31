@@ -2,8 +2,31 @@ import React from "react";
 import { Link } from "react-router-dom";
 import InputContainer from "../components/InputContainer";
 import userIcon from "../assets/photos/person.svg";
+import { useForm } from "react-hook-form";
+import ErrorMessage from "../components/ErrorMessage";
+
+const emailRegex =
+  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
 
 function RecoverPassword() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      usernameOrEmail: "",
+    },
+    mode: "all",
+    delayError: 700,
+  });
+
+  const onSubmit = (formData: any) => {
+    // formData is object of our input names with theirvalues
+    // to do => connect with api
+    console.log(formData);
+  };
+
   return (
     <div className="flex flex-col items-center w-full h-full p-5 bg-[#f3f0ee] font-primary ">
       <text
@@ -14,14 +37,27 @@ function RecoverPassword() {
       </text>
       <form
         id="recover-form"
-        className="flex flex-col items-start justify-start mt-[20px]"
+        className="flex gap-5 flex-col items-start justify-start mt-[20px]"
+        onSubmit={handleSubmit(onSubmit)}
       >
         <InputContainer
           placeholder="نام کاربری یا ایمیل"
           icon={userIcon}
           type="text"
           width="320px"
+          {...register("usernameOrEmail", {
+            required: { value: true, message: ".فیلد ایمیل اجباری است" },
+            validate: (value) => {
+              console.log(emailRegex.test(value));
+              return (
+                emailRegex.test(value) ||
+                /^[a-z][a-z1-9_]{3,63}$/i.test(value) ||
+                "مقدار وارد شده یک ایمیل یا نام کاربری صحیح نمی باشد"
+              );
+            },
+          })}
         />
+        <ErrorMessage errorMessage={errors?.usernameOrEmail?.message} />
         <section id="buttons">
           <button
             id="submit__button"

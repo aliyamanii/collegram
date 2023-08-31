@@ -4,12 +4,36 @@ import InputContainer from "../components/InputContainer";
 import userIcon from "../assets/photos/person.svg";
 import key from "../assets/photos/key.svg";
 import arrowback from "../assets/photos/arrow-back.svg";
+import { useForm } from "react-hook-form";
+import ErrorMessage from "../components/ErrorMessage";
+
+const emailRegex =
+  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
 
 function Login() {
-  const [rememberMe, setRememberMe] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      usernameOrEmail: "",
+      password: "",
+    },
+    mode: "all",
+    delayError: 700,
+  });
 
+  // to delete
+  const [rememberMe, setRememberMe] = useState(false);
   const handleRememberChange = () => {
     setRememberMe(!rememberMe);
+  };
+
+  const onSubmit = (formData: any) => {
+    // formData is object of our input names with theirvalues
+    // to do => connect with api
+    console.log(formData);
   };
 
   return (
@@ -36,19 +60,31 @@ function Login() {
       </section>
       <form
         id="login-form"
-        className="flex flex-col items-start justify-start mt-[20px] "
+        className="flex flex-col gap-5 items-start justify-start mt-[20px] "
+        onSubmit={handleSubmit(onSubmit)}
       >
         <InputContainer
           placeholder="نام کاربری یا ایمیل"
           icon={userIcon}
           type="text"
           width="320px"
+          {...register("usernameOrEmail", {
+            validate: (value) => {
+              return (
+                emailRegex.test(value) ||
+                /^[a-z][a-z1-9_]{3,63}$/i.test(value) ||
+                "مقدار وارد شده یک ایمیل یا نام کاربری صحیح نمی باشد"
+              );
+            },
+          })}
         />
+        <ErrorMessage errorMessage={errors?.usernameOrEmail?.message} />
         <InputContainer
           placeholder="رمز عبور"
           icon={key}
           type="password"
           width="320px"
+          {...register("password")}
         />
         <section
           id="remember__section"
