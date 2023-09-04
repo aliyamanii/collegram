@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import arrowDown from "../assets/photos/arrow-down-yellow.svg";
-import { Link } from "react-router-dom";
+import pen from "../assets/photos/pen.svg";
+import { Link, useLocation } from "react-router-dom";
 import { User } from "../types/types.ts";
 
 interface MiniProfileProps {
@@ -17,10 +18,14 @@ const MiniProfile: FC<MiniProfileProps> = ({ user }) => {
     followers,
     following,
   } = user;
+
   const displayName = `${firstName} ${lastName}`;
+  const location = useLocation();
+  const isMyCollegeGramRoute = location.pathname === "/app/my-college-gram";
+
   return (
     <div className="w-[256px] h-[403px] p-[15px] flex flex-col items-center bg-[#F1EBE3] border border-[#cdcdcd] font-primary">
-      <div className="w-[133.42]] h-[133.42] p-1 rounded-full mb-[20px] object-cover ring-gray-300 dark:ring-gray-500">
+      <div className="w-[133.42] h-[133.42] p-1 rounded-full mb-[20px] object-cover ring-gray-300 dark:ring-gray-500">
         <img
           src={profileUrl}
           alt={`${displayName}'s Profile`}
@@ -57,6 +62,11 @@ const MiniProfile: FC<MiniProfileProps> = ({ user }) => {
           {bio}
         </div>
       </div>
+      {isMyCollegeGramRoute && (
+        <div className="my-4 hover:cursor-pointer">
+          <img src={pen} alt="Edit Profile" className="hover:animate-spin" />
+        </div>
+      )}
     </div>
   );
 };

@@ -1,7 +1,9 @@
-import React from "react";
+import React, { Fragment, useState } from "react";
 import logo from "../assets/photos/logo.svg";
 import search from "../assets/photos/search.svg";
 import InputContainer from "./InputContainer";
+import customDialog from "./CustomDialog";
+import CustomDialog from "./CustomDialog";
 
 interface HeaderProps {
   logoUrl: string;
@@ -9,6 +11,16 @@ interface HeaderProps {
 }
 
 const AppHeader: React.FC = ({}) => {
+  let [isOpen, setIsOpen] = useState(false);
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
   return (
     <div
       id="header"
@@ -24,11 +36,13 @@ const AppHeader: React.FC = ({}) => {
         </div>
         <div className="button">
           <button
-            id="submit__button"
+            id="add-post__button"
             className="w-[110px] h-[40px] mt-auto mb-[20px] py-[8px] px-[16px] border-none bg-[#c19008] text-[14px] text-[#ffffff] rounded-[100px] hover:bg-[#ffc72d] hover:text-black hover:transition-all duration-300"
+            onClick={openModal}
           >
             افزودن پست
           </button>
+          {isOpen && <CustomDialog closeModal={closeModal} />}
         </div>
       </div>
       <div id="right" className="w-[360px]">
