@@ -1,20 +1,24 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import InputContainer from "../components/InputContainer";
 import userIcon from "../assets/photos/person.svg";
 import key from "../assets/photos/key.svg";
 import arrowback from "../assets/photos/arrow-back.svg";
 import { useForm } from "react-hook-form";
 import ErrorMessage from "../components/ErrorMessage";
+import { api } from "../../src/api/instance";
 
 const emailRegex =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
 
 function Login() {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
+    getValues,
   } = useForm({
     defaultValues: {
       usernameOrEmail: "",
@@ -34,6 +38,19 @@ function Login() {
     // formData is object of our input names with theirvalues
     // to do => connect with api
     console.log(formData);
+
+    api
+      .post("users/login", {
+        identifier: formData.usernameOrEmail,
+        password: formData.password,
+      })
+      .then((result) => {
+        localStorage.setItem("authentication", result.data.data.token);
+        navigate("/app/home");
+      })
+      .catch((error) => {
+        // trigger toast message
+      });
   };
 
   return (
@@ -121,14 +138,19 @@ function Login() {
           id="other-options"
           className="w-full h-[56px] gap-[16px] flex items-end justify-end flex-col font-medium text-[12px] leading-[20px] tracking-[-2%]"
         >
-          <Link
-            to="/auth/recover-password"
+          <button
+            // to="/auth/recover-password"
             id="recoverpassword__link"
             className="text-[#c19008] no-underline flex items-center hover:font-semibold"
+            onClick={() =>
+              navigate("/auth/recover-password", {
+                state: { identifier: getValues("usernameOrEmail") },
+              })
+            }
           >
             رمز عبورم رو فراموش کردم
             <img src={arrowback} alt="Back Icon" className="h-[8px] ml-2" />
-          </Link>
+          </button>
           <Link
             to="/auth/signup"
             id="signup__link"

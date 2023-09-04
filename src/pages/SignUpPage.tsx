@@ -1,13 +1,16 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import userIcon from "../assets/photos/person.svg";
 import email from "../assets/photos/email-light.svg";
 import key from "../assets/photos/key.svg";
 import InputContainer from "../components/InputContainer";
 import { useForm } from "react-hook-form";
 import ErrorMessage from "../components/ErrorMessage";
+import { api } from "../api/instance";
 
 function SignUp() {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -27,7 +30,20 @@ function SignUp() {
   const onSubmit = (formData: any) => {
     // formData is object of our input names with theirvalues
     // to do => connect with api
-    console.log(formData);
+
+    api
+      .post("users/signup/", {
+        username: formData.username,
+        password: formData.password,
+        email: formData.email,
+      })
+      .then((res) => {
+        localStorage.setItem("authentication", res.data.data.token);
+        navigate("/app/home");
+      })
+      .catch((error) => {
+        //triger toast error message
+      });
   };
 
   return (
