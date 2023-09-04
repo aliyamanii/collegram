@@ -1,30 +1,40 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import InputContainer from "../components/InputContainer";
 import userIcon from "../assets/photos/person.svg";
 import { useForm } from "react-hook-form";
 import ErrorMessage from "../components/ErrorMessage";
+import { api } from "../api/instance";
 
 const emailRegex =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
 
 function RecoverPassword() {
+  const { state } = useLocation();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
     defaultValues: {
-      usernameOrEmail: "",
+      usernameOrEmail: state.identifier || "",
     },
     mode: "all",
     delayError: 700,
   });
 
   const onSubmit = (formData: any) => {
-    // formData is object of our input names with theirvalues
-    // to do => connect with api
-    console.log(formData);
+    api
+      .post("users/forget", {
+        identifier: formData.usernameOrEmail,
+      })
+      .then((result) => {
+        // triger toasst success send email
+      })
+      .catch((error) => {
+        // trigger toast error message
+      });
   };
 
   return (
@@ -60,6 +70,7 @@ function RecoverPassword() {
         <ErrorMessage errorMessage={errors?.usernameOrEmail?.message} />
         <section id="buttons">
           <button
+            type="submit"
             id="submit__button"
             className="mt-auto mb-[20px] w-[184px] h-[36px] py-[8px] px-[16px] border-none bg-[#c19008] text-[14px] text-[#ffffff] rounded-[16px] hover:bg-[#ffc72d] hover:text-black hover:transition-all duration-300"
           >
