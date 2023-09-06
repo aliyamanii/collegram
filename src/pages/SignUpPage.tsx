@@ -38,7 +38,7 @@ function SignUp() {
         email: formData.email,
       })
       .then((res) => {
-        localStorage.setItem("authentication", res.data.data.token);
+        localStorage.setItem("token", res.data.data.token);
         navigate("/app/home");
       })
       .catch((error) => {
