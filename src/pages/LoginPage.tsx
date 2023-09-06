@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import InputContainer from "../components/InputContainer";
 import userIcon from "../assets/photos/person.svg";
 import key from "../assets/photos/key.svg";
@@ -13,6 +13,7 @@ const emailRegex =
 
 function Login() {
   const navigate = useNavigate();
+  const { state } = useLocation();
 
   const {
     register,
@@ -45,8 +46,8 @@ function Login() {
         password: formData.password,
       })
       .then((result) => {
-        localStorage.setItem("authentication", result.data.data.token);
-        navigate("/app/home");
+        localStorage.setItem("token", result.data.data.token);
+        navigate(state?.lastPath || "/app/home");
       })
       .catch((error) => {
         // trigger toast message

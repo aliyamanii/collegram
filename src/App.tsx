@@ -13,24 +13,28 @@ import NewPassword from "./pages/NewPasswordPage";
 import Home from "./pages/HomePage";
 import AppLayout from "./pages/AppLayout";
 import ErrorPage from "./pages/ErrorPage";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <h1>check for token if existed go to home else go to login</h1>
-          }
-        />
+        <Route path="/" element={<Navigate to={"/app/home"} replace />} />
         <Route path="auth" element={<Auth />}>
           <Route path="login" element={<Login />}></Route>
           <Route path="signup" element={<SignUp />}></Route>
           <Route path="recover-password" element={<RecoverPassword />}></Route>
-          <Route path="new-pass" element={<NewPassword />}></Route>
+          <Route path="new-pass/:token" element={<NewPassword />}></Route>
         </Route>
-        <Route path="app" element={<AppLayout />}>
+
+        <Route
+          path="app"
+          element={
+            <ProtectedRoute>
+              <AppLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route index={true} element={<Navigate to="home" replace />} />
           <Route path="home" element={<Home />} />
           <Route path="my-college-gram" element={<div>my College gram</div>} />
