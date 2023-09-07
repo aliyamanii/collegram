@@ -7,6 +7,12 @@ import InputContainer from "../components/InputContainer";
 import { useForm } from "react-hook-form";
 import ErrorMessage from "../components/ErrorMessage";
 import { api } from "../api/instance";
+import {
+  confirmPasswordValidation,
+  emailValidation,
+  passwordValidation,
+  usernameValidation,
+} from "../utils/validation";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -78,31 +84,7 @@ function SignUp() {
           icon={userIcon}
           type="text"
           width="320px"
-          {...register("username", {
-            required: { value: true, message: ".فیلد نام کاربری اجباری است" },
-            minLength: {
-              value: 4,
-              message: ".نام کاربری نمی تواند کمتر از 4 کارکتر باشد",
-            },
-            maxLength: {
-              value: 64,
-              message: ".نام کاربری نمی تواند بیشتر از 64 کارکتر باشید",
-            },
-            validate: {
-              validCharacterCheck: (value) => {
-                return (
-                  /^[a-z1-9_]{0,}$/i.test(value) ||
-                  ".نام کاربری تنها میتواند شامل حروف انگلیسی ،اعداد و _ باشد"
-                );
-              },
-              firstCharacterCheck: (value) => {
-                return (
-                  /^[a-z]/i.test(value) ||
-                  ".نام کاربری تنها میتواند با حروف انگلیسی شروع شود"
-                );
-              },
-            },
-          })}
+          {...register("username", usernameValidation())}
         />
         <ErrorMessage errorMessage={errors?.username?.message} />
         <InputContainer
@@ -110,14 +92,7 @@ function SignUp() {
           icon={email}
           type="text"
           width="320px"
-          {...register("email", {
-            required: { value: true, message: ".فیلد ایمیل اجباریست" },
-            pattern: {
-              value:
-                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i,
-              message: ".مقدار وارد شده یک ایمیل صحیح نیست",
-            },
-          })}
+          {...register("email", emailValidation())}
         />
         <ErrorMessage errorMessage={errors?.email?.message} />
 
@@ -126,25 +101,7 @@ function SignUp() {
           icon={key}
           type="password"
           width="320px"
-          {...register("password", {
-            required: {
-              value: true,
-              message: ".فیلد پسورد اجباریست",
-            },
-            pattern: {
-              value: /^[a-z1-9]{0,}$/i,
-              message:
-                ".رمز عبور فقط شامل حروف بزرگ و کوجک انگلیسی و اعداد است",
-            },
-            minLength: {
-              value: 8,
-              message: ".رمز عبور باید بیشتر از 8 کارکتر باشید",
-            },
-            maxLength: {
-              value: 32,
-              message: ".رمز عبور باید کمتر از 32 کارکتر باشد",
-            },
-          })}
+          {...register("password", passwordValidation())}
         />
         <ErrorMessage errorMessage={errors?.password?.message} />
 
@@ -153,15 +110,10 @@ function SignUp() {
           icon={key}
           type="password"
           width="320px"
-          {...register("confirmPassword", {
-            required: { value: true, message: "فیلد تکرار رمز عبور اجباریست" },
-            validate: (value) => {
-              const { password } = getValues();
-              return (
-                password === value || "تکرار رمز عبور برابر با رمز عبور نیست"
-              );
-            },
-          })}
+          {...register(
+            "confirmPassword",
+            confirmPasswordValidation(getValues().password)
+          )}
         />
         <ErrorMessage errorMessage={errors?.confirmPassword?.message} />
         <button

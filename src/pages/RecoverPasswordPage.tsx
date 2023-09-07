@@ -5,9 +5,7 @@ import userIcon from "../assets/photos/person.svg";
 import { useForm } from "react-hook-form";
 import ErrorMessage from "../components/ErrorMessage";
 import { api } from "../api/instance";
-
-const emailRegex =
-  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
+import { identifierValidation } from "../utils/validation";
 
 function RecoverPassword() {
   const { state } = useLocation();
@@ -55,17 +53,7 @@ function RecoverPassword() {
           icon={userIcon}
           type="text"
           width="320px"
-          {...register("usernameOrEmail", {
-            required: { value: true, message: ".فیلد ایمیل اجباری است" },
-            validate: (value) => {
-              console.log(emailRegex.test(value));
-              return (
-                emailRegex.test(value) ||
-                /^[a-z][a-z1-9_]{3,63}$/i.test(value) ||
-                "مقدار وارد شده یک ایمیل یا نام کاربری صحیح نمی باشد"
-              );
-            },
-          })}
+          {...register("usernameOrEmail", identifierValidation())}
         />
         <ErrorMessage errorMessage={errors?.usernameOrEmail?.message} />
         <section id="buttons">

@@ -7,9 +7,7 @@ import arrowback from "../assets/photos/arrow-back.svg";
 import { useForm } from "react-hook-form";
 import ErrorMessage from "../components/ErrorMessage";
 import { api } from "../../src/api/instance";
-
-const emailRegex =
-  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
+import { identifierValidation } from "../utils/validation";
 
 function Login() {
   const navigate = useNavigate();
@@ -86,15 +84,7 @@ function Login() {
           icon={userIcon}
           type="text"
           width="320px"
-          {...register("usernameOrEmail", {
-            validate: (value) => {
-              return (
-                emailRegex.test(value) ||
-                /^[a-z][a-z1-9_]{3,63}$/i.test(value) ||
-                "مقدار وارد شده یک ایمیل یا نام کاربری صحیح نمی باشد"
-              );
-            },
-          })}
+          {...register("usernameOrEmail", identifierValidation())}
         />
         <ErrorMessage errorMessage={errors?.usernameOrEmail?.message} />
         <InputContainer
@@ -140,7 +130,6 @@ function Login() {
           className="w-full h-[56px] gap-[16px] flex items-end justify-end flex-col font-medium text-[12px] leading-[20px] tracking-[-2%]"
         >
           <button
-            // to="/auth/recover-password"
             id="recoverpassword__link"
             className="text-[#c19008] no-underline flex items-center hover:font-semibold"
             onClick={() =>
