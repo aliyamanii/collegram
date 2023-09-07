@@ -1,40 +1,72 @@
 import React, { FC } from "react";
 import arrowDown from "../assets/photos/arrow-down-yellow.svg";
-import pen from "../assets/photos/pen.svg";
+import penIcon from "../assets/photos/pen.svg";
 import { Link, useLocation } from "react-router-dom";
+import personIcon from "../assets/photos/person.svg";
+import { useQuery } from "@tanstack/react-query";
+import { fetchUserInfo } from "../api/user.ts";
 import { User } from "../types/types.ts";
 
-interface MiniProfileProps {
-  user: User;
-}
-
-const MiniProfile: FC<MiniProfileProps> = ({ user }) => {
+const MiniProfile: FC = () => {
   const {
-    userName,
-    firstName,
-    lastName,
+    data: user,
+    isLoading,
+    isError,
+  } = useQuery<User>({
+    queryKey: ["user"],
+    queryFn: fetchUserInfo,
+    staleTime: 5 * 60 * 1000,
+  });
+
+  //   ["user"], fetchUserInfo
+  if (isLoading) {
+    return (
+      <div className="w-[256px] h-[403px] p-[15px] flex flex-col justify-center items-center bg-[#F1EBE3] border border-[#cdcdcd] font-primary">
+        در حال گرفتن اطلاعات کاربر
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="w-[256px] h-[403px] p-[15px] flex flex-col justify-center items-center bg-[#F1EBE3] border border-[#cdcdcd] font-primary">
+        خطا در بازیابی اطلاعات کاربر
+      </div>
+    );
+  }
+
+  const {
+    username,
+    firstname,
+    lastname,
     bio,
     profileUrl,
     followers,
-    following,
+    followings,
   } = user;
 
-  const displayName = `${firstName} ${lastName}`;
+  const displayName = `${firstname || ""} ${lastname || ""}`;
   const location = useLocation();
   const isMyCollegeGramRoute = location.pathname === "/app/my-college-gram";
 
   return (
     <div className="w-[256px] h-[403px] p-[15px] flex flex-col items-center bg-[#F1EBE3] border border-[#cdcdcd] font-primary">
       <div className="w-[133.42] h-[133.42] p-1 rounded-full mb-[20px] object-cover ring-gray-300 dark:ring-gray-500">
-        <img
-          src={profileUrl}
-          alt={`${displayName}'s Profile`}
-          className="w-[133.42px] h-[133.42px] p-1 rounded-full object-cover"
-        />
+        {profileUrl ? (
+          <img
+            src={profileUrl || personIcon}
+            alt={`${username}'s Profile`}
+            className="w-[133.42px] h-[133.42px] p-1 rounded-full object-cover"
+          />
+        ) : (
+          <div className="w-[133.42px] h-[133.42px] p-1 rounded-full flex justify-center items-center bg-[#F3F0EE]">
+            <img src={personIcon} alt="" className="w-16 h-16" />
+          </div>
+        )}
       </div>
       <div className=" flex flex-col gap-[15px]">
         <div className="w-full flex items-center justify-center  text-[14px] text-[#C19008] font-montserrat font-normal text-center leading-[17.07px]">
-          @{userName}
+          @{username}
           <img
             src={arrowDown}
             alt="Back Icon"
@@ -50,7 +82,7 @@ const MiniProfile: FC<MiniProfileProps> = ({ user }) => {
         >
           <Link to="" id="following-button" className="flex">
             <div>دنبال شونده</div>
-            {following}
+            {followings}
           </Link>
           <div className="w-[1px] h-[10px] bg-[#17494D]"></div>
           <Link to="" id="followers-button" className="flex">
@@ -64,7 +96,11 @@ const MiniProfile: FC<MiniProfileProps> = ({ user }) => {
       </div>
       {isMyCollegeGramRoute && (
         <div className="my-4 hover:cursor-pointer">
-          <img src={pen} alt="Edit Profile" className="hover:animate-spin" />
+          <img
+            src={penIcon}
+            alt="Edit Profile"
+            className="hover:animate-spin"
+          />
         </div>
       )}
     </div>

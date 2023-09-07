@@ -1,14 +1,14 @@
 export interface User {
   id: string;
-  userName: string;
-  firstName: string;
-  lastName: string;
+  username: string;
+  firstname?: string;
+  lastname?: string;
   email: string;
-  bio: string;
-  profileUrl: string;
+  bio?: string;
+  profileUrl?: string;
   isPrivate: boolean;
   followers: number;
-  following: number;
+  followings: number;
 }
 
 export interface INavLink {
