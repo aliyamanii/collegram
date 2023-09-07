@@ -4,6 +4,10 @@ import InputContainer from "../components/InputContainer";
 import key from "../assets/photos/key.svg";
 import { useForm } from "react-hook-form";
 import ErrorMessage from "../components/ErrorMessage";
+import {
+  confirmPasswordValidation,
+  passwordValidation,
+} from "../utils/validation";
 
 function NewPassword() {
   const {
@@ -44,25 +48,7 @@ function NewPassword() {
           icon={key}
           type="password"
           width="320px"
-          {...register("password", {
-            required: {
-              value: true,
-              message: ".فیلد پسورد اجباریست",
-            },
-            pattern: {
-              value: /^[a-z1-9]{0,}$/i,
-              message:
-                ".رمز عبور فقط شامل حروف بزرگ و کوجک انگلیسی و اعداد است",
-            },
-            minLength: {
-              value: 8,
-              message: ".رمز عبور باید بیشتر از 8 کارکتر باشید",
-            },
-            maxLength: {
-              value: 32,
-              message: ".رمز عبور باید کمتر از 32 کارکتر باشد",
-            },
-          })}
+          {...register("password", passwordValidation())}
         />
         <ErrorMessage errorMessage={errors?.password?.message} />
 
@@ -71,14 +57,10 @@ function NewPassword() {
           icon={key}
           type="password"
           width="320px"
-          {...register("confirmPassword", {
-            validate: (value) => {
-              const { password } = getValues();
-              return (
-                password === value || "تکرار رمز عبور برابر با رمز عبور نیست"
-              );
-            },
-          })}
+          {...register(
+            "confirmPassword",
+            confirmPasswordValidation(getValues().password)
+          )}
         />
         <ErrorMessage errorMessage={errors?.confirmPassword?.message} />
         <section id="buttons">
