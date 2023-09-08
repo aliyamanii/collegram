@@ -1,14 +1,8 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import logo from "../assets/photos/logo.svg";
 import search from "../assets/photos/search.svg";
 import InputContainer from "./InputContainer";
-import customDialog from "./CustomDialog";
-import CustomDialog from "./CustomDialog";
-
-interface HeaderProps {
-  logoUrl: string;
-  onButtonClick: () => void;
-}
+import AddPostModal from "./AddPostModal";
 
 const AppHeader: React.FC = ({}) => {
   let [isOpen, setIsOpen] = useState(false);
@@ -42,7 +36,16 @@ const AppHeader: React.FC = ({}) => {
           >
             افزودن پست
           </button>
-          {isOpen && <CustomDialog closeModal={closeModal} />}
+          {isOpen && (
+            <AddPostModal
+              isOpen={isOpen}
+              closeModal={closeModal}
+              onSubmit={() => {
+                closeModal();
+              }}
+              onCancel={closeModal}
+            />
+          )}
         </div>
       </div>
       <div id="right" className="w-[360px]">
