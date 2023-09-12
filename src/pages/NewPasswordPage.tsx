@@ -2,12 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import InputContainer from "../components/InputContainer";
 import key from "../assets/photos/key.svg";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import ErrorMessage from "../components/ErrorMessage";
 import {
   confirmPasswordValidation,
   passwordValidation,
 } from "../utils/validation";
+import { INewPasswordFormValues } from "../types/types";
 
 function NewPassword() {
   const {
@@ -15,7 +16,7 @@ function NewPassword() {
     handleSubmit,
     getValues,
     formState: { errors },
-  } = useForm({
+  } = useForm<INewPasswordFormValues>({
     defaultValues: {
       password: "",
       confirmPassword: "",
@@ -24,7 +25,7 @@ function NewPassword() {
     delayError: 700,
   });
 
-  const onSubmit = (formData: any) => {
+  const onSubmit: SubmitHandler<INewPasswordFormValues> = (formData) => {
     // formData is object of our input names with theirvalues
     // to do => connect with api
     console.log(formData);

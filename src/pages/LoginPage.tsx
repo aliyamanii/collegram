@@ -4,10 +4,11 @@ import InputContainer from "../components/InputContainer";
 import userIcon from "../assets/photos/person.svg";
 import key from "../assets/photos/key.svg";
 import arrowback from "../assets/photos/arrow-back.svg";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, UseFormRegister, useForm } from "react-hook-form";
 import ErrorMessage from "../components/ErrorMessage";
 import { api } from "../../src/api/instance";
 import { identifierValidation } from "../utils/validation";
+import { ILoginFormValues } from "../types/types";
 
 function Login() {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ function Login() {
     handleSubmit,
     formState: { errors },
     getValues,
-  } = useForm({
+  } = useForm<ILoginFormValues>({
     defaultValues: {
       usernameOrEmail: "",
       password: "",
@@ -33,11 +34,7 @@ function Login() {
     setRememberMe(!rememberMe);
   };
 
-  const onSubmit = (formData: any) => {
-    // formData is object of our input names with theirvalues
-    // to do => connect with api
-    console.log(formData);
-
+  const onSubmit: SubmitHandler<ILoginFormValues> = (formData) => {
     api
       .post("users/login", {
         identifier: formData.usernameOrEmail,
