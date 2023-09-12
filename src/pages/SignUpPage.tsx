@@ -4,7 +4,7 @@ import userIcon from "../assets/photos/person.svg";
 import email from "../assets/photos/email-light.svg";
 import key from "../assets/photos/key.svg";
 import InputContainer from "../components/InputContainer";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import ErrorMessage from "../components/ErrorMessage";
 import { api } from "../api/instance";
 import {
@@ -13,6 +13,7 @@ import {
   passwordValidation,
   usernameValidation,
 } from "../utils/validation";
+import { ISignupFormValues } from "../types/types";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ function SignUp() {
     handleSubmit,
     getValues,
     formState: { errors },
-  } = useForm({
+  } = useForm<ISignupFormValues>({
     defaultValues: {
       username: "",
       password: "",
@@ -33,7 +34,7 @@ function SignUp() {
     delayError: 700,
   });
 
-  const onSubmit = (formData: any) => {
+  const onSubmit: SubmitHandler<ISignupFormValues> = (formData) => {
     // formData is object of our input names with theirvalues
     // to do => connect with api
 

@@ -2,10 +2,11 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import InputContainer from "../components/InputContainer";
 import userIcon from "../assets/photos/person.svg";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import ErrorMessage from "../components/ErrorMessage";
 import { api } from "../api/instance";
 import { identifierValidation } from "../utils/validation";
+import { IRecoverPasswordValues } from "../types/types";
 
 function RecoverPassword() {
   const { state } = useLocation();
@@ -14,7 +15,7 @@ function RecoverPassword() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IRecoverPasswordValues>({
     defaultValues: {
       usernameOrEmail: state.identifier || "",
     },
@@ -22,7 +23,7 @@ function RecoverPassword() {
     delayError: 700,
   });
 
-  const onSubmit = (formData: any) => {
+  const onSubmit: SubmitHandler<IRecoverPasswordValues> = (formData) => {
     api
       .post("users/forget", {
         identifier: formData.usernameOrEmail,
