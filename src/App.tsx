@@ -4,7 +4,11 @@ import {
   Routes,
   Navigate,
   Outlet,
+  useParams,
 } from "react-router-dom";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
 import SignUp from "./pages/SignUpPage";
 import Login from "./pages/LoginPage";
 import RecoverPassword from "./pages/RecoverPasswordPage";
@@ -12,11 +16,11 @@ import Auth from "./pages/AuthLayout";
 import NewPassword from "./pages/NewPasswordPage";
 import Home from "./pages/HomePage";
 import AppLayout from "./pages/AppLayout";
+import Profile from "./pages/ProfileLayout";
+import MyPostPage from "./pages/Profile/MyPostsPage";
+import MySinglePost from "./pages/Profile/MySinglePost";
 import ErrorPage from "./pages/ErrorPage";
 import ProtectedRoute from "./components/ProtectedRoute";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const client = new QueryClient();
 
@@ -46,15 +50,17 @@ function App() {
           >
             <Route index={true} element={<Navigate to="home" replace />} />
             <Route path="home" element={<Home />} />
-            <Route
-              path="my-college-gram"
-              element={<div>my College gram</div>}
-            />
             <Route path="people" element={<div>کالج گرامی ها</div>} />
-            <Route
-              path="post/:id"
-              element={<div>post page for specefic id</div>}
-            />
+            <Route path="profile" element={<Profile />}>
+              <Route index={true} element={<MyPostPage />} />
+              <Route path="posts" element={<MyPostPage />} />
+              <Route path="bookmarks" element={<div>bookmarks</div>} />
+              <Route path="chat" element={<div>chat</div>} />
+              <Route path="notifications" element={<div>Notifications</div>} />
+              <Route path="list" element={<div>List?</div>} />
+              <Route path="history" element={<div>History?</div>} />
+              <Route path="post/:id" element={<MySinglePost />} />
+            </Route>
           </Route>
           <Route path="error" element={<ErrorPage />} />
         </Routes>

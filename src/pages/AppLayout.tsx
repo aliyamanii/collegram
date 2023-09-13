@@ -1,21 +1,20 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import tree from "../assets/photos/tree.svg";
-import logo from "../assets/photos/logo.svg";
-import profilePicture from "../assets/photos/pfp.svg";
 import AppHeader from "../components/AppHeader";
 import MiniProfile from "../components/MiniProfile";
-import Home from "./HomePage";
 import SideBarNavLinks, {
   items as navLinks,
 } from "../components/SideBarNavLinks";
 
 function AppLayout() {
   return (
-    <div className="w-screen h-screen py-[52px] px-[204px] flex justify-center bg-[#F3F0EE]">
-      <div id="page" className="w-[1000px] h-full mr-[50px]">
+    <div className="w-screen h-[calc(55%-55px)] py-[52px] px-[204px] flex justify-center bg-[#F3F0EE]">
+      <div id="page" className="w-full h-full mr-[50px]">
         <AppHeader />
-        <Outlet />
+        <div className="mt-[10%] max-h-[300px]">
+          <Outlet />
+        </div>
       </div>
       <div
         id="navbar"
