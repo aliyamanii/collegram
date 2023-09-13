@@ -9,7 +9,7 @@ export const items: INavLink[] = [
   { title: "کالج گرامی ها", destinationUrl: "/app/people", icon: peopleIcon },
   {
     title: "کالج گرام من",
-    destinationUrl: "/app/my-college-gram",
+    destinationUrl: "/app/profile",
     icon: insightIcon,
   },
 ];
