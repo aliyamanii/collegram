@@ -13,6 +13,7 @@ import {
   passwordValidation,
   usernameValidation,
 } from "../utils/validation";
+import MainButton from "../components/MainButton";
 import { ISignupFormValues } from "../types/types";
 
 function SignUp() {
@@ -117,12 +118,16 @@ function SignUp() {
           )}
         />
         <ErrorMessage errorMessage={errors?.confirmPassword?.message} />
+<<<<<<< src/pages/SignUpPage.tsx
+        <MainButton>ثبت نام</MainButton>
+=======
         <button
           id="submit__button"
           className="mt-auto mb-[20px] w-[84px] h-[36px] py-[8px] px-[16px] border-none bg-[#c19008] text-[#ffffff] rounded-[16px] hover:bg-[#ffc72d] hover:text-black hover:transition-all duration-300"
         >
           ثبت نام
         </button>
+>>>>>>> src/pages/SignUpPage.tsx
       </form>
     </div>
   );

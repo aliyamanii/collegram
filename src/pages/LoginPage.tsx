@@ -8,6 +8,7 @@ import { SubmitHandler, UseFormRegister, useForm } from "react-hook-form";
 import ErrorMessage from "../components/ErrorMessage";
 import { api } from "../../src/api/instance";
 import { identifierValidation } from "../utils/validation";
+import MainButton from "../components/MainButton";
 import { ILoginFormValues } from "../types/types";
 
 function Login() {
@@ -116,12 +117,7 @@ function Login() {
             />
           </label>
         </section>
-        <button
-          id="submit__button"
-          className="mt-auto mb-[20px] w-[84px] h-[36px] py-[8px] px-[16px] border-none bg-[#c19008] text-[#ffffff] rounded-[16px] hover:bg-[#ffc72d] hover:text-black hover:transition-all duration-300 "
-        >
-          ورود
-        </button>
+        <MainButton>ورود</MainButton>
         <section
           id="other-options"
           className="w-full h-[56px] gap-[16px] flex items-end justify-end flex-col font-medium text-[12px] leading-[20px] tracking-[-2%]"

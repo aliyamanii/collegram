@@ -3,6 +3,7 @@ import logo from "../assets/photos/logo.svg";
 import search from "../assets/photos/search.svg";
 import InputContainer from "./InputContainer";
 import AddPostModal from "./AddPostModal";
+import MainButton from "./MainButton";
 
 const AppHeader: React.FC = ({}) => {
   let [isOpen, setIsOpen] = useState(false);
@@ -29,13 +30,7 @@ const AppHeader: React.FC = ({}) => {
           />
         </div>
         <div className="button">
-          <button
-            id="add-post__button"
-            className="w-[110px] h-[40px] mt-auto mb-[20px] py-[8px] px-[16px] border-none bg-[#c19008] text-[14px] text-[#ffffff] rounded-[100px] hover:bg-[#ffc72d] hover:text-black hover:transition-all duration-300"
-            onClick={openModal}
-          >
-            افزودن پست
-          </button>
+          <MainButton onClick={openModal}>افزودن پست</MainButton>
           {isOpen && (
             <AddPostModal
               isOpen={isOpen}
