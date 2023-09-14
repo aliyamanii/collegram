@@ -1,7 +1,8 @@
 import React, { useState, useRef, useCallback, useEffect } from "react";
 import x from "../assets/photos/x.svg";
 import plus from "../assets/photos/plus.svg";
-import CustomSwitch from "./Switch";
+import MainButton from "./MainButton";
+import Switch from "./Switch";
 
 interface AddPostModalProps {
   isOpen: boolean;
@@ -158,7 +159,7 @@ const AddPostModal: React.FC<AddPostModalProps> = ({
             <div className="flex items-center justify-end text-[14px] font-medium text-[#17494D]">
               فقط نمایش به دوستان نزدیک
               <div className="ml-3">
-                <CustomSwitch
+                <Switch
                   checked={switchValue}
                   onChange={() => setSwitchValue(!switchValue)}
                 />
@@ -166,13 +167,7 @@ const AddPostModal: React.FC<AddPostModalProps> = ({
             </div>
 
             <div className="flex">
-              <button
-                type="button"
-                className="w-[104px] h-[36px] inline-flex justify-center  px-4 py-2 text-sm font-medium text-white bg-[#c19008] rounded-[30px] hover:bg-[#ffc72d] focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                onClick={handleSubmit}
-              >
-                ثبت عکس
-              </button>
+              <MainButton>ثبت عکس</MainButton>
               <button
                 type="button"
                 className="px-4 py-2 mr-2 text-sm font-normal text-black hover:font-semibold focus:outline-none"

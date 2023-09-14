@@ -1,6 +1,7 @@
 import React from "react";
 import deadTree from "../assets/photos/tree-dead.svg";
 import { useNavigate } from "react-router-dom";
+import MainButton from "../components/MainButton";
 
 function ErrorPage() {
   const navigate = useNavigate();
@@ -13,12 +14,9 @@ function ErrorPage() {
           <p className="text-base">ما داریم تلاش می‌کنیم که برطرفش کنیم</p>
           <p className="text-base">لطفا چند دقیقه دیگه دوباره تلاش کن</p>
         </div>
-        <button
-          className="text-sm px-4 py-2 bg-[#c19008] text-[#ffffff] rounded-[16px] hover:bg-[#ffc72d] hover:text-black hover:transition-all duration-300 "
-          onClick={() => navigate(-1)}
-        >
+        <MainButton onClick={() => navigate(-1)}>
           بازگشت به صفحه قبلی
-        </button>
+        </MainButton>
       </div>
       <img src={deadTree} alt="" className="mt-8" />
     </div>

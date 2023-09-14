@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import arrowDown from "../assets/photos/arrow-down-yellow.svg";
 import penIcon from "../assets/photos/pen.svg";
 import { Link, useLocation } from "react-router-dom";
@@ -6,6 +6,7 @@ import personIcon from "../assets/photos/person.svg";
 import { useQuery } from "@tanstack/react-query";
 import { fetchUserInfo } from "../api/user.ts";
 import { User } from "../types/types.ts";
+import EditProfileModal from "./EditProfileModal.tsx";
 
 const MiniProfile: FC = () => {
   const {
@@ -47,7 +48,17 @@ const MiniProfile: FC = () => {
 
   const displayName = `${firstname || ""} ${lastname || ""}`;
   const location = useLocation();
-  const isMyCollegeGramRoute = location.pathname === "/app/my-college-gram";
+  const isProfileRoute = location.pathname === "/app/profile";
+
+  let [isOpen, setIsOpen] = useState(false);
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  function openModal() {
+    setIsOpen(true);
+  }
 
   return (
     <div className="w-[256px] h-[403px] p-[15px] flex flex-col items-center bg-[#F1EBE3] border border-[#cdcdcd] font-primary">
@@ -94,13 +105,24 @@ const MiniProfile: FC = () => {
           {bio}
         </div>
       </div>
-      {isMyCollegeGramRoute && (
+      {isProfileRoute && (
         <div className="my-4 hover:cursor-pointer">
           <img
             src={penIcon}
             alt="Edit Profile"
             className="hover:animate-spin"
+            onClick={openModal}
           />
+          {isOpen && (
+            <EditProfileModal
+              isOpen={isOpen}
+              closeModal={closeModal}
+              onSubmit={() => {
+                closeModal();
+              }}
+              onCancel={closeModal}
+            />
+          )}
         </div>
       )}
     </div>

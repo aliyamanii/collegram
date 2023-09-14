@@ -8,6 +8,7 @@ import {
   confirmPasswordValidation,
   passwordValidation,
 } from "../utils/validation";
+import MainButton from "../components/MainButton";
 import { INewPasswordFormValues } from "../types/types";
 
 function NewPassword() {
@@ -65,12 +66,7 @@ function NewPassword() {
         />
         <ErrorMessage errorMessage={errors?.confirmPassword?.message} />
         <section id="buttons">
-          <button
-            id="submit__button"
-            className="mt-auto mb-[20px] w-[139px] h-[36px] py-[8px] px-[16px] border-none bg-[#c19008] text-[14px] text-[#ffffff] rounded-[16px] hover:bg-[#ffc72d] hover:text-black hover:transition-all duration-300"
-          >
-            ثبت رمز عبور جدید
-          </button>
+          <MainButton>ثبت روز عبور جدید</MainButton>
         </section>
       </form>
     </div>

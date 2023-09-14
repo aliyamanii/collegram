@@ -6,6 +6,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import ErrorMessage from "../components/ErrorMessage";
 import { api } from "../api/instance";
 import { identifierValidation } from "../utils/validation";
+import MainButton from "../components/MainButton";
 import { IRecoverPasswordValues } from "../types/types";
 
 function RecoverPassword() {
@@ -58,13 +59,7 @@ function RecoverPassword() {
         />
         <ErrorMessage errorMessage={errors?.usernameOrEmail?.message} />
         <section id="buttons">
-          <button
-            type="submit"
-            id="submit__button"
-            className="mt-auto mb-[20px] w-[184px] h-[36px] py-[8px] px-[16px] border-none bg-[#c19008] text-[14px] text-[#ffffff] rounded-[16px] hover:bg-[#ffc72d] hover:text-black hover:transition-all duration-300"
-          >
-            ارسال لینک بازیابی رمز عبور
-          </button>
+          <MainButton>ارسال لینک بازیابی رمز عبور</MainButton>
           <Link
             to="/auth/login"
             id="cancel__link"

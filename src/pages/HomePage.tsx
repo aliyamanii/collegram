@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import tree from "../assets/photos/tree.svg";
 import logo from "../assets/photos/logo.svg";
 import deadTree from "../assets/photos/tree-dead.svg";
+import MainButton from "../components/MainButton";
 
 function Home() {
   return (
@@ -15,12 +16,8 @@ function Home() {
       <div className="w-[360px] text-[16px] font-normal leading-[32px] text-center text-[#17494D]">
         برای دیدن عکس‌ها توی این صفحه باید کالج‌گرامی‌ها رو دنبال کنی. آماده‌ای؟
       </div>
-      <button
-        id="submit__button"
-        className=" w-[212px] h-[36px] py-[8px] px-[16px] border-none bg-[#c19008] text-[14px] text-[#ffffff] rounded-[16px] hover:bg-[#ffc72d] hover:text-black hover:transition-all duration-300"
-      >
-        رفتن به صفحه کالج گرامی ها
-      </button>
+      <MainButton>رفتن به صفحه کالج گرامی ها</MainButton>
+
       <img src={deadTree} alt="Tree" className="w-[256px] h-[244.68px]" />
     </div>
   );
