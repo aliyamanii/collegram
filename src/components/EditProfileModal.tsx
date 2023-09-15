@@ -6,6 +6,14 @@ import retry from "../assets/photos/retry.svg";
 import Switch from "./Switch";
 import InputContainer from "./InputContainer";
 import MainButton from "./MainButton";
+import { SubmitHandler, useForm } from "react-hook-form";
+import {
+  confirmPasswordValidation,
+  emailValidation,
+  passwordValidation,
+} from "../utils/validation";
+import ErrorMessage from "./ErrorMessage";
+import { useQuery } from "@tanstack/react-query";
 import { useModal } from "../customhook/useModal";
 
 const EditProfileModal: React.FC = () => {
@@ -15,6 +23,47 @@ const EditProfileModal: React.FC = () => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const { onClose } = useModal();
+
+  interface IEditProfileValues {
+    email: string;
+    firstname: string;
+    lastname: string;
+    password: string;
+    confirmPassword: string;
+    bio: string;
+  }
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    getValues,
+  } = useForm<IEditProfileValues>({
+    defaultValues: async (payload) => {
+      const { data } = await useQuery();
+      const defaultValue: IEditProfileValues = {
+        email: data.email,
+        firstname: data.firstname || "",
+        lastname: data.lastname || "",
+        password: "",
+        confirmPassword: "",
+        bio: data.bio || "",
+      };
+      return defaultValue;
+    },
+    // defaultValues: {
+    //   email: "",
+    //   firstname: "",
+    //   lastname: "",
+    //   password: "",
+    //   confirmPassword: "",
+    //   bio: "",
+    // },
+    mode: "all",
+    delayError: 700,
+  });
+
+  const submitHandler: SubmitHandler<IEditProfileValues> = (formData) => {};
 
   const handleFileSelect = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -85,78 +134,93 @@ const EditProfileModal: React.FC = () => {
         />
       </div>
 
-      <div className="flex flex-col gap-8">
-        <h3 className="flex justify-center text-lg font-bold text-[20px] leading-[26px] text-[#17494D] font-primary">
-          ویرایش حساب
-        </h3>
-        <input
-          type="file"
-          accept="image/*"
-          multiple
-          onChange={handleFileSelect}
-          className="hidden"
-          ref={fileInputRef}
-        />
-        <InputContainer
-          placeholder="ایمیل"
-          icon={email}
-          type="text"
-          width="262px"
-        />
-        <InputContainer
-          placeholder="نام"
-          icon={email}
-          type="text"
-          width="262px"
-        />
-        <InputContainer
-          placeholder="نام خانوادگی"
-          icon={email}
-          type="text"
-          width="262px"
-        />
-        <InputContainer
-          placeholder="رمز عبور"
-          icon={key}
-          type="password"
-          width="262px"
-        />
-        <InputContainer
-          placeholder="تکرار رمز عبور"
-          icon={key}
-          type="password"
-          width="262px"
-        />
-
-        <div className="flex w-full items-center justify-end text-[14px] font-medium text-[#17494D]">
-          پیج خصوصی باشه
-          <div className="ml-3">
-            <Switch
-              checked={privatePost}
-              onChange={() => setPrivatePost(!privatePost)}
+          <div className="flex flex-col gap-8">
+            <h3 className="flex justify-center text-lg font-bold text-[20px] leading-[26px] text-[#17494D] font-primary">
+              ویرایش حساب
+            </h3>
+            <input
+              type="file"
+              accept="image/*"
+              multiple
+              onChange={handleFileSelect}
+              className="hidden"
+              ref={fileInputRef}
             />
+            <InputContainer
+              placeholder="ایمیل"
+              icon={email}
+              type="text"
+              width="262px"
+              {...register("email", emailValidation())}
+            />
+            <ErrorMessage errorMessage={errors?.email?.message} />
+
+            <InputContainer
+              placeholder="نام"
+              icon={email}
+              type="text"
+              width="262px"
+              {...register("firstname")}
+            />
+            <ErrorMessage errorMessage={errors?.firstname?.message} />
+
+            <InputContainer
+              placeholder="نام خانوادگی"
+              icon={email}
+              type="text"
+              width="262px"
+              {...register("lastname")}
+            />
+            <ErrorMessage errorMessage={errors?.lastname?.message} />
+
+            <InputContainer
+              placeholder="رمز عبور"
+              icon={key}
+              type="password"
+              width="262px"
+              {...register("password", passwordValidation())}
+            />
+            <ErrorMessage errorMessage={errors?.password?.message} />
+
+            <InputContainer
+              placeholder="تکرار رمز عبور"
+              icon={key}
+              type="password"
+              width="262px"
+              {...register(
+                "confirmPassword",
+                confirmPasswordValidation(getValues().password)
+              )}
+            />
+            <ErrorMessage errorMessage={errors?.confirmPassword?.message} />
+
+            <div className="flex w-full items-center justify-end text-[14px] font-medium text-[#17494D]">
+              پیج خصوصی باشه
+              <div className="ml-3">
+                <Switch
+                  checked={privatePost}
+                  onChange={() => setPrivatePost(!privatePost)}
+                />
+              </div>
+            </div>
+            <div>
+              <div className="flex justify-end mb-2 text-[16px] font-semibold leading-[20px] text-[#17494D]">
+                بایو
+              </div>
+              <textarea
+                className="w-full h-[88px] rounded-lg border-solid border-[1px] border-color[#cdcdcd] text-right py-[8px] pl-[16px] pr-[16px] text-[12px] font-normal placeholder:text-[#cdcdcd] resize-none"
+                {...register("bio")}
+              />
+            </div>
           </div>
-        </div>
-        <div>
-          <div className="flex justify-end mb-2 text-[16px] font-semibold leading-[20px] text-[#17494D]">
-            بایو
-          </div>
-          <textarea
-            className="w-full h-[88px] rounded-lg border-solid border-[1px] border-color[#cdcdcd] text-right py-[8px] pl-[16px] pr-[16px] text-[12px] font-normal placeholder:text-[#cdcdcd] resize-none"
-            name="bio"
-            // value={bioInput.bio}
-            // onChange={handleInputChange}
-          />
-        </div>
-      </div>
-      <div className="flex items-center justify-start">
-        <MainButton
-          onClick={() => {
-            onClose();
-          }}
-        >
-          ثبت تغییرات
-        </MainButton>
+          <div className="flex items-center justify-start">
+            <MainButton
+              onClick={() => {
+                closeModal();
+              }}
+            >
+              ثبت تغییرات
+            </MainButton>
 
         <button
           type="button"
