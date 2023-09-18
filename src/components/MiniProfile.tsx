@@ -19,6 +19,9 @@ const MiniProfile: FC = () => {
     staleTime: 5 * 60 * 1000,
   });
 
+  const location = useLocation();
+  let [isOpen, setIsOpen] = useState(false);
+
   //   ["user"], fetchUserInfo
   if (isLoading) {
     return (
@@ -47,10 +50,7 @@ const MiniProfile: FC = () => {
   } = user;
 
   const displayName = `${firstname || ""} ${lastname || ""}`;
-  const location = useLocation();
   const isProfileRoute = location.pathname === "/app/profile";
-
-  let [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
     setIsOpen(false);
