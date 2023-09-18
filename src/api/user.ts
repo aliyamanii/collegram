@@ -5,3 +5,9 @@ export async function fetchUserInfo() {
   const data = res.data;
   return data.data;
 }
+
+export async function editUserInfo(formData) {
+  const res = await api.post("/users/me", formData);
+  const data = res.data;
+  return data.data;
+}
