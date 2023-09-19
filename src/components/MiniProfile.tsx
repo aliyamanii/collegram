@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchUserInfo } from "../api/user.ts";
 import { User } from "../types/types.ts";
 import EditProfileModal from "./EditProfileModal.tsx";
+import Modal from "./Modal.tsx";
 
 const MiniProfile: FC = () => {
   const {
@@ -113,16 +114,9 @@ const MiniProfile: FC = () => {
             className="hover:animate-spin"
             onClick={openModal}
           />
-          {isOpen && (
-            <EditProfileModal
-              isOpen={isOpen}
-              closeModal={closeModal}
-              onSubmit={() => {
-                closeModal();
-              }}
-              onCancel={closeModal}
-            />
-          )}
+          <Modal isOpen={isOpen} onClose={closeModal}>
+            <EditProfileModal />
+          </Modal>
         </div>
       )}
     </div>
