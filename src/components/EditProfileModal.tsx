@@ -18,6 +18,7 @@ import ErrorMessage from "./ErrorMessage";
 import { useModal } from "../customhook/useModal";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { editUserInfo, fetchUserInfo } from "../api/user";
+import ProfilePictureSelect from "./ProfilePictureSelect";
 
 const EditProfileModal: React.FC = () => {
   const [privatePost, setPrivatePost] = useState(false);
@@ -108,42 +109,7 @@ const EditProfileModal: React.FC = () => {
       className="w-[375px] h-3/5  p-12 flex flex-col gap-7 align-middle transform bg-[#F3F0EE] rounded-[24px] shadow-xl transition-all"
       onSubmit={() => handleSubmit(submitHandler, () => console.log(errors))}
     >
-      <div className="flex justify-center items-center ">
-        <label
-          htmlFor="fileInput"
-          className="w-[150px] h-[150px] flex items-center justify-center rounded-full overflow-hidden cursor-pointer border border-gray-300"
-        >
-          {selectedFiles.length === 0 ? (
-            <img src={cam} alt="+" className="object-cover" />
-          ) : (
-            <div className="relative">
-              <img
-                src={filePreviews[0]}
-                alt="Selected"
-                className="object-cover w-full h-full"
-              />
-              <div
-                className="w-[32px] h-[32px] flex items-center justify-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-1 bg-white hover:bg-pink-200 rounded-full hover:cursor-pointer transition-all duration-300"
-                onClick={() => removeImage(0)} // Assuming you always have one image selected
-              >
-                <img
-                  src={retry}
-                  alt={"Retry"}
-                  className="w-[16px] h-[16px] absolute m-2 rounded-full"
-                />
-              </div>
-            </div>
-          )}
-        </label>
-        <input
-          type="file"
-          accept="image/*"
-          id="fileInput"
-          onChange={handleFileSelect}
-          className="hidden"
-          ref={fileInputRef}
-        />
-      </div>
+      <ProfilePictureSelect />
 
       <div className="flex flex-col gap-8">
         <h3 className="flex justify-center text-lg font-bold text-[20px] leading-[26px] text-[#17494D] font-primary">
