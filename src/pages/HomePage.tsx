@@ -8,7 +8,7 @@ function Home() {
   return (
     <div
       id="page"
-      className="w-full h-[800px] flex flex-col justify-center items-center gap-[25px] font-primary"
+      className="w-full h-[700px] flex flex-col justify-center items-center gap-[25px] font-primary"
     >
       <div className=" w-[360px] text-[20px] font-bold leading-[26px] text-center text-[#17494D]">
         !سلام به کالج گرام خوش اومدی
