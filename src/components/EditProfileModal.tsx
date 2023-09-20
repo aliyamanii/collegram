@@ -8,13 +8,7 @@ import InputContainer from "./InputContainer";
 import MainButton from "./MainButton";
 import { useModal } from "../customhook/useModal";
 
-<<<<<<< 6039a0fda9fa7f5f4af71c7a355a21d99fd04306
-interface AddPostModalProps {}
-
-const EditProfileModal: React.FC<AddPostModalProps> = ({}) => {
-=======
 const EditProfileModal: React.FC = () => {
->>>>>>> d79f7dfc4d91717c962f2acc2dfd505437749bea
   const [privatePost, setPrivatePost] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [filePreviews, setFilePreviews] = useState<string[]>([]);
