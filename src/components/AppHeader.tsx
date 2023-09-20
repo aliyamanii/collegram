@@ -5,8 +5,6 @@ import InputContainer from "./InputContainer";
 import AddPostModal from "./AddPostModal";
 import MainButton from "./MainButton";
 import Modal from "./Modal";
-import SampleModal from "./SampleModal";
-import EditProfileModal from "./EditProfileModal";
 
 const AppHeader: React.FC = ({}) => {
   let [isOpen, setIsOpen] = useState(false);
@@ -37,16 +35,6 @@ const AppHeader: React.FC = ({}) => {
           <Modal isOpen={isOpen} onClose={closeModal}>
             <AddPostModal />
           </Modal>
-          {/* {isOpen && (
-            <AddPostModal
-              isOpen={isOpen}
-              closeModal={closeModal}
-              onSubmit={() => {
-                closeModal();
-              }}
-              onCancel={closeModal}
-            />
-          )} */}
         </div>
       </div>
       <div id="right" className="w-[360px]">

@@ -6,10 +6,12 @@ import retry from "../assets/photos/retry.svg";
 import Switch from "./Switch";
 import InputContainer from "./InputContainer";
 import MainButton from "./MainButton";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { Form, SubmitHandler, useForm, Controller } from "react-hook-form";
 import {
   confirmPasswordValidation,
   emailValidation,
+  firstNameValidation,
+  lastNameValidation,
   passwordValidation,
 } from "../utils/validation";
 import ErrorMessage from "./ErrorMessage";
@@ -32,6 +34,7 @@ const EditProfileModal: React.FC = () => {
     password: string;
     confirmPassword: string;
     bio: string;
+    isPrivate: boolean;
   }
 
   const {
@@ -39,13 +42,11 @@ const EditProfileModal: React.FC = () => {
     handleSubmit,
     formState: { errors },
     getValues,
+    control,
   } = useForm<IEditProfileValues>({
-    defaultValues: async (payload) => {
-      const { data } = await useQuery({
-        queryKey: ["user"],
-        queryFn: fetchUserInfo,
-      });
-      console.log("data", data);
+    defaultValues: async () => {
+      const data = await fetchUserInfo();
+      console.log("yesss", data);
       const defaultValue: IEditProfileValues = {
         email: data.email,
         firstname: data.firstname || "",
@@ -53,17 +54,10 @@ const EditProfileModal: React.FC = () => {
         password: "",
         confirmPassword: "",
         bio: data.bio || "",
+        isPrivate: data.isPrivate || false,
       };
       return defaultValue;
     },
-    // defaultValues: {
-    //   email: "",
-    //   firstname: "",
-    //   lastname: "",
-    //   password: "",
-    //   confirmPassword: "",
-    //   bio: "",
-    // },
     mode: "all",
     delayError: 700,
   });
@@ -73,8 +67,10 @@ const EditProfileModal: React.FC = () => {
     mutationFn: (data) => editUserInfo(data),
   });
 
-  const submitHandler: SubmitHandler<IEditProfileValues> = (formData) => {
-    mutate();
+  const submitHandler: SubmitHandler<IEditProfileValues> = async (formData) => {
+    console.log(formData);
+    const response = await editUserInfo(formData);
+    console.log(response);
   };
 
   const handleFileSelect = useCallback(
@@ -108,8 +104,11 @@ const EditProfileModal: React.FC = () => {
   };
 
   return (
-    <div className="w-[375px] h-3/5  p-12 flex flex-col gap-7 align-middle transform bg-[#F3F0EE] rounded-[24px] shadow-xl transition-all">
-      <div className="flex justify-center items-center">
+    <div
+      className="w-[375px] h-3/5  p-12 flex flex-col gap-7 align-middle transform bg-[#F3F0EE] rounded-[24px] shadow-xl transition-all"
+      onSubmit={() => handleSubmit(submitHandler, () => console.log(errors))}
+    >
+      <div className="flex justify-center items-center ">
         <label
           htmlFor="fileInput"
           className="w-[150px] h-[150px] flex items-center justify-center rounded-full overflow-hidden cursor-pointer border border-gray-300"
@@ -150,14 +149,6 @@ const EditProfileModal: React.FC = () => {
         <h3 className="flex justify-center text-lg font-bold text-[20px] leading-[26px] text-[#17494D] font-primary">
           ویرایش حساب
         </h3>
-        <input
-          type="file"
-          accept="image/*"
-          multiple
-          onChange={handleFileSelect}
-          className="hidden"
-          ref={fileInputRef}
-        />
         <InputContainer
           placeholder="ایمیل"
           icon={email}
@@ -172,7 +163,7 @@ const EditProfileModal: React.FC = () => {
           icon={email}
           type="text"
           width="262px"
-          {...register("firstname")}
+          {...register("firstname", firstNameValidation())}
         />
         <ErrorMessage errorMessage={errors?.firstname?.message} />
 
@@ -181,7 +172,7 @@ const EditProfileModal: React.FC = () => {
           icon={email}
           type="text"
           width="262px"
-          {...register("lastname")}
+          {...register("lastname", lastNameValidation())}
         />
         <ErrorMessage errorMessage={errors?.lastname?.message} />
 
@@ -209,10 +200,17 @@ const EditProfileModal: React.FC = () => {
         <div className="flex w-full items-center justify-end text-[14px] font-medium text-[#17494D]">
           پیج خصوصی باشه
           <div className="ml-3">
-            <Switch
+            <Controller
+              name="isPrivate"
+              control={control}
+              render={({ field: { onChange, value } }) => {
+                return <Switch checked={value} onChange={onChange} />;
+              }}
+            />
+            {/* <Switch
               checked={privatePost}
               onChange={() => setPrivatePost(!privatePost)}
-            />
+            /> */}
           </div>
         </div>
         <div>
@@ -226,14 +224,9 @@ const EditProfileModal: React.FC = () => {
         </div>
       </div>
       <div className="flex items-center justify-start">
-        <MainButton
-          onClick={() => {
-            onClose()
-          }}
-        >
+        <MainButton onClick={handleSubmit(submitHandler)}>
           ثبت تغییرات
         </MainButton>
-
         <button
           type="button"
           className="px-4 py-2 m-0 text-sm font-normal text-black hover:font-semibold focus:outline-none"

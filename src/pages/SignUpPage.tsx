@@ -119,7 +119,7 @@ function SignUp() {
         />
         <ErrorMessage errorMessage={errors?.confirmPassword?.message} />
 
-        <MainButton>ثبت نام</MainButton>
+        <MainButton type="submit">ثبت نام</MainButton>
       </form>
     </div>
   );

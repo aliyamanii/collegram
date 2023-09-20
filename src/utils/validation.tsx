@@ -81,3 +81,23 @@ export const confirmPasswordValidation = (password: string) => {
     },
   };
 };
+
+export const firstNameValidation = () => {
+  return {
+    required: { value: true, message: ".فیلد نام اجباریست" },
+    // pattern: {
+    //   value: /^[a-z]/i,
+    //   message: ".مقدار وارد شده یک ایمیل صحیح نیست",
+    // },
+  };
+};
+
+export const lastNameValidation = () => {
+  return {
+    required: { value: true, message: ".فیلد نام خانوادگی اجباریست" },
+    // pattern: {
+    //   value: /^[a-z]/i,
+    //   message: ".مقدار وارد شده یک ایمیل صحیح نیست",
+    // },
+  };
+};

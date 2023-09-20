@@ -7,7 +7,7 @@ export async function fetchUserInfo() {
 }
 
 export async function editUserInfo(formData) {
-  const res = await api.post("/users/me", formData);
+  const res = await api.put("/users/me", formData);
   const data = res.data;
   return data.data;
 }
