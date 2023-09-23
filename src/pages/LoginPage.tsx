@@ -117,7 +117,7 @@ function Login() {
             />
           </label>
         </section>
-        <MainButton>ورود</MainButton>
+        <MainButton type="submit">ورود</MainButton>
         <section
           id="other-options"
           className="w-full h-[56px] gap-[16px] flex items-end justify-end flex-col font-medium text-[12px] leading-[20px] tracking-[-2%]"

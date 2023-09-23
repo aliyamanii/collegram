@@ -81,3 +81,25 @@ export const confirmPasswordValidation = (password: string) => {
     },
   };
 };
+
+export const firstNameValidation = () => {
+  return {
+    required: { value: true, message: ".فیلد نام اجباریست" },
+    pattern: {
+      value: /^[\u0600-\u06FFa-z\s]+$/i,
+      message:
+        "نام تنها میتواند از حروف انگلیسی و فارسی و فاصله تشکیل شده باشید ",
+    },
+  };
+};
+
+export const lastNameValidation = () => {
+  return {
+    required: { value: true, message: ".فیلد نام خانوادگی اجباریست" },
+    pattern: {
+      value: /^[\u0600-\u06FFa-z\s]+$/i,
+      message:
+        "نام خانوادگی تنها میتواند از حروف انگلیسی و فارسی و فاصله تشکیل شده باشید ",
+    },
+  };
+};
