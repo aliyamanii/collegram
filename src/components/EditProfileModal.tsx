@@ -69,9 +69,17 @@ const EditProfileModal: React.FC = () => {
   });
 
   const submitHandler: SubmitHandler<IEditProfileValues> = async (formData) => {
-    console.log(formData);
-    const response = await editUserInfo(formData);
-    console.log(response);
+    const { confirmPassword, ...requestBody } = formData;
+
+    var form_data = new FormData();
+
+    for (var key in requestBody) {
+      form_data.append(key, JSON.stringify(requestBody[key]));
+    }
+    console.log(form_data);
+
+    const response = await editUserInfo(form_data);
+    onClose();
   };
 
   const handleFileSelect = useCallback(
@@ -173,10 +181,6 @@ const EditProfileModal: React.FC = () => {
                 return <Switch checked={value} onChange={onChange} />;
               }}
             />
-            {/* <Switch
-              checked={privatePost}
-              onChange={() => setPrivatePost(!privatePost)}
-            /> */}
           </div>
         </div>
         <div>
