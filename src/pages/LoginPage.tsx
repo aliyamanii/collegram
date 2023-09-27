@@ -20,6 +20,8 @@ function Login() {
     handleSubmit,
     formState: { errors },
     getValues,
+    setError,
+    setValue,
   } = useForm<ILoginFormValues>({
     defaultValues: {
       usernameOrEmail: "",
@@ -47,6 +49,11 @@ function Login() {
       })
       .catch((error) => {
         // trigger toast message
+        setError("usernameOrEmail", {
+          type: "validate",
+          message: "یوزر نیم یا پسورد اشتباه است",
+        });
+        setValue("password", "");
       });
   };
 

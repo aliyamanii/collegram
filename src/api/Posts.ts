@@ -8,18 +8,8 @@ interface IPostRequest {
   closeFriendsOnly: Boolean;
 }
 
-export async function addPost({
-  photos,
-  tags,
-  description,
-  closeFriendsOnly,
-}: IPostRequest) {
-  const res = await api.post("/posts", {
-    photos,
-    tags,
-    description,
-    closeFriendsOnly,
-  });
+export async function addPost(form_Data: FormData) {
+  const res = await api.post("/posts", form_Data);
   const data = res.data;
   return data.data;
 }
@@ -50,6 +40,12 @@ export async function toggleBookMark(id: string, bookmark: boolean) {
 
 export async function toggleLike(id: string, like: boolean) {
   const res = await api.put(`/posts/like`, { postId: id, like });
+  const data = res.data;
+  return data.data;
+}
+
+export async function editPost(form_Data: FormData) {
+  const res = await api.put("/posts", form_Data);
   const data = res.data;
   return data.data;
 }

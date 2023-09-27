@@ -1,42 +1,38 @@
 import React, { useState, useRef, useCallback, useEffect } from "react";
 import email from "../assets/photos/email-light.svg";
 import key from "../assets/photos/key.svg";
-import cam from "../assets/photos/cam.svg";
-import retry from "../assets/photos/retry.svg";
 import Switch from "./Switch";
 import InputContainer from "./InputContainer";
 import MainButton from "./MainButton";
-import { Form, SubmitHandler, useForm, Controller } from "react-hook-form";
+import { SubmitHandler, useForm, Controller } from "react-hook-form";
 import {
-  confirmPasswordValidation,
+  ChangePasswordValidation,
+  ConfirmChangePasswordValidation,
   emailValidation,
   firstNameValidation,
   lastNameValidation,
-  passwordValidation,
 } from "../utils/validation";
 import ErrorMessage from "./ErrorMessage";
 import { useModal } from "../customhook/useModal";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { editUserInfo, fetchUserInfo } from "../api/user";
 import ProfilePictureSelect from "./ProfilePictureSelect";
+import { client } from "../App";
+
+export interface IEditProfileValues {
+  email: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+  confirmPassword: string;
+  bio: string;
+  isPrivate: boolean;
+}
 
 const EditProfileModal: React.FC = () => {
-  const [privatePost, setPrivatePost] = useState(false);
-  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
-  const [filePreviews, setFilePreviews] = useState<string[]>([]);
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
-
   const { onClose } = useModal();
 
-  interface IEditProfileValues {
-    email: string;
-    firstname: string;
-    lastname: string;
-    password: string;
-    confirmPassword: string;
-    bio: string;
-    isPrivate: boolean;
-  }
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 
   const {
     register,
@@ -44,14 +40,15 @@ const EditProfileModal: React.FC = () => {
     formState: { errors },
     getValues,
     control,
+    setError,
+    clearErrors,
   } = useForm<IEditProfileValues>({
     defaultValues: async () => {
       const data = await fetchUserInfo();
-      console.log("yesss", data);
       const defaultValue: IEditProfileValues = {
         email: data.email,
-        firstname: data.firstname || "",
-        lastname: data.lastname || "",
+        firstName: data.firstName || "",
+        lastName: data.lastName || "",
         password: "",
         confirmPassword: "",
         bio: data.bio || "",
@@ -65,60 +62,48 @@ const EditProfileModal: React.FC = () => {
 
   const { mutate } = useMutation({
     mutationKey: ["user"],
-    mutationFn: (data) => editUserInfo(data),
+    mutationFn: (data: FormData) => editUserInfo(data),
+    onSuccess: () => {
+      client.invalidateQueries({ queryKey: ["user"], type: "all" });
+    },
   });
 
-  const submitHandler: SubmitHandler<IEditProfileValues> = async (formData) => {
-    const { confirmPassword, ...requestBody } = formData;
-
-    var form_data = new FormData();
-
-    for (var key in requestBody) {
-      form_data.append(key, JSON.stringify(requestBody[key]));
-    }
-    console.log(form_data);
-
-    const response = await editUserInfo(form_data);
-    onClose();
-  };
-
-  const handleFileSelect = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const file = e.target.files?.[0];
-
-      if (file) {
-        const preview = URL.createObjectURL(file);
-        setSelectedFiles([file]);
-        setFilePreviews([preview]);
-      }
-    },
-    []
-  );
-
-  const showFileInput = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click();
-    }
-  };
-
-  const removeImage = (indexToRemove: number) => {
-    const updatedFiles = selectedFiles.filter(
-      (_, index) => index !== indexToRemove
-    );
-    setSelectedFiles(updatedFiles);
-    const updatedPreviews = filePreviews.filter(
-      (_, index) => index !== indexToRemove
-    );
-    setFilePreviews(updatedPreviews);
+  const submitHandler: SubmitHandler<IEditProfileValues> = async (
+    formValues
+  ) => {
+    const { confirmPassword, ...requestBody } = formValues;
+    const form_data = new FormData();
+    Object.entries(requestBody).forEach((entery) => {
+      const [key, value] = entery;
+      if (value === "") return;
+      form_data.append(key, JSON.stringify(value));
+    });
+    form_data.append("profileUrl", selectedFiles[0]);
+    mutate(form_data, {
+      onSuccess: () => {
+        onClose();
+      },
+    });
   };
 
   return (
-    <div
-      className="w-[375px] h-3/5  p-12 flex flex-col gap-7 align-middle transform bg-[#F3F0EE] rounded-[24px] shadow-xl transition-all"
-      onSubmit={() => handleSubmit(submitHandler, () => console.log(errors))}
-    >
-      <ProfilePictureSelect />
-
+    <div className="w-[375px] h-3/5  p-12 flex flex-col gap-7 align-middle transform bg-[#F3F0EE] rounded-[24px] shadow-xl transition-all">
+      {/* <Controller
+        name="photo"
+        control={control}
+        render={({ field: { onChange, value } }) => {
+          return (
+            <ProfilePictureSelect
+              selectedFiles={value}
+              setSelectedFiles={onChange}
+            />
+          );
+        }}
+      /> */}
+      <ProfilePictureSelect
+        selectedFiles={selectedFiles}
+        setSelectedFiles={setSelectedFiles}
+      />
       <div className="flex flex-col gap-8">
         <h3 className="flex justify-center text-lg font-bold text-[20px] leading-[26px] text-[#17494D] font-primary">
           ویرایش حساب
@@ -137,25 +122,25 @@ const EditProfileModal: React.FC = () => {
           icon={email}
           type="text"
           width="262px"
-          {...register("firstname", firstNameValidation())}
+          {...register("firstName", firstNameValidation())}
         />
-        <ErrorMessage errorMessage={errors?.firstname?.message} />
+        <ErrorMessage errorMessage={errors?.firstName?.message} />
 
         <InputContainer
           placeholder="نام خانوادگی"
           icon={email}
           type="text"
           width="262px"
-          {...register("lastname", lastNameValidation())}
+          {...register("lastName", lastNameValidation())}
         />
-        <ErrorMessage errorMessage={errors?.lastname?.message} />
+        <ErrorMessage errorMessage={errors?.lastName?.message} />
 
         <InputContainer
           placeholder="رمز عبور"
           icon={key}
           type="password"
           width="262px"
-          {...register("password", passwordValidation())}
+          {...register("password", ChangePasswordValidation())}
         />
         <ErrorMessage errorMessage={errors?.password?.message} />
 
@@ -166,7 +151,7 @@ const EditProfileModal: React.FC = () => {
           width="262px"
           {...register(
             "confirmPassword",
-            confirmPasswordValidation(getValues().password)
+            ConfirmChangePasswordValidation(getValues().password)
           )}
         />
         <ErrorMessage errorMessage={errors?.confirmPassword?.message} />

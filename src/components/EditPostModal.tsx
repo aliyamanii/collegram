@@ -1,62 +1,62 @@
-import React, { useState, useRef, useCallback, useEffect } from "react";
-import x from "../assets/photos/x.svg";
-import plus from "../assets/photos/plus.svg";
+import React, { useState, useRef, useCallback } from "react";
 import MainButton from "./MainButton";
 import Switch from "./Switch";
 import { useModal } from "../customhook/useModal";
 import { Controller, useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
-import { addPost } from "../api/Posts";
-import { client } from "../App";
-import ErrorMessage from "./ErrorMessage";
-import PostPicturesSelect from "./PostPicturesSelect";
+import { editPost, fetchPostDetails } from "../api/Posts";
+import { useParams } from "react-router-dom";
 
-export interface IAddPostValues {
+export interface IEditPostValues {
   tags: string;
   description: string;
   closeFriendsOnly: boolean;
 }
 
-const AddPostModal: React.FC = () => {
+const EditPostModal: React.FC = () => {
+  const { id } = useParams<{ id: string }>() as { id: string };
   const {
     register,
     handleSubmit,
-    formState: { errors, isDirty },
+    formState: { errors },
     control,
-    clearErrors,
-    setError,
-  } = useForm<IAddPostValues>({
-    defaultValues: { tags: "", description: "", closeFriendsOnly: false },
+  } = useForm<IEditPostValues>({
+    defaultValues: async () => {
+      const data = await fetchPostDetails(id);
+      console.log(data);
+      const tagTexts = data.tags.map((tag: any) => tag.value).join(" ");
+      const defaultValue: IEditPostValues = {
+        tags: tagTexts,
+        description: data.description || "",
+        closeFriendsOnly: data.closeFriendsOnly || false,
+      };
+      return defaultValue;
+    },
     mode: "all",
     delayError: 700,
   });
 
   const { mutate } = useMutation({
-    mutationKey: ["user"],
-    mutationFn: (data: FormData) => addPost(data),
+    mutationKey: ["posts", "detail", id],
+    mutationFn: (data: FormData) => editPost(data),
     onSuccess: () => {
       // client.invalidateQueries({ queryKey: ["user"], type: "all" });
     },
   });
 
-  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
-
   const { isOpen, onClose } = useModal();
 
-  const submitForm = (formValues: IAddPostValues) => {
+  const submitForm = (formValues: IEditPostValues) => {
+    console.log(formValues);
     const requestBody = {
       ...formValues,
       tags: formValues.tags.trim().replace(/\s+/g, " ").split(" "),
     };
     const form_data = new FormData();
-
     Object.entries(requestBody).forEach((entery) => {
       const [key, value] = entery;
       form_data.append(key, JSON.stringify(value));
     });
-    selectedFiles.forEach((file) => form_data.append("photos", file));
-
-    console.log(form_data);
 
     mutate(form_data, {
       onSuccess: () => {
@@ -68,16 +68,9 @@ const AddPostModal: React.FC = () => {
   return (
     <div className="w-fit h-fit max-w-[616px] p-12 align-middle transform bg-[#F3F0EE] rounded-[24px] shadow-xl transition-all">
       <h3 className="flex justify-center text-lg font-bold text-[20px] leading-[26px] text-[#17494D] font-primary">
-        افزودن پست
+        ویرایش پست
       </h3>
       <div className=" flex flex-col object-cover  ">
-        <PostPicturesSelect
-          selectedFiles={selectedFiles}
-          setSelectedFiles={setSelectedFiles}
-          setError={setError}
-          clearErrors={clearErrors}
-          errors={errors}
-        />
         <div className="mb-4 font-primary">
           <div className="flex justify-end my-2 text-[16px] font-medium leading-[20px] text-[#17494D]">
             توضیحات
@@ -124,4 +117,4 @@ const AddPostModal: React.FC = () => {
   );
 };
 
-export default AddPostModal;
+export default EditPostModal;

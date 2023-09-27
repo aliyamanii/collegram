@@ -7,6 +7,7 @@ import { useState } from "react";
 import Modal from "../../components/Modal";
 import LikeContainer from "../../components/LikeContainer";
 import BookmarkContainer from "../../components/BookmarkContainer";
+import EditPostModal from "../../components/EditPostModal";
 
 const getRandomColor = () => {
   const letters = "0123456789ABCDEF";
@@ -75,8 +76,7 @@ const MySinglePost: React.FC = () => {
               isOpen={editPostModalIsOpen}
               onClose={() => setEditPostModalIsOpen(false)}
             >
-              {/* editPost Modal */}
-              <div className="bg-red-300">editPost Modal</div>
+              <EditPostModal />
             </Modal>
             <BookmarkContainer
               postId={id}

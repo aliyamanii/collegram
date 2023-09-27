@@ -1,9 +1,20 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import cam from "../assets/photos/cam.svg";
 import retry from "../assets/photos/retry.svg";
+import {
+  FieldErrors,
+  UseFormClearErrors,
+  UseFormSetError,
+} from "react-hook-form";
+import { IEditProfileValues } from "./EditProfileModal";
 
-function ProfilePictureSelect() {
-  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+function ProfilePictureSelect({
+  selectedFiles,
+  setSelectedFiles,
+}: {
+  selectedFiles: File[];
+  setSelectedFiles: React.Dispatch<React.SetStateAction<File[]>>;
+}) {
   const [filePreviews, setFilePreviews] = useState<string[]>([]);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const handleFileSelect = useCallback(

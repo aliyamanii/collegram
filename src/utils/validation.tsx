@@ -103,3 +103,11 @@ export const lastNameValidation = () => {
     },
   };
 };
+
+export const ChangePasswordValidation = () => {
+  return { ...passwordValidation(), required: false };
+};
+
+export const ConfirmChangePasswordValidation = (password: string) => {
+  return { ...confirmPasswordValidation(password), required: false };
+};
