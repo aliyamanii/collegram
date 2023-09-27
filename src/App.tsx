@@ -22,7 +22,7 @@ import MySinglePost from "./pages/Profile/MySinglePost";
 import ErrorPage from "./pages/ErrorPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 
-const client = new QueryClient();
+export const client = new QueryClient();
 
 function App() {
   return (

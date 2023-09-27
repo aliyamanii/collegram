@@ -37,3 +37,28 @@ export interface ISignupFormValues {
   email: string;
   confirmPassword: string;
 }
+
+export interface Post {
+  id: string;
+  userId: string;
+  closeFriendsOnly: boolean;
+  description: string;
+  likes: number;
+  bookmarks: number;
+  images: Image[];
+  updatedAt: string;
+  isLiked: true;
+  isBookmarked: true;
+}
+
+export interface PostSummery {
+  id: string;
+  userId: string;
+  image: Image;
+}
+
+export interface Image {
+  id: string;
+  url?: string;
+  path?: string;
+}
