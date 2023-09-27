@@ -6,7 +6,7 @@ export async function fetchUserInfo() {
   return data.data;
 }
 
-export async function editUserInfo(formData) {
+export async function editUserInfo(formData: FormData) {
   const res = await api.put("/users/me", formData);
   const data = res.data;
   return data.data;

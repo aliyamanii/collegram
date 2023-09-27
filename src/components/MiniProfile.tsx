@@ -42,15 +42,15 @@ const MiniProfile: FC = () => {
 
   const {
     username,
-    firstname,
-    lastname,
+    firstName,
+    lastName,
     bio,
     profileUrl,
     followers,
     followings,
   } = user;
 
-  const displayName = `${firstname || ""} ${lastname || ""}`;
+  const displayName = `${firstName || ""} ${lastName || ""}`;
   const isProfileRoute = location.pathname === "/app/profile";
 
   function closeModal() {
