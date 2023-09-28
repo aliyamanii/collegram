@@ -21,12 +21,7 @@ function Auth() {
         </div>
       </div>
       <div className="min-h-[45vh]  w-auto flex justify-center items-center">
-        <img
-          src={tree}
-          id="tree"
-          className="mx-auto hover:animate-spin"
-          alt="Tree"
-        />
+        <img src={tree} id="tree" className="mx-auto" alt="Tree" />
       </div>
     </div>
   );

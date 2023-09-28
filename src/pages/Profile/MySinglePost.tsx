@@ -1,4 +1,5 @@
-import { useParams, useNavigate } from "react-router-dom";
+import React from "react";
+import { Link, useParams } from "react-router-dom";
 import { samplePosts } from "../../assets/photos/samplePosts/samplePosts";
 import { useQuery } from "@tanstack/react-query";
 import { fetchPostDetails } from "../../api/Posts";
@@ -109,6 +110,26 @@ const MySinglePost: React.FC = () => {
               })}
             </ul>
           </div>
+        </div>
+        <div className="flex justify-end gap-1 text-right text-[11px] text-[#17494D] rtl">
+          {timeDifference}
+        </div>
+        <div className="flex justify-end text-right">
+          <p className="text-right">{post.details}</p>
+        </div>
+        <div className="">
+          <ul className="flex items-center justify-end">
+            {post.tags.map((tag, index) => (
+              <li key={index}>
+                <div
+                  style={{ backgroundColor: getRandomColor() }}
+                  className="h-6 flex items-center justify-center rounded-lg p-2 mr-2 mb-2 text-white text-[14px]"
+                >
+                  {tag}
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
       <div className="w-[488px] h-[488px]">

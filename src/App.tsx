@@ -21,6 +21,8 @@ import MyPostPage from "./pages/Profile/MyPostsPage";
 import MySinglePost from "./pages/Profile/MySinglePost";
 import ErrorPage from "./pages/ErrorPage";
 import ProtectedRoute from "./components/ProtectedRoute";
+import UserProfilePage from "./pages/UserProfilePage";
+import UserSinglePost from "./pages/UserSinglePost";
 
 export const client = new QueryClient();
 
@@ -50,7 +52,12 @@ function App() {
           >
             <Route index={true} element={<Navigate to="home" replace />} />
             <Route path="home" element={<Home />} />
-            <Route path="people" element={<div>کالج گرامی ها</div>} />
+            <Route path="people">
+              <Route path="user/:username">
+                <Route index={true} element={<UserProfilePage />} />
+                <Route path="post/:id" element={<UserSinglePost />} />
+              </Route>
+            </Route>
             <Route path="profile" element={<Profile />}>
               <Route index={true} element={<MyPostPage />} />
               <Route path="posts" element={<MyPostPage />} />
