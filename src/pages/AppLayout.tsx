@@ -10,7 +10,7 @@ import SideBarNavLinks, {
 function AppLayout() {
   return (
     <div className="w-screen h-[calc(55%-55px)] py-[52px] px-[204px] flex justify-center bg-[#F3F0EE]">
-      <div id="page" className="w-full h-full mr-[50px]">
+      <div id="page" className="w-full h-full">
         <AppHeader />
         <div className="mt-[10%] max-h-[300px]">
           <Outlet />
@@ -25,7 +25,7 @@ function AppLayout() {
         <img
           src={tree}
           id="tree"
-          className="w-[189.33] h-[213px] mx-auto hover:animate-spin"
+          className="w-[189.33] h-[213px] mx-auto"
           alt="Tree"
         />
       </div>

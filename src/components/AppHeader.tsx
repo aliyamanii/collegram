@@ -20,7 +20,7 @@ const AppHeader: React.FC = ({}) => {
   return (
     <div
       id="header"
-      className="w-[1000px] flex justify-between items-center font-primary"
+      className="w-[95%] flex justify-between items-center font-primary"
     >
       <div id="left" className="w-[225px] flex justify-between">
         <div id="logo">

@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import InputContainer from "../components/InputContainer";
 import userIcon from "../assets/photos/person.svg";
 import key from "../assets/photos/key.svg";
-import arrowback from "../assets/photos/arrow-back.svg";
+import arrowback from "../assets/photos/arrow-back-dark.svg";
 import { SubmitHandler, UseFormRegister, useForm } from "react-hook-form";
 import ErrorMessage from "../components/ErrorMessage";
 import { api } from "../../src/api/instance";
