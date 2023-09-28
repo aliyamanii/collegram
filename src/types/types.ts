@@ -10,6 +10,10 @@ export interface User {
   followers: number;
   followings: number;
 }
+interface UserSummery {
+  id: string;
+  username: string;
+}
 
 export interface INavLink {
   title: string;
@@ -40,7 +44,6 @@ export interface ISignupFormValues {
 
 export interface Post {
   id: string;
-  userId: string;
   closeFriendsOnly: boolean;
   description: string;
   likes: number;
@@ -49,12 +52,40 @@ export interface Post {
   updatedAt: string;
   isLiked: true;
   isBookmarked: true;
+  tags: Tag[];
+}
+
+export interface UserPost extends Post {
+  user: {
+    id: string;
+    username: string;
+  };
+}
+
+export interface MyPost extends Post {
+  userId: string;
+}
+
+interface Tag {
+  id?: string;
+  value: string;
 }
 
 export interface PostSummery {
   id: string;
   userId: string;
   image: Image;
+}
+
+export interface UserPostSummery {
+  id: string;
+  closeFriendsOnly: boolean;
+  likes: number;
+  bookmarks: number;
+  commentsNum: number;
+  images: Image[];
+  tags: Tag[];
+  user: UserSummery;
 }
 
 export interface Image {

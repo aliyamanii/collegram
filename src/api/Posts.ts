@@ -1,4 +1,4 @@
-import { User } from "../types/types";
+import { Post, User, UserPost } from "../types/types";
 import { api } from "./instance";
 
 export async function addPost(form_Data: FormData) {
@@ -7,13 +7,13 @@ export async function addPost(form_Data: FormData) {
   return data.data;
 }
 
-export async function fetchMyPosts(page: number, limit = 25) {
+export async function fetchMyPosts(page = 1, limit = 25) {
   const res = await api.get(`/posts?limit=${limit}&page=${page}`);
   const data = res.data;
   return data.data;
 }
 
-export async function fetchMyBookMarkPosts(page: number, limit = 25) {
+export async function fetchMyBookMarkPosts(page = 1, limit = 25) {
   const res = await api.get(`/posts/bookmarks?limit=${limit}&page=${page}`);
   const data = res.data;
   return data.data;
@@ -39,6 +39,12 @@ export async function toggleLike(id: string, like: boolean) {
 
 export async function editPost(form_Data: FormData, postId: string) {
   const res = await api.put(`/posts/${postId}`, form_Data);
+  const data = res.data;
+  return data.data;
+}
+
+export async function fetchHomePagePosts(page = 1, limit = 25) {
+  const res = await api.get(`/posts/followings?limit=${limit}&page=${page}`);
   const data = res.data;
   return data.data;
 }
