@@ -38,7 +38,7 @@ const EditPostModal: React.FC = () => {
 
   const { mutate } = useMutation({
     mutationKey: ["posts", "detail", id],
-    mutationFn: (data: FormData) => editPost(data),
+    mutationFn: (data: FormData) => editPost(data, id),
     onSuccess: () => {
       // client.invalidateQueries({ queryKey: ["user"], type: "all" });
     },

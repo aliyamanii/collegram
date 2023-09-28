@@ -1,13 +1,6 @@
 import { User } from "../types/types";
 import { api } from "./instance";
 
-interface IPostRequest {
-  photos: File[];
-  tags: string[];
-  description: string;
-  closeFriendsOnly: Boolean;
-}
-
 export async function addPost(form_Data: FormData) {
   const res = await api.post("/posts", form_Data);
   const data = res.data;
@@ -44,8 +37,8 @@ export async function toggleLike(id: string, like: boolean) {
   return data.data;
 }
 
-export async function editPost(form_Data: FormData) {
-  const res = await api.put("/posts", form_Data);
+export async function editPost(form_Data: FormData, postId: string) {
+  const res = await api.put(`/posts/${postId}`, form_Data);
   const data = res.data;
   return data.data;
 }

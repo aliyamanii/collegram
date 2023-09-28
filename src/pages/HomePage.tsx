@@ -3,8 +3,10 @@ import tree from "../assets/photos/tree.svg";
 import logo from "../assets/photos/logo.svg";
 import deadTree from "../assets/photos/tree-dead.svg";
 import MainButton from "../components/MainButton";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const navigate = useNavigate();
   return (
     <div
       id="page"
@@ -16,7 +18,9 @@ function Home() {
       <div className="w-[360px] text-[16px] font-normal leading-[32px] text-center text-[#17494D]">
         برای دیدن عکس‌ها توی این صفحه باید کالج‌گرامی‌ها رو دنبال کنی. آماده‌ای؟
       </div>
-      <MainButton>رفتن به صفحه کالج گرامی ها</MainButton>
+      <MainButton onClick={() => navigate("/app/people")}>
+        رفتن به صفحه کالج گرامی ها
+      </MainButton>
 
       <img src={deadTree} alt="Tree" className="w-[256px] h-[244.68px]" />
     </div>

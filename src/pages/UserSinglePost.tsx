@@ -24,8 +24,8 @@ const MySinglePost: React.FC = () => {
   const fakeUser: User = {
     id: "sadfsd",
     username: "mahmz",
-    firstname: "مهشید",
-    lastname: "منزه",
+    firstName: "مهشید",
+    lastName: "منزه",
     email: "mahmz@rahnema.com",
     bio: "Lover, not a fighter, spreading ✌️all over the 🌎",
     profileUrl: pfp,
@@ -51,8 +51,8 @@ const MySinglePost: React.FC = () => {
 
   const timeDifference = relativeTime(post.postDate);
 
-  const { firstname, lastname, profileUrl, followers } = fakeUser;
-  const displayName = `${firstname} ${lastname}`;
+  const { firstName, lastName, profileUrl, followers } = fakeUser;
+  const displayName = `${firstName} ${lastName}`;
 
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
 
