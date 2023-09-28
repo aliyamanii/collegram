@@ -21,6 +21,7 @@ import MyPostPage from "./pages/Profile/MyPostsPage";
 import MySinglePost from "./pages/Profile/MySinglePost";
 import ErrorPage from "./pages/ErrorPage";
 import ProtectedRoute from "./components/ProtectedRoute";
+import BookmarksPage from "./pages/Profile/BookmarksPage";
 import UserProfilePage from "./pages/UserProfilePage";
 import UserSinglePost from "./pages/UserSinglePost";
 
@@ -61,7 +62,7 @@ function App() {
             <Route path="profile" element={<Profile />}>
               <Route index={true} element={<MyPostPage />} />
               <Route path="posts" element={<MyPostPage />} />
-              <Route path="bookmarks" element={<div>bookmarks</div>} />
+              <Route path="bookmarks" element={<BookmarksPage />} />
               <Route path="chat" element={<div>chat</div>} />
               <Route path="notifications" element={<div>Notifications</div>} />
               <Route path="list" element={<div>List?</div>} />
