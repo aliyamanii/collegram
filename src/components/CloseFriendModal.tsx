@@ -4,18 +4,18 @@ import sparkle from "../assets/photos/sparkle-dark.svg";
 
 import MainButton from "./MainButton";
 import { useModal } from "../customhook/useModal";
-import { User } from "../types/types";
+import { UserInfo, UserMeInfo } from "../types/types";
 import { Link } from "react-router-dom";
 
 interface BlockModalProps {
-  user: User;
+  user: UserInfo;
 }
 
 const CloseFriendModal: FC<BlockModalProps> = ({ user }) => {
   const { isOpen, onClose } = useModal();
 
-  const { firstname, lastname, profileUrl, followers } = user;
-  const displayName = `${firstname} ${lastname}`;
+  const { firstName, lastName, profileUrl, followers } = user;
+  const displayName = `${firstName} ${lastName}`;
   return (
     <div className="w-fit h-fit max-w-[616px] p-12 align-middle transform bg-[#F3F0EE] rounded-[24px] shadow-xl transition-all font-primary">
       <div id="header" className="flex justify-center gap-3">
@@ -44,7 +44,7 @@ const CloseFriendModal: FC<BlockModalProps> = ({ user }) => {
         </div>
         <div className="w-72 flex flex-col gap-3 text-right text-[#17494D]">
           <div className="font-bold">
-            مطمئنی می‌خوای {firstname} رو به دوستان نزدیکت اضافه کنی؟
+            مطمئنی می‌خوای {firstName} رو به دوستان نزدیکت اضافه کنی؟
           </div>
           در این صورت اون می‌تونه محتواهایی که برای دوستان نزدیکت به اشتراک
           گذاشتی رو ببینه

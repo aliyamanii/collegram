@@ -6,7 +6,7 @@ import ErrorPage from "./ErrorPage";
 import heartEmpty from "../assets/photos/heartEmpty.svg";
 import bookmarkEmpty from "../assets/photos/bookmarkEmpty.svg";
 import Carousel from "../components/Carousel";
-import { User } from "../types/types";
+import { UserMeInfo } from "../types/types";
 import pfp from "../assets/photos/samplePosts/dragon.jpg";
 import ellipsis from "../assets/photos/ellipsis.svg";
 import DropDown from "../components/UserDropDown";
@@ -21,7 +21,7 @@ const getRandomColor = () => {
 };
 
 const MySinglePost: React.FC = () => {
-  const fakeUser: User = {
+  const fakeUser: UserMeInfo = {
     id: "sadfsd",
     username: "mahmz",
     firstName: "مهشید",

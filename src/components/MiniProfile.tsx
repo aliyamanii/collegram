@@ -4,8 +4,8 @@ import penIcon from "../assets/photos/pen.svg";
 import { Link, useLocation } from "react-router-dom";
 import personIcon from "../assets/photos/person.svg";
 import { useQuery } from "@tanstack/react-query";
-import { fetchUserInfo } from "../api/user.ts";
-import { User } from "../types/types.ts";
+import { fetchMyInfo } from "../api/user.ts";
+import { UserMeInfo } from "../types/types.ts";
 import EditProfileModal from "./EditProfileModal.tsx";
 import Modal from "./Modal.tsx";
 
@@ -14,9 +14,9 @@ const MiniProfile: FC = () => {
     data: user,
     isLoading,
     isError,
-  } = useQuery<User>({
+  } = useQuery<UserMeInfo>({
     queryKey: ["user"],
-    queryFn: fetchUserInfo,
+    queryFn: fetchMyInfo,
     staleTime: 5 * 60 * 1000,
   });
 

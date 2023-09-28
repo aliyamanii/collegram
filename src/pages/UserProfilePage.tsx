@@ -2,18 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { samplePosts } from "../assets/photos/samplePosts/samplePosts";
 import UserMiniProfile from "../components/UserMiniProfile";
-import { User } from "../types/types.ts";
+import { UserInfo, UserMeInfo } from "../types/types.ts";
 import pfp from "../assets/photos/samplePosts/reptile.jpg";
 
 const UserProfilePage: React.FC = () => {
-  const fakeUser: User = {
-    id: "sadfsd",
-    username: "mahmz",
-    firstname: "مهشید",
-    lastname: "منزه",
-    email: "mahmz@rahnema.com",
+  const fakeUser = {
+    firstName: "مهشید",
+    lastName: "منزه",
     bio: "Lover, not a fighter, spreading ✌️all over the 🌎",
-    profileUrl: pfp,
     isPrivate: false,
     followers: 10,
     followings: 20,

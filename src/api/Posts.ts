@@ -1,4 +1,4 @@
-import { Post, User, UserPost } from "../types/types";
+import { Post, UserMeInfo, UserPost } from "../types/types";
 import { api } from "./instance";
 
 export async function addPost(form_Data: FormData) {

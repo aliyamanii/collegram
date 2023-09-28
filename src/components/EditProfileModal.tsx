@@ -15,7 +15,7 @@ import {
 import ErrorMessage from "./ErrorMessage";
 import { useModal } from "../customhook/useModal";
 import { useMutation } from "@tanstack/react-query";
-import { editUserInfo, fetchUserInfo } from "../api/user";
+import { editUserInfo, fetchMyInfo } from "../api/user";
 import ProfilePictureSelect from "./ProfilePictureSelect";
 import { client } from "../App";
 
@@ -44,7 +44,7 @@ const EditProfileModal: React.FC = () => {
     clearErrors,
   } = useForm<IEditProfileValues>({
     defaultValues: async () => {
-      const data = await fetchUserInfo();
+      const data = await fetchMyInfo();
       const defaultValue: IEditProfileValues = {
         email: data.email,
         firstName: data.firstName || "",

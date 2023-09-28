@@ -1,4 +1,4 @@
-export interface User {
+export interface UserMeInfo {
   id: string;
   username: string;
   firstName?: string;
@@ -9,6 +9,23 @@ export interface User {
   isPrivate: boolean;
   followers: number;
   followings: number;
+}
+
+export interface UserInfo {
+  profileUrl?: string;
+  username?: string;
+  firstName: string;
+  lastName: string;
+  bio: string;
+  followers: number;
+  followings: number;
+  isPrivate: boolean;
+  postsCount: number;
+  hasBlocked: boolean;
+  hasRequested: boolean;
+  hasFollow: boolean;
+  isBlocked: boolean;
+  isClose: boolean;
 }
 interface UserSummery {
   id: string;

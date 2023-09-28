@@ -4,18 +4,18 @@ import block from "../assets/photos/block-dark.svg";
 
 import MainButton from "./MainButton";
 import { useModal } from "../customhook/useModal";
-import { User } from "../types/types";
+import { UserInfo } from "../types/types";
 import { Link } from "react-router-dom";
 
 interface BlockModalProps {
-  user: User;
+  user: UserInfo;
 }
 
 const BlockModal: FC<BlockModalProps> = ({ user }) => {
   const { isOpen, onClose } = useModal();
 
-  const { firstname, lastname, profileUrl, followers } = user;
-  const displayName = `${firstname} ${lastname}`;
+  const { firstName, lastName, profileUrl, followers } = user;
+  const displayName = `${firstName} ${lastName}`;
   return (
     <div className="w-fit h-fit max-w-[616px] p-12 align-middle transform bg-[#F3F0EE] rounded-[24px] shadow-xl transition-all font-primary">
       <div id="header" className=" flex flex-col items-center">
@@ -44,7 +44,7 @@ const BlockModal: FC<BlockModalProps> = ({ user }) => {
         </div>
         <div className="w-72 flex flex-col text-right text-[#17494D]">
           <div className="font-bold">
-            مطمئنی می‌خوای {firstname} رو بلاک کنی؟
+            مطمئنی می‌خوای {firstName} رو بلاک کنی؟
           </div>
           اگر بلاکش کنی دیگه نمی‌تونه بهت پیام بده و پست‌هات رو ببینه. قابلیت
           لایک کردن و کامنت گذاشتن زیر پست‌های تو هم براش مسدود میشه.

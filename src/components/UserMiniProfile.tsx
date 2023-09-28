@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
 import { Link } from "react-router-dom";
-import { User } from "../types/types.ts";
+import { UserInfo, UserMeInfo } from "../types/types.ts";
 import MainButton from "./MainButton.tsx";
 import pin from "../assets/photos/pin-dark.svg";
 import block from "../assets/photos/block.svg";
@@ -11,7 +11,7 @@ import BlockModal from "./BlockModal.tsx";
 import CloseFriendModal from "./CloseFriendModal.tsx";
 
 interface MiniProfileProps {
-  user: User;
+  user: UserInfo;
 }
 
 const MiniProfile: FC<MiniProfileProps> = ({ user }) => {
@@ -34,8 +34,8 @@ const MiniProfile: FC<MiniProfileProps> = ({ user }) => {
     setCloseFriendModalOpen(true);
   }
 
-  const { firstname, lastname, profileUrl, followers, followings } = user;
-  const displayName = `${firstname} ${lastname}`;
+  const { firstName, lastName, profileUrl, followers, followings } = user;
+  const displayName = `${firstName} ${lastName}`;
   return (
     <div className="w-[256px] h-[403px] p-[15px] flex flex-col items-center bg-[#F1EBE3] border border-[#cdcdcd] font-primary">
       <div className="w-[106px] h-[106px] p-1 rounded-full  object-cover ring-gray-300 dark:ring-gray-500 -translate-y-[50%]">

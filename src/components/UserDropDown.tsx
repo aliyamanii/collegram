@@ -2,11 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import Modal from "./Modal";
 import BlockModal from "./BlockModal";
 import CloseFriendModal from "./CloseFriendModal";
-import { User } from "../types/types";
+import { UserInfo } from "../types/types";
 
 interface DropDownProps {
   onClose: () => void;
-  user: User;
+  user: UserInfo;
 }
 
 const DropDown: React.FC<DropDownProps> = ({ onClose, user }) => {
