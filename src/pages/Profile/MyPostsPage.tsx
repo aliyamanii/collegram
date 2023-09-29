@@ -2,30 +2,23 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { samplePosts } from "../../assets/photos/samplePosts/samplePosts";
 import { useQuery } from "@tanstack/react-query";
-import { fetchMyPosts } from "../../api/Posts";
+import { fetchMyPosts, useMyPostsQuery } from "../../api/Posts";
 import SpinnerIcon from "../../assets/photos/spinner.svg";
 import Modal from "../../components/Modal";
 import AddPostModal from "../../components/AddPostModal";
 import { PostSummery } from "../../types/types";
 
 const MyPostsPage: React.FC = () => {
-  const [page, setPage] = useState(1);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const {
-    data: _data,
+    data,
     isLoading,
     isError,
     isFetching,
-    isPreviousData,
-  } = useQuery({
-    queryFn: () => fetchMyPosts(page),
-    queryKey: ["posts", "mine", { page }],
-    staleTime: 5 * 60 * 1000,
-    keepPreviousData: true,
-  });
-
-  const data: { items: PostSummery[]; maxPage: number; page: number } = _data;
+    isFetchingNextPage,
+    hasNextPage,
+  } = useMyPostsQuery();
 
   if (isLoading) {
     return (
@@ -43,7 +36,7 @@ const MyPostsPage: React.FC = () => {
     );
   }
 
-  const { items, maxPage } = data;
+  const items = data.pages.map((page) => page.items).flat(1);
 
   if (items.length === 0) {
     return (
