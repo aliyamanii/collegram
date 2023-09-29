@@ -1,7 +1,7 @@
 import { QueryClient, useMutation } from "@tanstack/react-query";
 import bookmarkEmpty from "../assets/photos/bookmarkEmpty.svg";
 import bookmarkFull from "../assets/photos/bookmarkFull.svg";
-import { toggleBookMark } from "../api/Posts";
+import { toggleBookMark, useToggleBookMarkMutation } from "../api/Posts";
 import { client } from "../App";
 import { Post } from "../types/types";
 
@@ -16,20 +16,7 @@ function BookmarkContainer({
   bookmarks,
   isBookmarked,
 }: IBookMarkContainer) {
-  const queryClient = new QueryClient();
-  const mutaiton = useMutation({
-    mutationFn: () => toggleBookMark(postId, !isBookmarked),
-    onMutate: () => {
-      queryClient.setQueryData(["posts", "details", postId], (post: any) => {
-        return { ...post, isBookmarked: !isBookmarked };
-      });
-    },
-    onError: () => {
-      queryClient.setQueriesData(["posts", "details", postId], (post: any) => {
-        return { ...post, isBookmarked: isBookmarked };
-      });
-    },
-  });
+  const mutaiton = useToggleBookMarkMutation(postId, isBookmarked);
 
   return (
     <>

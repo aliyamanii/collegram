@@ -1,7 +1,7 @@
 import deadTree from "../assets/photos/tree-dead.svg";
 import MainButton from "../components/MainButton";
 import { useNavigate } from "react-router-dom";
-import { fetchHomePagePosts } from "../api/Posts";
+import { fetchHomePagePosts, useHomePagePostsQuery } from "../api/Posts";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import SpinnerIcon from "../assets/photos/spinner.svg";
@@ -10,14 +10,15 @@ import { UserPostSummery } from "../types/types";
 
 function Home() {
   const navigate = useNavigate();
-  const [page, setPage] = useState(1);
-
-  const { data, isLoading, isError, isFetching, isPreviousData } = useQuery({
-    queryFn: () => fetchHomePagePosts(page),
-    queryKey: ["posts", "homePage", { page }],
-    staleTime: 5 * 60 * 1000,
-    keepPreviousData: true,
-  });
+  const {
+    data,
+    isLoading,
+    isError,
+    isFetching,
+    isPreviousData,
+    hasNextPage,
+    fetchNextPage,
+  } = useHomePagePostsQuery();
 
   if (isLoading) {
     return (
@@ -31,10 +32,8 @@ function Home() {
     return null;
   }
 
-  const { items, maxPage } = data as {
-    items: UserPostSummery[];
-    maxPage: number;
-  };
+  const items = data.pages.map((page) => page.items).flat(1);
+
   // const items: UserPostSummery[] = [
   //   {
   //     id: "3a17f030-f51d-48df-ae67-6e7883ea9395",

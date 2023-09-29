@@ -1,24 +1,15 @@
-import React, { FC, useState } from "react";
 import arrowDown from "../assets/photos/arrow-down-yellow.svg";
 import penIcon from "../assets/photos/pen.svg";
 import { Link, useLocation } from "react-router-dom";
 import personIcon from "../assets/photos/person.svg";
-import { useQuery } from "@tanstack/react-query";
-import { fetchMyInfo } from "../api/user.ts";
+import {  useMyUserInfoQuery } from "../api/user.ts";
 import { UserMeInfo } from "../types/types.ts";
 import EditProfileModal from "./EditProfileModal.tsx";
 import Modal from "./Modal.tsx";
+import { FC, useState } from "react";
 
 const MiniProfile: FC = () => {
-  const {
-    data: user,
-    isLoading,
-    isError,
-  } = useQuery<UserMeInfo>({
-    queryKey: ["user"],
-    queryFn: fetchMyInfo,
-    staleTime: 5 * 60 * 1000,
-  });
+  const { data: user, isLoading, isError } = useMyUserInfoQuery();
 
   const location = useLocation();
   let [isOpen, setIsOpen] = useState(false);

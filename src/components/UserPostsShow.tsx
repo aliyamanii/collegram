@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { samplePosts } from "../assets/photos/samplePosts/samplePosts";
 import { useQuery } from "@tanstack/react-query";
-import { fetchUserPosts } from "../api/Posts";
 import SpinnerIcon from "../assets/photos/spinner.svg";
 import { PostSummery, UserPostSummery } from "../types/types";
+import { useTargetUserInfo } from "../api/user";
 
 interface IUserPostsShow {
   userId: string;
@@ -13,18 +13,8 @@ interface IUserPostsShow {
 function UserPostsShow({ userId }: IUserPostsShow) {
   const [page, setPage] = useState(1);
 
-  const {
-    data: _data,
-    isLoading,
-    isError,
-    isFetching,
-    isPreviousData,
-  } = useQuery({
-    queryFn: () => fetchUserPosts(userId, page),
-    queryKey: ["posts", userId, { page }],
-    staleTime: 5 * 60 * 1000,
-    keepPreviousData: true,
-  });
+  const { data, isLoading, isError, isFetching, isPreviousData } =
+    useTargetUserInfo(userId);
 
   if (isLoading) {
     return (
@@ -41,10 +31,7 @@ function UserPostsShow({ userId }: IUserPostsShow) {
     );
   }
 
-  const data: { items: UserPostSummery[]; maxPage: number; page: number } =
-    _data;
-
-  //   const { items } = data;
+  // const { items } = data;
 
   const items = [
     {

@@ -1,8 +1,6 @@
-import React from "react";
 import heartEmpty from "../assets/photos/heartEmpty.svg";
 import heartFull from "../assets/photos/heartFull.svg";
-import { QueryClient, useMutation } from "@tanstack/react-query";
-import { toggleLike } from "../api/Posts";
+import { toggleLike, usePostLikeMutatuin } from "../api/Posts";
 
 interface ILikeContainer {
   postId: string;
@@ -11,20 +9,7 @@ interface ILikeContainer {
 }
 
 function LikeContainer({ postId, likesCount, isLiked }: ILikeContainer) {
-  const queryClient = new QueryClient();
-  const mutaiton = useMutation({
-    mutationFn: () => toggleLike(postId, !isLiked),
-    onMutate: () => {
-      queryClient.setQueryData(["posts", "details", postId], (post: any) => {
-        return { ...post, isLiked: !isLiked };
-      });
-    },
-    onError: () => {
-      queryClient.setQueriesData(["posts", "details", postId], (post: any) => {
-        return { ...post, isLiked: isLiked };
-      });
-    },
-  });
+  const mutaiton = usePostLikeMutatuin(postId, isLiked);
 
   return (
     <>

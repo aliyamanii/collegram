@@ -3,8 +3,7 @@ import MainButton from "./MainButton";
 import Switch from "./Switch";
 import { useModal } from "../customhook/useModal";
 import { Controller, useForm } from "react-hook-form";
-import { useMutation } from "@tanstack/react-query";
-import { editPost, fetchPostDetails } from "../api/Posts";
+import { fetchPostDetails, useEditPost } from "../api/Posts";
 import { useParams } from "react-router-dom";
 
 export interface IEditPostValues {
@@ -36,13 +35,7 @@ const EditPostModal: React.FC = () => {
     delayError: 700,
   });
 
-  const { mutate } = useMutation({
-    mutationKey: ["posts", "detail", id],
-    mutationFn: (data: FormData) => editPost(data, id),
-    onSuccess: () => {
-      // client.invalidateQueries({ queryKey: ["user"], type: "all" });
-    },
-  });
+  const { mutate } = useEditPost(id);
 
   const { isOpen, onClose } = useModal();
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { fetchPostDetails } from "../../api/Posts";
+import { fetchPostDetails, useMyDetailPostQuery } from "../../api/Posts";
 import SpinnerIcon from "../../assets/photos/spinner.svg";
 import { useState } from "react";
 import Modal from "../../components/Modal";
@@ -26,14 +26,7 @@ const MySinglePost: React.FC = () => {
   const navigate = useNavigate();
   const [editPostModalIsOpen, setEditPostModalIsOpen] = useState(false);
 
-  const { data, isLoading, isError } = useQuery({
-    queryFn: () => fetchPostDetails(id),
-    queryKey: ["posts", "details", id],
-    staleTime: 5 * 60 * 1000,
-  });
-
-  // const postId = parseInt(id, 10);
-  // const post = samplePosts.find((p) => p.id === postId);
+  const { data, isLoading, isError } = useMyDetailPostQuery(id);
 
   if (isLoading) {
     return (

@@ -14,10 +14,8 @@ import {
 } from "../utils/validation";
 import ErrorMessage from "./ErrorMessage";
 import { useModal } from "../customhook/useModal";
-import { useMutation } from "@tanstack/react-query";
-import { editUserInfo, fetchMyInfo } from "../api/user";
+import { fetchMyInfo, useEditUserInfo } from "../api/user";
 import ProfilePictureSelect from "./ProfilePictureSelect";
-import { client } from "../App";
 
 export interface IEditProfileValues {
   email: string;
@@ -60,13 +58,7 @@ const EditProfileModal: React.FC = () => {
     delayError: 700,
   });
 
-  const { mutate } = useMutation({
-    mutationKey: ["user"],
-    mutationFn: (data: FormData) => editUserInfo(data),
-    onSuccess: () => {
-      client.invalidateQueries({ queryKey: ["user"], type: "all" });
-    },
-  });
+  const { mutate } = useEditUserInfo();
 
   const submitHandler: SubmitHandler<IEditProfileValues> = async (
     formValues
