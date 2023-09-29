@@ -46,7 +46,7 @@ const DropDown: React.FC<DropDownProps> = ({ onClose, user }) => {
   return (
     <div
       ref={dropdownRef}
-      className="absolute left-[210px] top-[280px] right-0 mt-2 w-56 bg-[#F1EBE3] border border-[#CDCDCD] rounded-s-3xl rounded-b-3xl shadow-lg text-right"
+      className="absolute left-[210px] top-[280px] right-0 mt-2 w-56 bg-vanilla border border-[#CDCDCD] rounded-s-3xl rounded-b-3xl shadow-lg text-right"
     >
       <ul>
         <li

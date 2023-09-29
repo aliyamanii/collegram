@@ -33,7 +33,7 @@ function NewPassword() {
   };
 
   return (
-    <div className="flex flex-col items-center w-full h-full p-5 bg-[#f3f0ee] font-primary ">
+    <div className="flex flex-col items-center w-full h-full p-5 bg-bone font-primary ">
       <p
         id="title"
         className="text-[16px] leading-[20px] text-center font-normal mb-[15px]"

@@ -9,7 +9,7 @@ import SideBarNavLinks, {
 
 function AppLayout() {
   return (
-    <div className="w-screen h-[calc(55%-55px)] py-[52px] px-[204px] flex justify-center bg-[#F3F0EE]">
+    <div className="w-screen h-[calc(55%-55px)] py-[52px] px-[204px] flex justify-center bg-bone">
       <div id="page" className="w-full h-full">
         <AppHeader />
         <div className="mt-[10%] max-h-[300px]">

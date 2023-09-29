@@ -56,7 +56,7 @@ const CustomCarousel: React.FC<CustomCarouselProps> = ({ images }) => {
               className={`w-3 h-3 rounded-full ${
                 index === currentImageIndex
                   ? "bg-[#587052]"
-                  : "bg-[#A5A5A5] hover:bg-gray-600 cursor-pointer"
+                  : "bg-cloud hover:bg-gray-600 cursor-pointer"
               }`}
               onClick={() => setCurrentImageIndex(index)}
             />

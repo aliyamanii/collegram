@@ -55,7 +55,7 @@ function SignUp() {
   };
 
   return (
-    <div className="flex flex-col gap-5 items-center w-full h-full p-5 bg-[#f3f0ee] font-primary ">
+    <div className="flex flex-col gap-5 items-center w-full h-full p-5 bg-bone font-primary ">
       <section
         id="switch-mode"
         className="flex justify-between w-full mb-[20px]"
@@ -63,15 +63,15 @@ function SignUp() {
         <Link
           to="/auth/signup"
           id="signup-button"
-          className="text-base font-normal leading-[20px] tracking-[-0.02em] text-center cursor-pointer text-[#2b2b2b] hover:font-semibold "
+          className="text-base font-normal leading-[20px] tracking-[-0.02em] text-center cursor-pointer text-charcoal hover:font-semibold "
         >
           ثبت نام در کالج گرام
         </Link>
-        <div className="w-[1px] h-full bg-[black]"></div>
+        <div className="w-[1px] h-full bg-black"></div>
         <Link
           to="/auth/login"
           id="login-button"
-          className="text-4 font-normal leading-[20px] tracking-[-0.02em] text-center cursor-pointer text-[#a5a5a5] hover:font-semibold"
+          className="text-4 font-normal leading-[20px] tracking-[-0.02em] text-center cursor-pointer text-cloud hover:font-semibold"
         >
           ورود به کالج گرام
         </Link>

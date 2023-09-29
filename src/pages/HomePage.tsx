@@ -66,10 +66,10 @@ function Home() {
         id="page"
         className="w-full h-[700px] flex flex-col justify-center items-center gap-[25px] font-primary"
       >
-        <div className=" w-[360px] text-[20px] font-bold leading-[26px] text-center text-[#17494D]">
+        <div className=" w-[360px] text-[20px] font-bold leading-[26px] text-center text-navy">
           !سلام به کالج گرام خوش اومدی
         </div>
-        <div className="w-[360px] text-[16px] font-normal leading-[32px] text-center text-[#17494D]">
+        <div className="w-[360px] text-[16px] font-normal leading-[32px] text-center text-navy">
           برای دیدن عکس‌ها توی این صفحه باید کالج‌گرامی‌ها رو دنبال کنی.
           آماده‌ای؟
         </div>

@@ -42,11 +42,11 @@ export const items: INavLink[] = [
 
 function ProfileNavLinks({ list }: { list: INavLink[] }) {
   return (
-    <div className="h-fit w-[104px] inline-flex py-[25px] gap-8 flex-col items-center bg-[#F1EBE3] border-2">
+    <div className="h-fit w-[104px] inline-flex py-[25px] gap-8 flex-col items-center bg-vanilla border-2">
       {list.map((item) => (
         <NavLink
           to={item.destinationUrl}
-          className="flex w-full h-6 justify-center items-center gap-4 self-stretch text-[#C19008]"
+          className="flex w-full h-6 justify-center items-center gap-4 self-stretch text-amber"
           style={({ isActive, isPending }) => {
             return { color: isActive ? "#17494D" : "#C19008" };
           }}

@@ -17,9 +17,9 @@ const CloseFriendModal: FC<BlockModalProps> = ({ user }) => {
   const { firstName, lastName, profileUrl, followers } = user;
   const displayName = `${firstName} ${lastName}`;
   return (
-    <div className="w-fit h-fit max-w-[616px] p-12 align-middle transform bg-[#F3F0EE] rounded-[24px] shadow-xl transition-all font-primary">
+    <div className="w-fit h-fit max-w-[616px] p-12 align-middle transform bg-bone rounded-[24px] shadow-xl transition-all font-primary">
       <div id="header" className="flex justify-center gap-3">
-        <h3 className="flex justify-center text-xl font-semibold text-[20px] leading-[26px] text-[#17494D] font-primary">
+        <h3 className="flex justify-center text-xl font-semibold text-[20px] leading-[26px] text-navy font-primary">
           دوست نزدیک
         </h3>
         <img src={sparkle} className="w-6 h-6"></img>
@@ -33,16 +33,16 @@ const CloseFriendModal: FC<BlockModalProps> = ({ user }) => {
             className="w-[80px] h-[80px] p-1 rounded-full object-cover "
           />
           <div>
-            <div className="text-[16px] font-semibold text-center leading-[26px] text-[#17494D]">
+            <div className="text-[16px] font-semibold text-center leading-[26px] text-navy">
               {displayName}
             </div>
-            <div className="flex text-[#17494D]">
+            <div className="flex text-navy">
               <div>دنبال کننده</div>
               {followers}
             </div>
           </div>
         </div>
-        <div className="w-72 flex flex-col gap-3 text-right text-[#17494D]">
+        <div className="w-72 flex flex-col gap-3 text-right text-navy">
           <div className="font-bold">
             مطمئنی می‌خوای {firstName} رو به دوستان نزدیکت اضافه کنی؟
           </div>

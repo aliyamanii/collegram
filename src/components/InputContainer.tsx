@@ -16,7 +16,7 @@ const InputContainer = React.forwardRef<HTMLInputElement, InputContainerProps>(
           type={type}
           placeholder={placeholder}
           className={`w-full h-full rounded-[16px] border-solid border-[1px] border-color[#cdcdcd] text-right py-[8px] pl-[16px] pr-[30px]
-                      text-[12px] font-normal placeholder:text-[#cdcdcd] ${
+                      text-[12px] font-normal placeholder:text-gray-300 ${
                         hasError ? "outline outline-2 outline-red-500" : ""
                       } `}
           ref={ref}

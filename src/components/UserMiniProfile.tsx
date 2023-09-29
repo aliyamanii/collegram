@@ -37,7 +37,7 @@ const MiniProfile: FC<MiniProfileProps> = ({ user }) => {
   const { firstName, lastName, profileUrl, followers, followings } = user;
   const displayName = `${firstName} ${lastName}`;
   return (
-    <div className="w-[256px] h-[403px] p-[15px] flex flex-col items-center bg-[#F1EBE3] border border-[#cdcdcd] font-primary">
+    <div className="w-[256px] h-[403px] p-[15px] flex flex-col items-center bg-vanilla border border-[#cdcdcd] font-primary">
       <div className="w-[106px] h-[106px] p-1 rounded-full  object-cover ring-gray-300 dark:ring-gray-500 -translate-y-[50%]">
         <img
           src={profileUrl}
@@ -51,13 +51,13 @@ const MiniProfile: FC<MiniProfileProps> = ({ user }) => {
         </div>
         <div
           id="follow-info"
-          className="flex justify-between items-center w-[201px] h-[21px] text-[11px] font-normal text-[#17494D]"
+          className="flex justify-between items-center w-[201px] h-[21px] text-[11px] font-normal text-navy"
         >
           <Link to="" id="following-button" className="flex">
             <div>دنبال شونده</div>
             {followings}
           </Link>
-          <div className="w-[1px] h-[10px] bg-[#17494D]"></div>
+          <div className="w-[1px] h-[10px] bg-navy"></div>
           <Link to="" id="followers-button" className="flex">
             <div>دنبال کننده</div>
             {followers}
@@ -69,7 +69,7 @@ const MiniProfile: FC<MiniProfileProps> = ({ user }) => {
         <div>
           <img src={pin}></img>
         </div>
-        <div className="w-[212px] h-[72px] flex items-center justify-center bg-[#F3F0EE] gap-8 border border-solid border-[#CDCDCD]">
+        <div className="w-[212px] h-[72px] flex items-center justify-center bg-bone gap-8 border border-solid border-[#CDCDCD]">
           <img
             src={block}
             className="hover:scale-150 transition-all duration-300 hover:cursor-pointer"
