@@ -54,9 +54,9 @@ function App() {
             <Route index={true} element={<Navigate to="home" replace />} />
             <Route path="home" element={<Home />} />
             <Route path="people">
-              <Route path="user/:username">
+              <Route path="user/:userId">
                 <Route index={true} element={<UserProfilePage />} />
-                <Route path="post/:id" element={<UserSinglePost />} />
+                <Route path="post/:postId" element={<UserSinglePost />} />
               </Route>
             </Route>
             <Route path="profile" element={<Profile />}>

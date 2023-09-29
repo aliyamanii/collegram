@@ -27,6 +27,16 @@ export interface UserInfo {
   isBlocked: boolean;
   isClose: boolean;
 }
+
+export interface UserWhoMBlockedYou extends UserInfo {
+  hasBlocked: true;
+}
+
+export interface UserWhoIsPrivate extends UserInfo {
+  hasBlocked: false;
+  isPrivate: true;
+}
+
 interface UserSummery {
   id: string;
   username: string;
@@ -92,6 +102,12 @@ export interface PostSummery {
   id: string;
   userId: string;
   image: Image;
+}
+
+export interface MyPostSummery extends PostSummery {}
+
+export interface UserPostSummery extends PostSummery {
+  closeFriendsOnly: boolean;
 }
 
 export interface UserPostSummery {

@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserInfo, UserMeInfo } from "../types/types.ts";
 import MainButton from "./MainButton.tsx";
 import pin from "../assets/photos/pin-dark.svg";
@@ -9,14 +9,41 @@ import sparkle from "../assets/photos/sparkle.svg";
 import Modal from "./Modal.tsx";
 import BlockModal from "./BlockModal.tsx";
 import CloseFriendModal from "./CloseFriendModal.tsx";
+import { useQuery } from "@tanstack/react-query";
+import { fetchUserInfo } from "../api/user.ts";
+import SpinnerIcon from "../assets/photos/spinner.svg";
 
 interface MiniProfileProps {
-  user: UserInfo;
+  userId: string;
 }
 
-const MiniProfile: FC<MiniProfileProps> = ({ user }) => {
+const MiniProfile: FC<MiniProfileProps> = ({ userId }) => {
   const [blockModalOpen, setBlockModalOpen] = useState(false);
   const [closeFriendModalOpen, setCloseFriendModalOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const {
+    data: user,
+    isLoading,
+    isError,
+  } = useQuery<UserInfo>({
+    queryKey: ["user", userId],
+    queryFn: () => fetchUserInfo(userId),
+    staleTime: 5 * 60 * 1000,
+  });
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center">
+        <img src={SpinnerIcon} alt="" className="animate-spin" />
+      </div>
+    );
+  }
+
+  if (isError) {
+    navigate("/error", { replace: true });
+    return null;
+  }
 
   function closeBlockModal() {
     setBlockModalOpen(false);
@@ -67,7 +94,7 @@ const MiniProfile: FC<MiniProfileProps> = ({ user }) => {
           <MainButton children={"دنبال کردن"} />
         </div>
         <div>
-          <img src={pin}></img>
+          <img src={pin} />
         </div>
         <div className="w-[212px] h-[72px] flex items-center justify-center bg-[#F3F0EE] gap-8 border border-solid border-[#CDCDCD]">
           <img

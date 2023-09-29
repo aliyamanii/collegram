@@ -11,3 +11,9 @@ export async function editUserInfo(formData: FormData) {
   const data = res.data;
   return data.data;
 }
+
+export async function fetchUserInfo(userId: string) {
+  const res = await api.get(`/users/${userId}`);
+  const data = res.data;
+  return data.data;
+}
