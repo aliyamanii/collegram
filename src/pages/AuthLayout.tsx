@@ -5,10 +5,10 @@ import Header from "../components/AppHeader";
 
 function Auth() {
   return (
-    <div className="flex flex-col min-h-screen justify-start bg-[#f1ebe3] font-primary">
+    <div className="flex flex-col min-h-screen justify-start bg-vanilla font-primary">
       <div
         id="app__container"
-        className=" w-screen min-h-[55vh]  flex  bg-[#f3f0ee] text-center flex-col items-center justify-center"
+        className=" w-screen min-h-[55vh]  flex  bg-bone text-center flex-col items-center justify-center"
       >
         <img
           src={logo}
@@ -16,7 +16,7 @@ function Auth() {
           id="logo"
           className=" w-[60px] mt-[50px]"
         />
-        <div className="w-[320px] h-full bg-[red] mt-[10px]">
+        <div className="w-[320px] h-full mt-[10px]">
           <Outlet />
         </div>
       </div>

@@ -20,7 +20,7 @@ function SideBarNavLinks({ list }: { list: INavLink[] }) {
       {list.map((item) => (
         <NavLink
           to={item.destinationUrl}
-          className="flex w-full h-6 justify-end items-start gap-4 self-stretch text-[#C19008]"
+          className="flex w-full h-6 justify-end items-start gap-4 self-stretch text-amber"
           style={({ isActive, isPending }) => {
             return { color: isActive ? "#17494D" : "#C19008" };
           }}

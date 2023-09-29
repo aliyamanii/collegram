@@ -80,7 +80,7 @@ function PostPicturesSelect({
       <div className="flex justify-end my-3">
         <div
           onClick={showFileInput}
-          className="flex justify-end items-center w-[168px] h-[36px] cursor-pointer p-3 rounded-md  font-bold hover:bg-[#FFE4B5] text-[#C19008] transition-all duration-300"
+          className="flex justify-end items-center w-[168px] h-[36px] cursor-pointer p-3 rounded-md  font-bold hover:bg-[#FFE4B5] text-amber transition-all duration-300"
         >
           بارگذاری عکس ها
           <img src={plus} alt={"+"} className="mx-2" />

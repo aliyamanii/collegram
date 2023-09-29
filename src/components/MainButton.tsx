@@ -15,7 +15,7 @@ const MainButton: React.FC<ButtonProps> = ({
 }) => {
   return (
     <button
-      className={`py-2 px-4 text-sm font-medium text-white bg-[#c19008] rounded-full hover:bg-[#ffc72d] hover:text-black hover:transition-all duration-300 ${className}`}
+      className={`py-2 px-4 text-sm font-medium text-white bg-amber rounded-full hover:bg-yellow-500 hover:text-black hover:transition-all duration-300 ${className}`}
       onClick={onClick}
       type={type}
     >

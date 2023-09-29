@@ -75,17 +75,17 @@ const MySinglePost: React.FC = () => {
     <div className="flex font-primary">
       <div className="flex flex-col gap-3 w-[500px] p-3">
         <div className="w-full h-10 flex items-center justify-between">
-          <div className="flex min-h-[64px] p-2 justify-between gap-7 items-center rounded-3xl hover:bg-[#f5e4ce] transition-all duration-300">
+          <div className="flex min-h-[64px] p-2 justify-between gap-7 items-center rounded-3xl hover:bg-vanilla transition-all duration-300">
             <img
               src={profileUrl}
               alt={`${displayName}'s Profile`}
               className="w-[64px] h-[64px] rounded-full object-cover"
             />
             <div>
-              <div className="text-[16px] font-semibold text-center leading-[26px] text-[#17494D]">
+              <div className="text-[16px] font-semibold text-center leading-[26px] text-navy">
                 {displayName}
               </div>
-              <div className="flex text-[#17494D]">
+              <div className="flex text-navy">
                 <div>دنبال کننده</div>
                 {followers}
               </div>
@@ -121,7 +121,7 @@ const MySinglePost: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="flex justify-end gap-1 text-right text-[11px] text-[#17494D]">
+        <div className="flex justify-end gap-1 text-right text-[11px] text-navy">
           {timeDifference}
         </div>
         <div className="flex justify-end text-right">

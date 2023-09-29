@@ -58,7 +58,7 @@ function Login() {
   };
 
   return (
-    <div className="flex flex-col  items-center w-full h-full p-5 bg-[#f3f0ee] font-primary ">
+    <div className="flex flex-col  items-center w-full h-full p-5 bg-bone font-primary ">
       <section
         id="switch-mode"
         className="flex justify-between w-full mb-[20px]"
@@ -66,15 +66,15 @@ function Login() {
         <Link
           to="/auth/signup"
           id="signup__button"
-          className="text-base font-normal leading-[20px] tracking-[-0.02em] text-center cursor-pointer text-[#a5a5a5] hover:font-semibold "
+          className="text-base font-normal leading-[20px] tracking-[-0.02em] text-center cursor-pointer text-cloud hover:font-semibold "
         >
           ثبت نام در کالج گرام
         </Link>
-        <div className="w-[1px] h-full bg-[black]"></div>
+        <div className="w-[1px] h-full bg-black"></div>
         <Link
           to="/auth/login"
           id="login__button"
-          className="text-4 font-normal leading-[20px] tracking-[-0.02em] text-center cursor-pointer text-[#2b2b2b] hover:font-semibold "
+          className="text-4 font-normal leading-[20px] tracking-[-0.02em] text-center cursor-pointer text-charcoal hover:font-semibold "
         >
           ورود به کالج گرام
         </Link>
@@ -114,12 +114,12 @@ function Login() {
             htmlFor="remember__checkbox"
             className="inline-flex items-center ml-[8px] cursor-pointer"
           >
-            <span className="text-[12px] leading-[20px] text-[#2b2b2b] ml-[6px]">
+            <span className="text-[12px] leading-[20px] text-charcoal ml-[6px]">
               من را به خاطر بسپار
             </span>
             <div
               className={`w-[12px] h-[12px] rounded-[4px] ${
-                rememberMe ? "bg-[#ffffff] shadow-checkbox" : "bg-[#c19008]"
+                rememberMe ? "bg-white shadow-checkbox" : "bg-amber"
               } flex-shrink-0 ml-2 transition-all duration-300 hover:border`}
             />
           </label>
@@ -131,7 +131,7 @@ function Login() {
         >
           <button
             id="recoverpassword__link"
-            className="text-[#c19008] no-underline flex items-center hover:font-semibold"
+            className="text-amber no-underline flex items-center hover:font-semibold"
             onClick={() =>
               navigate("/auth/recover-password", {
                 state: { identifier: getValues("usernameOrEmail") },
@@ -144,7 +144,7 @@ function Login() {
           <Link
             to="/auth/signup"
             id="signup__link"
-            className="text-[#c19008] no-underline flex items-center hover:font-semibold"
+            className="text-amber no-underline flex items-center hover:font-semibold"
           >
             ثبت نام در کالج گرام
             <img src={arrowback} alt="Back Icon" className="h-[8px] ml-2" />

@@ -38,7 +38,7 @@ function RecoverPassword() {
   };
 
   return (
-    <div className="flex flex-col items-center w-full h-full p-5 bg-[#f3f0ee] font-primary ">
+    <div className="flex flex-col items-center w-full h-full p-5 bg-bone font-primary ">
       <text
         id="title"
         className="text-[16px] leading-[20px] text-center font-normal mb-[25px]"
@@ -63,7 +63,7 @@ function RecoverPassword() {
           <Link
             to="/auth/login"
             id="cancel__link"
-            className="text-[#2B2B2B] no-underline w-[104px] h-[36px] ml-[10px] hover:font-semibold"
+            className="text-charcoal no-underline w-[104px] h-[36px] ml-[10px] hover:font-semibold"
           >
             انصراف
           </Link>

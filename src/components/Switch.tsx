@@ -13,7 +13,7 @@ const CustomSwitch: React.FC<CustomSwitchProps> = ({ checked, onChange }) => {
   return (
     <div
       className={`${
-        checked ? "bg-[#C19008]" : "bg-gray-200"
+        checked ? "bg-amber" : "bg-gray-200"
       } relative inline-flex flex-end flex-shrink-0 transition-colors duration-200 ease-in-out border-2 border-transparent rounded-full cursor-pointer w-11 h-6 focus:outline-none focus:shadow-outline`}
       onClick={toggleSwitch}
     >

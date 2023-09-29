@@ -66,30 +66,30 @@ const EditPostModal: React.FC = () => {
   };
 
   return (
-    <div className="w-fit h-fit max-w-[616px] p-12 align-middle transform bg-[#F3F0EE] rounded-[24px] shadow-xl transition-all">
-      <h3 className="flex justify-center text-lg font-bold text-[20px] leading-[26px] text-[#17494D] font-primary">
+    <div className="w-fit h-fit max-w-[616px] p-12 align-middle transform bg-bone rounded-[24px] shadow-xl transition-all">
+      <h3 className="flex justify-center text-lg font-bold text-[20px] leading-[26px] text-navy font-primary">
         ویرایش پست
       </h3>
       <div className=" flex flex-col object-cover  ">
         <div className="mb-4 font-primary">
-          <div className="flex justify-end my-2 text-[16px] font-medium leading-[20px] text-[#17494D]">
+          <div className="flex justify-end my-2 text-[16px] font-medium leading-[20px] text-navy">
             توضیحات
           </div>
           <textarea
-            className="w-full h-32 rounded-lg border-solid border-[1px] border-color[#cdcdcd] text-right py-[8px] pl-[16px] pr-[16px] text-[12px] font-normal placeholder:text-[#cdcdcd] resize-none"
+            className="w-full h-32 rounded-lg border-solid border-[1px] border-color[#cdcdcd] text-right py-[8px] pl-[16px] pr-[16px] text-[12px] font-normal placeholder:text-gray-300 resize-none"
             {...register("description")}
           />
         </div>
         <div>
-          <div className="flex justify-end my-2 text-[16px] font-medium leading-[20px] text-[#17494D]">
+          <div className="flex justify-end my-2 text-[16px] font-medium leading-[20px] text-navy">
             تگ ها
           </div>
           <textarea
-            className="w-full h-[40px] rounded-[30px] border-solid border-[1px] border-color[#cdcdcd] text-right py-[8px] pl-[16px] pr-[16px] text-[12px] font-normal placeholder:text-[#cdcdcd] resize-none"
+            className="w-full h-[40px] rounded-[30px] border-solid border-[1px] border-color[#cdcdcd] text-right py-[8px] pl-[16px] pr-[16px] text-[12px] font-normal placeholder:text-gray-300 resize-none"
             {...register("tags")}
           />
         </div>
-        <div className="flex items-center justify-end text-[14px] font-medium text-[#17494D]">
+        <div className="flex items-center justify-end text-[14px] font-medium text-navy">
           فقط نمایش به دوستان نزدیک
           <div className="ml-3">
             <Controller

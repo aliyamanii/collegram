@@ -87,7 +87,7 @@ const EditProfileModal: React.FC = () => {
   };
 
   return (
-    <div className="w-[375px] h-3/5  p-12 flex flex-col gap-7 align-middle transform bg-[#F3F0EE] rounded-[24px] shadow-xl transition-all">
+    <div className="w-[375px] h-3/5  p-12 flex flex-col gap-7 align-middle transform bg-bone rounded-[24px] shadow-xl transition-all">
       {/* <Controller
         name="photo"
         control={control}
@@ -105,7 +105,7 @@ const EditProfileModal: React.FC = () => {
         setSelectedFiles={setSelectedFiles}
       />
       <div className="flex flex-col gap-8">
-        <h3 className="flex justify-center text-lg font-bold text-[20px] leading-[26px] text-[#17494D] font-primary">
+        <h3 className="flex justify-center text-lg font-bold text-[20px] leading-[26px] text-navy font-primary">
           ویرایش حساب
         </h3>
         <InputContainer
@@ -156,7 +156,7 @@ const EditProfileModal: React.FC = () => {
         />
         <ErrorMessage errorMessage={errors?.confirmPassword?.message} />
 
-        <div className="flex w-full items-center justify-end text-[14px] font-medium text-[#17494D]">
+        <div className="flex w-full items-center justify-end text-[14px] font-medium text-navy">
           پیج خصوصی باشه
           <div className="ml-3">
             <Controller
@@ -169,11 +169,11 @@ const EditProfileModal: React.FC = () => {
           </div>
         </div>
         <div>
-          <div className="flex justify-end mb-2 text-[16px] font-semibold leading-[20px] text-[#17494D]">
+          <div className="flex justify-end mb-2 text-[16px] font-semibold leading-[20px] text-navy">
             بایو
           </div>
           <textarea
-            className="w-full h-[88px] rounded-lg border-solid border-[1px] border-color[#cdcdcd] text-right py-[8px] pl-[16px] pr-[16px] text-[12px] font-normal placeholder:text-[#cdcdcd] resize-none"
+            className="w-full h-[88px] rounded-lg border-solid border-[1px] text-right py-[8px] pl-[16px] pr-[16px] text-[12px] font-normal placeholder:text-gray-300 resize-none"
             {...register("bio")}
           />
         </div>
