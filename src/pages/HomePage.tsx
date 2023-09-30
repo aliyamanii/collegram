@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import SpinnerIcon from "../assets/photos/spinner.svg";
 import PostCard from "../components/PostCard";
-import { UserPostSummery } from "../types/types";
+import { UserPostSummary } from "../types/types";
 
 function Home() {
   const navigate = useNavigate();
@@ -34,7 +34,7 @@ function Home() {
 
   const items = data.pages.map((page) => page.items).flat(1);
 
-  // const items: UserPostSummery[] = [
+  // const items: UserPostSummary[] = [
   //   {
   //     id: "3a17f030-f51d-48df-ae67-6e7883ea9395",
   //     closeFriendsOnly: false,

@@ -6,7 +6,7 @@ import { fetchMyPosts, useMyPostsQuery } from "../../api/Posts";
 import SpinnerIcon from "../../assets/photos/spinner.svg";
 import Modal from "../../components/Modal";
 import AddPostModal from "../../components/AddPostModal";
-import { PostSummery } from "../../types/types";
+import { PostSummary } from "../../types/types";
 
 const MyPostsPage: React.FC = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);

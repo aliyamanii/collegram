@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { samplePosts } from "../assets/photos/samplePosts/samplePosts";
 import { useQuery } from "@tanstack/react-query";
 import SpinnerIcon from "../assets/photos/spinner.svg";
-import { PostSummery, UserPostSummery } from "../types/types";
+import { PostSummary, UserPostSummary } from "../types/types";
 import { useTargetUserInfo } from "../api/user";
 
 interface IUserPostsShow {
