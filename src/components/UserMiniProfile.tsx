@@ -10,7 +10,7 @@ import Modal from "./Modal.tsx";
 import BlockModal from "./BlockModal.tsx";
 import CloseFriendModal from "./CloseFriendModal.tsx";
 import { useQuery } from "@tanstack/react-query";
-import { fetchUserInfo } from "../api/user.ts";
+import { fetchUserInfo, useTargetUserInfo } from "../api/user.ts";
 import SpinnerIcon from "../assets/photos/spinner.svg";
 
 interface MiniProfileProps {
@@ -22,15 +22,7 @@ const MiniProfile: FC<MiniProfileProps> = ({ userId }) => {
   const [closeFriendModalOpen, setCloseFriendModalOpen] = useState(false);
   const navigate = useNavigate();
 
-  const {
-    data: user,
-    isLoading,
-    isError,
-  } = useQuery<UserInfo>({
-    queryKey: ["user", userId],
-    queryFn: () => fetchUserInfo(userId),
-    staleTime: 5 * 60 * 1000,
-  });
+  const { data: user, isLoading, isError } = useTargetUserInfo(userId);
 
   if (isLoading) {
     return (
