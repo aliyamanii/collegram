@@ -6,16 +6,26 @@ import MainButton from "./MainButton";
 import { useModal } from "../customhook/useModal";
 import { UserInfo, UserMeInfo } from "../types/types";
 import { Link } from "react-router-dom";
+import { useTargetUserInfo } from "../api/user";
 
-interface BlockModalProps {
-  user: UserInfo;
+interface CloseFriendModal {
+  userId: string;
 }
 
-const CloseFriendModal: FC<BlockModalProps> = ({ user }) => {
+const CloseFriendModal: FC<CloseFriendModal> = ({ userId }) => {
   const { isOpen, onClose } = useModal();
 
-  const { firstName, lastName, profileUrl, followers } = user;
-  const displayName = `${firstName} ${lastName}`;
+  const { data: user, isLoading, isError } = useTargetUserInfo(userId);
+  if (isLoading) {
+    return <div>در حال بارگیری</div>;
+  }
+  if (isError) {
+    return <div>خطا در دستیابی به اطلاعات کاربر</div>;
+  }
+
+  const { firstName, lastName, profileUrl, followers, username } = user;
+  const displayName =
+    firstName || lastName ? `${firstName || ""} ${lastName || ""}` : username;
   return (
     <div className="w-fit h-fit max-w-[616px] p-12 align-middle transform bg-bone rounded-[24px] shadow-xl transition-all font-primary">
       <div id="header" className="flex justify-center gap-3">
@@ -44,7 +54,8 @@ const CloseFriendModal: FC<BlockModalProps> = ({ user }) => {
         </div>
         <div className="w-72 flex flex-col gap-3 text-right text-navy">
           <div className="font-bold">
-            مطمئنی می‌خوای {firstName} رو به دوستان نزدیکت اضافه کنی؟
+            مطمئنی می‌خوای {firstName || displayName} رو به دوستان نزدیکت اضافه
+            کنی؟
           </div>
           در این صورت اون می‌تونه محتواهایی که برای دوستان نزدیکت به اشتراک
           گذاشتی رو ببینه

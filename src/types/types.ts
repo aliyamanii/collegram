@@ -1,6 +1,6 @@
 export interface UserMeInfo {
   id: string;
-  username: string;
+  username?: string;
   firstName?: string;
   lastName?: string;
   email: string;
@@ -14,8 +14,8 @@ export interface UserMeInfo {
 export interface UserInfo {
   profileUrl?: string;
   username?: string;
-  firstName: string;
-  lastName: string;
+  firstName?: string;
+  lastName?: string;
   bio: string;
   followers: number;
   followings: number;
@@ -37,9 +37,11 @@ export interface UserWhoIsPrivate extends UserInfo {
   isPrivate: true;
 }
 
-interface UserSummary {
+export interface UserSummary {
   id: string;
-  username: string;
+  username?: string;
+  firstName?: string;
+  lastName?: string;
 }
 
 export interface INavLink {
@@ -83,10 +85,7 @@ export interface Post {
 }
 
 export interface UserPost extends Post {
-  user: {
-    id: string;
-    username: string;
-  };
+  user: UserSummary;
 }
 
 export interface MyPost extends Post {

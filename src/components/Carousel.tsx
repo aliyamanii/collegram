@@ -2,9 +2,10 @@
 import React, { useState } from "react";
 import next from "../assets/photos/arrow-forward.svg";
 import prev from "../assets/photos/arrow-back.svg";
+import { Image } from "../types/types";
 
 interface CustomCarouselProps {
-  images: string[];
+  images: Image[];
 }
 
 const CustomCarousel: React.FC<CustomCarouselProps> = ({ images }) => {
@@ -33,7 +34,7 @@ const CustomCarousel: React.FC<CustomCarouselProps> = ({ images }) => {
         {images.map((image, index) => (
           <img
             key={index}
-            src={image}
+            src={image.url}
             alt={`Image ${index + 1}`}
             className="min-h-full min-w-full object-cover rounded-3xl"
           />

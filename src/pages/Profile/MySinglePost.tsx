@@ -9,6 +9,7 @@ import LikeContainer from "../../components/LikeContainer";
 import BookmarkContainer from "../../components/BookmarkContainer";
 import EditPostModal from "../../components/EditPostModal";
 import { relativeTime } from "../../utils/relativeTime";
+import { MyPost } from "../../types/types";
 
 const getRandomColor = () => {
   const letters = "0123456789ABCDEF";
@@ -52,7 +53,7 @@ const MySinglePost: React.FC = () => {
     isLiked,
     isBookmarked,
     bookmarks,
-  } = data;
+  } = data as MyPost;
 
   const timeDifference = relativeTime(updatedAt);
 

@@ -4,18 +4,36 @@ import block from "../assets/photos/block-dark.svg";
 
 import MainButton from "./MainButton";
 import { useModal } from "../customhook/useModal";
-import { UserInfo } from "../types/types";
+import { UserInfo, UserSummary } from "../types/types";
 import { Link } from "react-router-dom";
+import { useTargetUserInfo } from "../api/user";
 
 interface BlockModalProps {
-  user: UserInfo;
+  userId: string;
 }
 
-const BlockModal: FC<BlockModalProps> = ({ user }) => {
+const BlockModal: FC<BlockModalProps> = ({ userId }) => {
   const { isOpen, onClose } = useModal();
 
-  const { firstName, lastName, profileUrl, followers } = user;
-  const displayName = `${firstName} ${lastName}`;
+  const { data: user, isLoading, isError } = useTargetUserInfo(userId);
+  if (isLoading) {
+    return (
+      <div className="w-fit h-fit max-w-[616px] p-12 align-middle transform bg-bone rounded-[24px] shadow-xl transition-all font-primary">
+        در حال لود
+      </div>
+    );
+  }
+  if (isError) {
+    return (
+      <div className="w-fit h-fit max-w-[616px] p-12 align-middle transform bg-bone rounded-[24px] shadow-xl transition-all font-primary">
+        خطا
+      </div>
+    );
+  }
+
+  const { firstName, lastName, profileUrl, followers, username } = user;
+  const displayName =
+    firstName || lastName ? `${firstName || ""} ${lastName || ""}` : username;
   return (
     <div className="w-fit h-fit max-w-[616px] p-12 align-middle transform bg-bone rounded-[24px] shadow-xl transition-all font-primary">
       <div id="header" className=" flex flex-col items-center">
@@ -44,7 +62,7 @@ const BlockModal: FC<BlockModalProps> = ({ user }) => {
         </div>
         <div className="w-72 flex flex-col text-right text-navy">
           <div className="font-bold">
-            مطمئنی می‌خوای {firstName} رو بلاک کنی؟
+            مطمئنی می‌خوای {firstName || displayName} رو بلاک کنی؟
           </div>
           اگر بلاکش کنی دیگه نمی‌تونه بهت پیام بده و پست‌هات رو ببینه. قابلیت
           لایک کردن و کامنت گذاشتن زیر پست‌های تو هم براش مسدود میشه.

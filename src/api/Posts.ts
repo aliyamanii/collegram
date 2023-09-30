@@ -6,6 +6,7 @@ import {
   UserPost,
   PostSummary,
   UserPostSummary,
+  MyPostSummary,
 } from "../types/types";
 import { api } from "./instance";
 import { client } from "../App";
@@ -66,7 +67,7 @@ export function useBookMarksPostQuery() {
 export async function fetchPostDetails(id: string) {
   const res = await api.get(`/posts/${id}`);
   const data = res.data;
-  return data.data;
+  return data.data as UserPost | Post;
 }
 
 export function useMyDetailPostQuery(id: string) {

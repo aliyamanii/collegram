@@ -97,7 +97,7 @@ const MiniProfile: FC<MiniProfileProps> = ({ userId }) => {
             onClick={openBlockModal}
           ></img>
           <Modal isOpen={blockModalOpen} onClose={closeBlockModal}>
-            <BlockModal user={user} />
+            <BlockModal userId={userId} />
           </Modal>
           <img
             src={chat}
@@ -111,7 +111,7 @@ const MiniProfile: FC<MiniProfileProps> = ({ userId }) => {
             onClick={openCloseFriendModal}
           ></img>
           <Modal isOpen={closeFriendModalOpen} onClose={closeCloseFriendModal}>
-            <CloseFriendModal user={user} />
+            <CloseFriendModal userId={userId} />
           </Modal>
         </div>
       </div>
