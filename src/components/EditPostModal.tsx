@@ -45,17 +45,23 @@ const EditPostModal: React.FC = () => {
       ...formValues,
       tags: formValues.tags.trim().replace(/\s+/g, " ").split(" "),
     };
+
+    mutate(requestBody, {
+      onSuccess: () => {
+        onClose();
+      },
+    });
     const form_data = new FormData();
     Object.entries(requestBody).forEach((entery) => {
       const [key, value] = entery;
       form_data.append(key, JSON.stringify(value));
     });
 
-    mutate(form_data, {
-      onSuccess: () => {
-        onClose();
-      },
-    });
+    // mutate(form_data, {
+    //   onSuccess: () => {
+    //     onClose();
+    //   },
+    // });
   };
 
   return (

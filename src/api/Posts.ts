@@ -1,12 +1,12 @@
 import { useInfiniteQuery, useMutation, useQuery } from "@tanstack/react-query";
 import {
   MyPost,
-  MyPostSummary,
+  MyPostSummery,
   Post,
-  PostSummary,
+  PostSummery,
   UserMeInfo,
   UserPost,
-  UserPostSummary,
+  UserPostSummery,
 } from "../types/types";
 import { api } from "./instance";
 import { client } from "../App";
@@ -29,7 +29,7 @@ export function useAddPostMutation() {
 export async function fetchMyPosts(page = 1, limit = 25) {
   const res = await api.get(`/posts?limit=${limit}&page=${page}`);
   const data = res.data;
-  return data.data as { items: PostSummary[]; page: number; maxPage: number };
+  return data.data as { items: PostSummery[]; page: number; maxPage: number };
 }
 
 export function useMyPostsQuery() {
@@ -48,7 +48,7 @@ export function useMyPostsQuery() {
 export async function fetchMyBookmarkPosts(page = 1, limit = 25) {
   const res = await api.get(`/posts/bookmark?limit=${limit}&page=${page}`);
   const data = res.data;
-  return data.data as { items: PostSummary[]; maxPage: number; page: number };
+  return data.data as { items: PostSummery[]; maxPage: number; page: number };
 }
 
 export function useBookMarksPostQuery() {
@@ -152,7 +152,7 @@ export function useToggleBookMarkMutation(
           return {
             ...infiniteData,
             pages: infiniteData.pages.map((pageData: any) => {
-              const oldItems = pageData.items as PostSummary[];
+              const oldItems = pageData.items as PostSummery[];
               let updatedItems = oldItems.filter((post) => {
                 return post.id !== postId;
               });
@@ -222,7 +222,7 @@ export function usePostLikeMutatuin(postId: string, isLiked: boolean) {
   });
 }
 
-export async function editPost(form_Data: FormData, postId: string) {
+export async function editPost(form_Data: any, postId: string) {
   const res = await api.put(`/posts/${postId}`, form_Data);
   const data = res.data;
   return data.data;
@@ -230,7 +230,7 @@ export async function editPost(form_Data: FormData, postId: string) {
 
 export function useEditPost(id: string) {
   return useMutation({
-    mutationFn: (data: FormData) => editPost(data, id),
+    mutationFn: (data: any) => editPost(data, id),
     onSuccess: () => {
       client.invalidateQueries({ queryKey: ["user"], type: "all" });
     },
@@ -241,7 +241,7 @@ export async function fetchHomePagePosts(page = 1, limit = 25) {
   const res = await api.get(`/posts/followings?limit=${limit}&page=${page}`);
   const data = res.data;
   return data.data as {
-    items: UserPostSummary[];
+    items: UserPostSummery[];
     page: number;
     maxPage: number;
   };

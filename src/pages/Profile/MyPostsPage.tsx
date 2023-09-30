@@ -73,7 +73,7 @@ const MyPostsPage: React.FC = () => {
         <div key={post.id} className="relative">
           <Link to={`/app/profile/post/${post.id}`}>
             <img
-              src={post.image?.path}
+              src={post.image?.url}
               alt={`Post ${post.id}`}
               className="w-[230px] h-[230px] object-cover m-2 rounded-[24px] hover:scale-105 transition-all duration-300"
             />

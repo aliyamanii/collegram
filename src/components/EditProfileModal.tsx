@@ -70,7 +70,10 @@ const EditProfileModal: React.FC = () => {
       if (value === "") return;
       form_data.append(key, JSON.stringify(value));
     });
-    form_data.append("profileUrl", selectedFiles[0]);
+
+    if (selectedFiles[0]) {
+      form_data.append("profileUrl", selectedFiles[0]);
+    }
     mutate(form_data, {
       onSuccess: () => {
         onClose();
