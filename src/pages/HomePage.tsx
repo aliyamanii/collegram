@@ -34,7 +34,7 @@ function Home() {
 
   const items = data.pages.map((page) => page.items).flat(1);
 
-  // const items: UserPostSummary[] = [
+  // const items: UserPostSummery[] = [
   //   {
   //     id: "3a17f030-f51d-48df-ae67-6e7883ea9395",
   //     closeFriendsOnly: false,
