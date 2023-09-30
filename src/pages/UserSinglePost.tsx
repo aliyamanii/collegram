@@ -11,7 +11,7 @@ import pfp from "../assets/photos/samplePosts/dragon.jpg";
 import ellipsis from "../assets/photos/ellipsis.svg";
 import DropDown from "../components/UserDropDown";
 import { useMyDetailPostQuery } from "../api/Posts";
-import SpinnerIcon from "../../assets/photos/spinner.svg";
+import SpinnerIcon from "../assets/photos/spinner.svg";
 
 const getRandomColor = () => {
   const letters = "0123456789ABCDEF";

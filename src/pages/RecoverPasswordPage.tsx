@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import InputContainer from "../components/InputContainer";
 import userIcon from "../assets/photos/person.svg";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -11,6 +11,7 @@ import { IRecoverPasswordValues } from "../types/types";
 
 function RecoverPassword() {
   const { state } = useLocation();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -26,7 +27,7 @@ function RecoverPassword() {
 
   const onSubmit: SubmitHandler<IRecoverPasswordValues> = (formData) => {
     api
-      .post("users/forget", {
+      .post("users/password", {
         identifier: formData.usernameOrEmail,
       })
       .then((result) => {
@@ -59,7 +60,7 @@ function RecoverPassword() {
         />
         <ErrorMessage errorMessage={errors?.usernameOrEmail?.message} />
         <section id="buttons">
-          <MainButton>ارسال لینک بازیابی رمز عبور</MainButton>
+          <MainButton type="submit">ارسال لینک بازیابی رمز عبور</MainButton>
           <Link
             to="/auth/login"
             id="cancel__link"

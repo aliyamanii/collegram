@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import InputContainer from "../components/InputContainer";
 import key from "../assets/photos/key.svg";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -10,8 +10,11 @@ import {
 } from "../utils/validation";
 import MainButton from "../components/MainButton";
 import { INewPasswordFormValues } from "../types/types";
+import { api } from "../api/instance";
 
 function NewPassword() {
+  const navigate = useNavigate();
+  const { token } = useParams() as { token: string };
   const {
     register,
     handleSubmit,
@@ -29,6 +32,12 @@ function NewPassword() {
   const onSubmit: SubmitHandler<INewPasswordFormValues> = (formData) => {
     // formData is object of our input names with theirvalues
     // to do => connect with api
+    api
+      .put("/users/password", { password: formData.password, token })
+      .then(() => {
+        navigate("/auth/login");
+      })
+      .catch();
     console.log(formData);
   };
 
