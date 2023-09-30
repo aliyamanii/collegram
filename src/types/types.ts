@@ -37,7 +37,7 @@ export interface UserWhoIsPrivate extends UserInfo {
   isPrivate: true;
 }
 
-interface UserSummery {
+interface UserSummary {
   id: string;
   username: string;
 }
@@ -98,19 +98,19 @@ interface Tag {
   value: string;
 }
 
-export interface PostSummery {
+export interface PostSummary {
   id: string;
   userId: string;
   image: Image;
 }
 
-export interface MyPostSummery extends PostSummery {}
+export interface MyPostSummary extends PostSummary {}
 
-export interface UserPostSummery extends PostSummery {
+export interface UserPostSummary extends PostSummary {
   closeFriendsOnly: boolean;
 }
 
-export interface UserPostSummery {
+export interface UserPostSummary {
   id: string;
   closeFriendsOnly: boolean;
   likes: number;
@@ -118,7 +118,7 @@ export interface UserPostSummery {
   commentsNum: number;
   images: Image[];
   tags: Tag[];
-  user: UserSummery;
+  user: UserSummary;
 }
 
 export interface Image {

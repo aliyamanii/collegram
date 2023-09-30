@@ -2,12 +2,12 @@ import React from "react";
 import bookmarkEmpty from "../assets/photos/bookmarkEmpty.svg";
 import heartEmpty from "../assets/photos/heartEmpty.svg";
 import commentIcon from "../assets/photos/comment.svg";
-import { UserPost, UserPostSummery } from "../types/types";
+import { UserPost, UserPostSummary } from "../types/types";
 import BookmarkContainer from "./BookmarkContainer";
 import LikeContainer from "./LikeContainer";
 
 interface PostCardProps {
-  post: UserPostSummery;
+  post: UserPostSummary;
 }
 
 const PostCard: React.FC<PostCardProps> = ({ post }) => {
