@@ -2,11 +2,11 @@ import React from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { samplePosts } from "../assets/photos/samplePosts/samplePosts";
 import UserMiniProfile from "../components/UserMiniProfile";
-import { UserInfo, UserMeInfo } from "../types/types.ts";
+import { UserInfo, UserMeInfo } from "../types/types";
 import pfp from "../assets/photos/samplePosts/reptile.jpg";
 import { useQuery } from "@tanstack/react-query";
-import { fetchUserInfo } from "../api/user.ts";
-import UserPostsShow from "../components/UserPostsShow.tsx";
+import { fetchUserInfo } from "../api/user";
+import UserPostsShow from "../components/UserPostsShow";
 
 const UserProfilePage: React.FC = () => {
   const { userId } = useParams() as { userId: string };

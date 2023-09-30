@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import overViewIcon from "../assets/photos/overview.svg";
 import peopleIcon from "../assets/photos/people.svg";
 import insightIcon from "../assets/photos/insights-audience.svg";
-import { INavLink } from "../types/types.ts";
+import { INavLink } from "../types/types";
 
 export const items: INavLink[] = [
   { title: "خانه", destinationUrl: "/app/home", icon: overViewIcon },

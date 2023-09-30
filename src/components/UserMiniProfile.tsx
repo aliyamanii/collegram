@@ -1,16 +1,16 @@
 import React, { FC, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { UserInfo, UserMeInfo } from "../types/types.ts";
-import MainButton from "./MainButton.tsx";
+import { UserInfo, UserMeInfo } from "../types/types";
+import MainButton from "./MainButton";
 import pin from "../assets/photos/pin-dark.svg";
 import block from "../assets/photos/block.svg";
 import chat from "../assets/photos/chat.svg";
 import sparkle from "../assets/photos/sparkle.svg";
-import Modal from "./Modal.tsx";
-import BlockModal from "./BlockModal.tsx";
-import CloseFriendModal from "./CloseFriendModal.tsx";
+import Modal from "./Modal";
+import BlockModal from "./BlockModal";
+import CloseFriendModal from "./CloseFriendModal";
 import { useQuery } from "@tanstack/react-query";
-import { fetchUserInfo } from "../api/user.ts";
+import { fetchUserInfo } from "../api/user";
 import SpinnerIcon from "../assets/photos/spinner.svg";
 
 interface MiniProfileProps {

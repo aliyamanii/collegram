@@ -2,10 +2,10 @@ import arrowDown from "../assets/photos/arrow-down-yellow.svg";
 import penIcon from "../assets/photos/pen.svg";
 import { Link, useLocation } from "react-router-dom";
 import personIcon from "../assets/photos/person.svg";
-import {  useMyUserInfoQuery } from "../api/user.ts";
-import { UserMeInfo } from "../types/types.ts";
-import EditProfileModal from "./EditProfileModal.tsx";
-import Modal from "./Modal.tsx";
+import { useMyUserInfoQuery } from "../api/user";
+import { UserMeInfo } from "../types/types";
+import EditProfileModal from "./EditProfileModal";
+import Modal from "./Modal";
 import { FC, useState } from "react";
 
 const MiniProfile: FC = () => {

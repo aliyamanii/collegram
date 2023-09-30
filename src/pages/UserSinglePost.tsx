@@ -96,12 +96,12 @@ const MySinglePost: React.FC = () => {
               className="w-[18px] h-[18px] hover:scale-125 transition-all duration-300 cursor-pointer"
               onClick={toggleDropDown}
             />
-            {isDropDownOpen && (
+            {/* {isDropDownOpen && (
               <DropDown
                 user={fakeUser}
                 onClose={() => setIsDropDownOpen(false)}
               />
-            )}
+            )} */}
           </div>
 
           <div className="flex gap-4">
