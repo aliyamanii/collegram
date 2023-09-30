@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { INavLink } from "../types/types.ts";
+import { INavLink } from "../types/types";
 import pinIcon from "../assets/photos/pin.svg";
 import bookmark from "../assets/photos/bookmarkFull.svg";
 import chatIcon from "../assets/photos/chat.svg";
