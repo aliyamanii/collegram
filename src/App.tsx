@@ -24,6 +24,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import BookmarksPage from "./pages/Profile/BookmarksPage";
 import UserProfilePage from "./pages/UserProfilePage";
 import UserSinglePost from "./pages/UserSinglePost";
+import CommunityPage from "./pages/CommunityPage";
 
 export const client = new QueryClient();
 
@@ -53,7 +54,7 @@ function App() {
           >
             <Route index={true} element={<Navigate to="home" replace />} />
             <Route path="home" element={<Home />} />
-            <Route path="people">
+            <Route path="people" element={<CommunityPage />}>
               <Route path="user/:userId">
                 <Route index={true} element={<UserProfilePage />} />
                 <Route path="post/:postId" element={<UserSinglePost />} />
