@@ -1,5 +1,4 @@
-FROM hub.hamdocker.ir/library/node:18-alpine
-EXPOSE 3000
+FROM hub.hamdocker.ir/library/node:18-alpine as builder
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm i
@@ -8,8 +7,8 @@ COPY tsconfig.json .
 CMD ["npm", "run", "build"]
 
 FROM nginx:stable-alpine
-COPY --from=builder /app/build /usr/share/nginx/html
-COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
-
+COPY --from=builder /app/dist /usr/share/nginx/html
+RUN rm /etc/nginx/conf.d/default.conf
+COPY deploy/nginx/nginx.conf /etc/nginx/conf.d
 EXPOSE 8080
 CMD ["nginx", "-g", "daemon off;"]
