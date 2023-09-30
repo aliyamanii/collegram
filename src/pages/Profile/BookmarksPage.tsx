@@ -32,7 +32,7 @@ const BookmarksPage: React.FC = () => {
         <div key={image.id} className="relative">
           <Link to={`/app/profile/post/${image.id}`}>
             <img
-              src={image.image.path}
+              src={image.image.url}
               alt={`Post ${image.id}`}
               className="w-[230px] h-[230px] object-cover m-2 rounded-[24px] hover:scale-105 transition-all duration-300"
             />

@@ -123,6 +123,5 @@ export interface UserPostSummary {
 
 export interface Image {
   id: string;
-  url?: string;
-  path?: string;
+  url: string;
 }
