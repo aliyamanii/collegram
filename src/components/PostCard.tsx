@@ -24,7 +24,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
     <div className="max-w-[360px] mx-auto my-4 hover:scale-105 transition-all duration-300">
       <div className="bg-[#F9F9F9] rounded-lg overflow-hidden shadow-lg">
         <img
-          src={images[0].path}
+          src={images[0].url}
           alt="Post"
           className="w-full h-[360px] object-cover"
         />
