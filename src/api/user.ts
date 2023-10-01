@@ -46,3 +46,19 @@ export function useTargetUserInfo(userId: string) {
     staleTime: 5 * 60 * 1000,
   });
 }
+
+export async function followUser(userId: string) {
+  const res = await api.post("/users/follow", { userId });
+  const data = res.data;
+  return data.data;
+}
+
+export function useFollowUserMutation(userId: string) {
+  return useMutation({
+    mutationFn: () => followUser(userId),
+    onSuccess: () => {
+      client.invalidateQueries({ queryKey: ["user", userId] });
+      client.invalidateQueries({ queryKey: ["posts", userId] });
+    },
+  });
+}

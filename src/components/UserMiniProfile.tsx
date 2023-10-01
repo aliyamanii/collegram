@@ -13,6 +13,7 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchUserInfo } from "../api/user";
 import SpinnerIcon from "../assets/photos/spinner.svg";
 import { useTargetUserInfo } from "../api/user";
+import UserActionButton from "./UserActionButton";
 
 interface MiniProfileProps {
   userId: string;
@@ -84,7 +85,7 @@ const MiniProfile: FC<MiniProfileProps> = ({ userId }) => {
           </Link>
         </div>
         <div className="flex justify-center items-center w-[114px] h-[40px]">
-          <MainButton children={"دنبال کردن"} />
+          <UserActionButton user={user} />
         </div>
         <div>
           <img src={pin} />
