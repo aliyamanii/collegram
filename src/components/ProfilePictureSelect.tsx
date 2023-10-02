@@ -1,19 +1,15 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import cam from "../assets/photos/cam.svg";
 import retry from "../assets/photos/retry.svg";
-import {
-  FieldErrors,
-  UseFormClearErrors,
-  UseFormSetError,
-} from "react-hook-form";
-import { IEditProfileValues } from "./EditProfileModal";
 
 function ProfilePictureSelect({
   selectedFiles,
   setSelectedFiles,
+  currentImage,
 }: {
   selectedFiles: File[];
   setSelectedFiles: React.Dispatch<React.SetStateAction<File[]>>;
+  currentImage: string;
 }) {
   const [filePreviews, setFilePreviews] = useState<string[]>([]);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -53,7 +49,18 @@ function ProfilePictureSelect({
         className="w-[150px] h-[150px] flex items-center justify-center rounded-full overflow-hidden cursor-pointer border border-gray-300"
       >
         {selectedFiles.length === 0 ? (
-          <img src={cam} alt="+" className="object-cover" />
+          currentImage ? (
+            <div className="flex justify-center items-center">
+              <img src={currentImage} alt="+" className="object-cover" />
+              <img
+                src={retry}
+                alt={"Retry"}
+                className="w-[24px] h-[24px] absolute  rounded-full bg-white border-4 border-white"
+              />
+            </div>
+          ) : (
+            <img src={cam} alt="+" className="object-cover" />
+          )
         ) : (
           <div className="relative">
             <img

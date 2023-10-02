@@ -31,7 +31,7 @@ const BlockModal: FC<BlockModalProps> = ({ userId }) => {
     );
   }
 
-  const { firstName, lastName, profileUrl, followers, username } = user;
+  const { firstName, lastName, url, followers, username } = user;
   const displayName =
     firstName || lastName ? `${firstName || ""} ${lastName || ""}` : username;
   return (
@@ -46,7 +46,7 @@ const BlockModal: FC<BlockModalProps> = ({ userId }) => {
       <div className=" flex flex-col gap-6">
         <div className="flex justify-between items-center gap-[100px]">
           <img
-            src={profileUrl}
+            src={url}
             alt={`${displayName}'s Profile`}
             className="w-[80px] h-[80px] p-1 rounded-full object-cover "
           />
