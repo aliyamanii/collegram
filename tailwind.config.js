@@ -16,6 +16,10 @@ export default {
       secondary: "IRANYekanXFaNum",
       montserrat: "montserrat",
     },
+    backgroundImage: {
+      "image-placeholder":
+        "url('/src/assets/photos/placeholder-image-png.png')",
+    },
   },
   plugins: [],
 };

@@ -72,10 +72,11 @@ const MyPostsPage: React.FC = () => {
       {items.map((post) => (
         <div key={post.id} className="relative">
           <Link to={`/app/profile/post/${post.id}`}>
+            <object data="" type=""></object>
             <img
               src={post.image?.url}
               alt={`Post ${post.id}`}
-              className="w-[230px] h-[230px] object-cover m-2 rounded-[24px] hover:scale-105 transition-all duration-300"
+              className="w-[230px] h-[230px] object-cover m-2 rounded-[24px] hover:scale-105 transition-all duration-300 bg-image-placeholder bg-center bg-cover"
             />
           </Link>
         </div>

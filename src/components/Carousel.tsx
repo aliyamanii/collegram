@@ -36,7 +36,7 @@ const CustomCarousel: React.FC<CustomCarouselProps> = ({ images }) => {
             key={index}
             src={image.url}
             alt={`Image ${index + 1}`}
-            className="min-h-full min-w-full object-cover rounded-3xl"
+            className="min-h-full min-w-full object-cover rounded-3xl bg-image-placeholder bg-center"
           />
         ))}
       </div>

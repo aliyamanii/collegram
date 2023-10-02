@@ -164,7 +164,7 @@ const MySinglePost: React.FC = () => {
           <img
             src={post.images[0].url}
             alt={`Image ${id}`}
-            className="min-h-full min-w-full object-cover m-2 rounded-[24px]"
+            className="min-h-full min-w-full object-cover m-2 rounded-[24px] bg-image-placeholder bg-center"
           />
         )}
       </div>
