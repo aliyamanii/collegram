@@ -30,7 +30,7 @@ const MySinglePost: React.FC = () => {
     lastName: "منزه",
     email: "mahmz@rahnema.com",
     bio: "Lover, not a fighter, spreading ✌️all over the 🌎",
-    profileUrl: pfp,
+    url: pfp,
     isPrivate: false,
     followers: 10,
     followings: 20,
@@ -68,7 +68,7 @@ const MySinglePost: React.FC = () => {
 
   const timeDifference = relativeTime(updatedAt);
 
-  const { firstName, lastName, profileUrl, followers } = fakeUser;
+  const { firstName, lastName, url, followers } = fakeUser;
   const displayName = `${firstName} ${lastName}`;
 
   const toggleDropDown = () => {
@@ -92,7 +92,7 @@ const MySinglePost: React.FC = () => {
         <div className="w-full h-10 flex items-center justify-between">
           <div className="flex min-h-[64px] p-2 justify-between gap-7 items-center rounded-3xl hover:bg-vanilla transition-all duration-300">
             <img
-              src={profileUrl}
+              src={url}
               alt={`${displayName}'s Profile`}
               className="w-[64px] h-[64px] rounded-full object-cover"
             />

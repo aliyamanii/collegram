@@ -55,13 +55,13 @@ const MiniProfile: FC<MiniProfileProps> = ({ userId }) => {
     setCloseFriendModalOpen(true);
   }
 
-  const { firstName, lastName, profileUrl, followers, followings } = user;
+  const { firstName, lastName, url, followers, followings } = user;
   const displayName = `${firstName} ${lastName}`;
   return (
     <div className="w-[256px] h-[403px] p-[15px] flex flex-col items-center bg-vanilla border border-[#cdcdcd] font-primary">
       <div className="w-[106px] h-[106px] p-1 rounded-full  object-cover ring-gray-300 dark:ring-gray-500 -translate-y-[50%]">
         <img
-          src={profileUrl}
+          src={url}
           alt={`${displayName}'s Profile`}
           className="w-[106px] h-[106px] p-1 rounded-full object-cover "
         />
