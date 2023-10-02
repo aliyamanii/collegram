@@ -17,7 +17,7 @@ const EditPostModal: React.FC = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     control,
   } = useForm<IEditPostValues>({
     defaultValues: async () => {
@@ -35,18 +35,18 @@ const EditPostModal: React.FC = () => {
     delayError: 700,
   });
 
-  const { mutate } = useEditPost(id);
+  const { mutateAsync } = useEditPost(id);
 
   const { isOpen, onClose } = useModal();
 
-  const submitForm = (formValues: IEditPostValues) => {
+  const submitForm = async (formValues: IEditPostValues) => {
     console.log(formValues);
     const requestBody = {
       ...formValues,
       tags: formValues.tags.trim().replace(/\s+/g, " ").split(" "),
     };
 
-    mutate(requestBody, {
+    mutateAsync(requestBody, {
       onSuccess: () => {
         onClose();
       },
@@ -56,16 +56,13 @@ const EditPostModal: React.FC = () => {
       const [key, value] = entery;
       form_data.append(key, JSON.stringify(value));
     });
-
-    // mutate(form_data, {
-    //   onSuccess: () => {
-    //     onClose();
-    //   },
-    // });
   };
 
   return (
-    <div className="w-fit h-fit max-w-[616px] p-12 align-middle transform bg-bone rounded-[24px] shadow-xl transition-all">
+    <form
+      className="w-fit h-fit max-w-[616px] p-12 align-middle transform bg-bone rounded-[24px] shadow-xl transition-all"
+      onSubmit={handleSubmit(submitForm)}
+    >
       <h3 className="flex justify-center text-lg font-bold text-[20px] leading-[26px] text-navy font-primary">
         ویرایش پست
       </h3>
@@ -102,7 +99,9 @@ const EditPostModal: React.FC = () => {
         </div>
 
         <div className="flex">
-          <MainButton onClick={handleSubmit(submitForm)}>ثبت عکس</MainButton>
+          <MainButton type="submit" isSubmitting={isSubmitting}>
+            ثبت عکس
+          </MainButton>
           <button
             type="button"
             className="px-4 py-2 mr-2 text-sm font-normal text-black hover:font-semibold focus:outline-none"
@@ -112,7 +111,7 @@ const EditPostModal: React.FC = () => {
           </button>
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 

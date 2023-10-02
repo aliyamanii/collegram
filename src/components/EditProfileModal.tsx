@@ -42,7 +42,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({ user }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     getValues,
     control,
     setError,
@@ -61,7 +61,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({ user }) => {
     delayError: 700,
   });
 
-  const { mutate } = useEditUserInfo();
+  const { mutateAsync } = useEditUserInfo();
 
   const submitHandler: SubmitHandler<IEditProfileValues> = async (
     formValues
@@ -77,7 +77,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({ user }) => {
     if (selectedFiles[0]) {
       form_data.append("profileUrl", selectedFiles[0]);
     }
-    mutate(form_data, {
+    await mutateAsync(form_data, {
       onSuccess: () => {
         onClose();
       },
@@ -85,7 +85,10 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({ user }) => {
   };
 
   return (
-    <div className="w-[375px] h-3/5  p-12 flex flex-col gap-7 align-middle transform bg-bone rounded-[24px] shadow-xl transition-all">
+    <form
+      className="w-[375px] h-3/5  p-12 flex flex-col gap-7 align-middle transform bg-bone rounded-[24px] shadow-xl transition-all"
+      onSubmit={handleSubmit(submitHandler)}
+    >
       {/* <Controller
         name="photo"
         control={control}
@@ -178,7 +181,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({ user }) => {
         </div>
       </div>
       <div className="flex items-center justify-start">
-        <MainButton onClick={handleSubmit(submitHandler)}>
+        <MainButton type="submit" isSubmitting={isSubmitting}>
           ثبت تغییرات
         </MainButton>
         <button
@@ -189,7 +192,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({ user }) => {
           پشیمون شدم
         </button>
       </div>
-    </div>
+    </form>
   );
 };
 

@@ -18,7 +18,7 @@ function Login() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     getValues,
     setError,
     setValue,
@@ -37,8 +37,8 @@ function Login() {
     setRememberMe(!rememberMe);
   };
 
-  const onSubmit: SubmitHandler<ILoginFormValues> = (formData) => {
-    api
+  const onSubmit: SubmitHandler<ILoginFormValues> = async (formData) => {
+    await api
       .post("users/login", {
         identifier: formData.usernameOrEmail,
         password: formData.password,
@@ -124,7 +124,9 @@ function Login() {
             />
           </label>
         </section>
-        <MainButton type="submit">ورود</MainButton>
+        <MainButton type="submit" isSubmitting={isSubmitting}>
+          ورود
+        </MainButton>
         <section
           id="other-options"
           className="w-full h-[56px] gap-[16px] flex items-end justify-end flex-col font-medium text-[12px] leading-[20px] tracking-[-2%]"
