@@ -104,10 +104,18 @@ export const lastNameValidation = () => {
   };
 };
 
-export const ChangePasswordValidation = () => {
+export const editPasswordValidation = () => {
   return { ...passwordValidation(), required: false };
 };
 
-export const ConfirmChangePasswordValidation = (password: string) => {
+export const editConfirmPasswordValidation = (password: string) => {
   return { ...confirmPasswordValidation(password), required: false };
+};
+
+export const editLastNameValidation = () => {
+  return { ...lastNameValidation, required: false };
+};
+
+export const editFirstNameValidation = () => {
+  return { ...firstNameValidation, required: false };
 };

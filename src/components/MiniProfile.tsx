@@ -14,7 +14,6 @@ const MiniProfile: FC = () => {
   const location = useLocation();
   let [isOpen, setIsOpen] = useState(false);
 
-  //   ["user"], fetchUserInfo
   if (isLoading) {
     return (
       <div className="w-[256px] h-[403px] p-[15px] flex flex-col justify-center items-center bg-vanilla border border-gray-300 font-primary">
@@ -31,15 +30,8 @@ const MiniProfile: FC = () => {
     );
   }
 
-  const {
-    username,
-    firstName,
-    lastName,
-    bio,
-    profileUrl,
-    followers,
-    followings,
-  } = user;
+  const { username, firstName, lastName, bio, url, followers, followings } =
+    user;
 
   const displayName = `${firstName || ""} ${lastName || ""}`;
   const isProfileRoute = location.pathname === "/app/profile";
@@ -55,9 +47,9 @@ const MiniProfile: FC = () => {
   return (
     <div className="w-[256px] h-[403px] p-[15px] flex flex-col items-center bg-vanilla border border-gray-300 font-primary">
       <div className="w-[133.42] h-[133.42] p-1 rounded-full mb-[20px] object-cover ring-gray-300 dark:ring-gray-500">
-        {profileUrl ? (
+        {url ? (
           <img
-            src={profileUrl || personIcon}
+            src={url || personIcon}
             alt={`${username}'s Profile`}
             className="w-[133.42px] h-[133.42px] p-1 rounded-full object-cover"
           />
@@ -106,7 +98,7 @@ const MiniProfile: FC = () => {
             onClick={openModal}
           />
           <Modal isOpen={isOpen} onClose={closeModal}>
-            <EditProfileModal />
+            <EditProfileModal user={user} />
           </Modal>
         </div>
       )}

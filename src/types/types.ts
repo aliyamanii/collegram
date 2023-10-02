@@ -5,14 +5,14 @@ export interface UserMeInfo {
   lastName?: string;
   email: string;
   bio?: string;
-  profileUrl?: string;
+  url?: string;
   isPrivate: boolean;
   followers: number;
   followings: number;
 }
 
 export interface UserInfo {
-  profileUrl?: string;
+  url?: string;
   username?: string;
   firstName?: string;
   lastName?: string;
@@ -26,15 +26,6 @@ export interface UserInfo {
   hasFollow: boolean;
   isBlocked: boolean;
   isClose: boolean;
-}
-
-export interface UserWhoMBlockedYou extends UserInfo {
-  hasBlocked: true;
-}
-
-export interface UserWhoIsPrivate extends UserInfo {
-  hasBlocked: false;
-  isPrivate: true;
 }
 
 export interface UserSummary {

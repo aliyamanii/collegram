@@ -1,21 +1,22 @@
 import React, { useState, useRef, useCallback, useEffect } from "react";
-import email from "../assets/photos/email-light.svg";
+import emailIcon from "../assets/photos/email-light.svg";
 import key from "../assets/photos/key.svg";
 import Switch from "./Switch";
 import InputContainer from "./InputContainer";
 import MainButton from "./MainButton";
 import { SubmitHandler, useForm, Controller } from "react-hook-form";
 import {
-  ChangePasswordValidation,
-  ConfirmChangePasswordValidation,
+  editPasswordValidation,
+  editConfirmPasswordValidation,
   emailValidation,
-  firstNameValidation,
-  lastNameValidation,
+  editLastNameValidation,
+  editFirstNameValidation,
 } from "../utils/validation";
 import ErrorMessage from "./ErrorMessage";
 import { useModal } from "../customhook/useModal";
-import { fetchMyInfo, useEditUserInfo } from "../api/user";
+import { useEditUserInfo } from "../api/user";
 import ProfilePictureSelect from "./ProfilePictureSelect";
+import { UserMeInfo } from "../types/types";
 
 export interface IEditProfileValues {
   email: string;
@@ -27,10 +28,16 @@ export interface IEditProfileValues {
   isPrivate: boolean;
 }
 
-const EditProfileModal: React.FC = () => {
+export interface EditProfileModalProps {
+  user: UserMeInfo;
+}
+
+const EditProfileModal: React.FC<EditProfileModalProps> = ({ user }) => {
   const { onClose } = useModal();
 
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+
+  const { email, isPrivate, url, lastName, firstName, bio } = user;
 
   const {
     register,
@@ -41,18 +48,14 @@ const EditProfileModal: React.FC = () => {
     setError,
     clearErrors,
   } = useForm<IEditProfileValues>({
-    defaultValues: async () => {
-      const data = await fetchMyInfo();
-      const defaultValue: IEditProfileValues = {
-        email: data.email,
-        firstName: data.firstName || "",
-        lastName: data.lastName || "",
-        password: "",
-        confirmPassword: "",
-        bio: data.bio || "",
-        isPrivate: data.isPrivate || false,
-      };
-      return defaultValue;
+    defaultValues: {
+      email: email,
+      firstName: firstName || "",
+      lastName: lastName || "",
+      password: "",
+      confirmPassword: "",
+      bio: bio || "",
+      isPrivate: isPrivate || false,
     },
     mode: "all",
     delayError: 700,
@@ -98,6 +101,7 @@ const EditProfileModal: React.FC = () => {
       <ProfilePictureSelect
         selectedFiles={selectedFiles}
         setSelectedFiles={setSelectedFiles}
+        currentImage={url || ""}
       />
       <div className="flex flex-col gap-8">
         <h3 className="flex justify-center text-lg font-bold text-[20px] leading-[26px] text-navy font-primary">
@@ -105,7 +109,7 @@ const EditProfileModal: React.FC = () => {
         </h3>
         <InputContainer
           placeholder="ایمیل"
-          icon={email}
+          icon={emailIcon}
           type="text"
           width="262px"
           {...register("email", emailValidation())}
@@ -114,19 +118,19 @@ const EditProfileModal: React.FC = () => {
 
         <InputContainer
           placeholder="نام"
-          icon={email}
+          icon={emailIcon}
           type="text"
           width="262px"
-          {...register("firstName", firstNameValidation())}
+          {...register("firstName", editFirstNameValidation())}
         />
         <ErrorMessage errorMessage={errors?.firstName?.message} />
 
         <InputContainer
           placeholder="نام خانوادگی"
-          icon={email}
+          icon={emailIcon}
           type="text"
           width="262px"
-          {...register("lastName", lastNameValidation())}
+          {...register("lastName", editLastNameValidation())}
         />
         <ErrorMessage errorMessage={errors?.lastName?.message} />
 
@@ -135,7 +139,7 @@ const EditProfileModal: React.FC = () => {
           icon={key}
           type="password"
           width="262px"
-          {...register("password", ChangePasswordValidation())}
+          {...register("password", editPasswordValidation())}
         />
         <ErrorMessage errorMessage={errors?.password?.message} />
 
@@ -146,7 +150,7 @@ const EditProfileModal: React.FC = () => {
           width="262px"
           {...register(
             "confirmPassword",
-            ConfirmChangePasswordValidation(getValues().password)
+            editConfirmPasswordValidation(getValues().password)
           )}
         />
         <ErrorMessage errorMessage={errors?.confirmPassword?.message} />
