@@ -23,7 +23,7 @@ function SignUp() {
     register,
     handleSubmit,
     getValues,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<ISignupFormValues>({
     defaultValues: {
       username: "",
@@ -35,11 +35,11 @@ function SignUp() {
     delayError: 700,
   });
 
-  const onSubmit: SubmitHandler<ISignupFormValues> = (formData) => {
+  const onSubmit: SubmitHandler<ISignupFormValues> = async (formData) => {
     // formData is object of our input names with theirvalues
     // to do => connect with api
 
-    api
+    await api
       .post("users/signup/", {
         username: formData.username,
         password: formData.password,
@@ -119,7 +119,9 @@ function SignUp() {
         />
         <ErrorMessage errorMessage={errors?.confirmPassword?.message} />
 
-        <MainButton type="submit">ثبت نام</MainButton>
+        <MainButton type="submit" isSubmitting={isSubmitting}>
+          ثبت نام
+        </MainButton>
       </form>
     </div>
   );

@@ -17,7 +17,7 @@ const AddPostModal: React.FC = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isDirty },
+    formState: { errors, isDirty, isSubmitting },
     control,
     clearErrors,
     setError,
@@ -27,13 +27,13 @@ const AddPostModal: React.FC = () => {
     delayError: 700,
   });
 
-  const { mutate } = useAddPostMutation();
+  const { mutateAsync } = useAddPostMutation();
 
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 
   const { isOpen, onClose } = useModal();
 
-  const submitForm = (formValues: IAddPostValues) => {
+  const submitForm = async (formValues: IAddPostValues) => {
     const requestBody = {
       ...formValues,
       tags: formValues.tags.trim().replace(/\s+/g, " ").split(" "),
@@ -48,15 +48,20 @@ const AddPostModal: React.FC = () => {
 
     console.log(form_data);
 
-    mutate(form_data, {
+    await mutateAsync(form_data, {
       onSuccess: () => {
         onClose();
       },
     });
   };
 
+  console.log("form", isSubmitting);
+
   return (
-    <div className="w-fit h-fit max-w-[616px] p-12 align-middle transform bg-bone rounded-[24px] shadow-xl transition-all">
+    <form
+      className="w-fit h-fit max-w-[616px] p-12 align-middle transform bg-bone rounded-[24px] shadow-xl transition-all"
+      onSubmit={handleSubmit(submitForm)}
+    >
       <h3 className="flex justify-center text-lg font-bold text-[20px] leading-[26px] text-navy font-primary">
         افزودن پست
       </h3>
@@ -100,7 +105,9 @@ const AddPostModal: React.FC = () => {
         </div>
 
         <div className="flex">
-          <MainButton onClick={handleSubmit(submitForm)}>ثبت عکس</MainButton>
+          <MainButton type="submit" isSubmitting={isSubmitting}>
+            ثبت عکس
+          </MainButton>
           <button
             type="button"
             className="px-4 py-2 mr-2 text-sm font-normal text-black hover:font-semibold focus:outline-none"
@@ -110,7 +117,7 @@ const AddPostModal: React.FC = () => {
           </button>
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 

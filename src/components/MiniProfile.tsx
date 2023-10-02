@@ -91,12 +91,7 @@ const MiniProfile: FC = () => {
       </div>
       {isProfileRoute && (
         <div className="my-4 hover:cursor-pointer">
-          <img
-            src={penIcon}
-            alt="Edit Profile"
-            className="hover:animate-spin"
-            onClick={openModal}
-          />
+          <img src={penIcon} alt="Edit Profile" onClick={openModal} />
           <Modal isOpen={isOpen} onClose={closeModal}>
             <EditProfileModal user={user} />
           </Modal>

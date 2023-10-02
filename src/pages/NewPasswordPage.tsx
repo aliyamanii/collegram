@@ -15,11 +15,12 @@ import { api } from "../api/instance";
 function NewPassword() {
   const navigate = useNavigate();
   const { token } = useParams() as { token: string };
+
   const {
     register,
     handleSubmit,
     getValues,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<INewPasswordFormValues>({
     defaultValues: {
       password: "",
@@ -29,16 +30,15 @@ function NewPassword() {
     delayError: 700,
   });
 
-  const onSubmit: SubmitHandler<INewPasswordFormValues> = (formData) => {
+  const onSubmit: SubmitHandler<INewPasswordFormValues> = async (formData) => {
     // formData is object of our input names with theirvalues
     // to do => connect with api
-    api
+    await api
       .put("/users/password", { password: formData.password, token })
       .then(() => {
         navigate("/auth/login");
       })
       .catch();
-    console.log(formData);
   };
 
   return (
@@ -75,7 +75,9 @@ function NewPassword() {
         />
         <ErrorMessage errorMessage={errors?.confirmPassword?.message} />
         <section id="buttons">
-          <MainButton>ثبت روز عبور جدید</MainButton>
+          <MainButton type="submit" isSubmitting={isSubmitting}>
+            ثبت رمز عبور جدید
+          </MainButton>
         </section>
       </form>
     </div>

@@ -16,7 +16,7 @@ function RecoverPassword() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<IRecoverPasswordValues>({
     defaultValues: {
       usernameOrEmail: state.identifier || "",
@@ -25,8 +25,8 @@ function RecoverPassword() {
     delayError: 700,
   });
 
-  const onSubmit: SubmitHandler<IRecoverPasswordValues> = (formData) => {
-    api
+  const onSubmit: SubmitHandler<IRecoverPasswordValues> = async (formData) => {
+    await api
       .post("users/password", {
         identifier: formData.usernameOrEmail,
       })
@@ -60,7 +60,9 @@ function RecoverPassword() {
         />
         <ErrorMessage errorMessage={errors?.usernameOrEmail?.message} />
         <section id="buttons">
-          <MainButton type="submit">ارسال لینک بازیابی رمز عبور</MainButton>
+          <MainButton type="submit" isSubmitting={isSubmitting}>
+            ارسال لینک بازیابی رمز عبور
+          </MainButton>
           <Link
             to="/auth/login"
             id="cancel__link"
