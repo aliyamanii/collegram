@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { fetchPostDetails, useMyDetailPostQuery } from "../../api/Posts";
+import { useMyDetailPostQuery } from "../../api/Posts";
 import SpinnerIcon from "../../assets/photos/spinner.svg";
 import { useState } from "react";
 import Modal from "../../components/Modal";
@@ -130,11 +129,11 @@ const MySinglePost: React.FC = () => {
           </ul>
         </div>
       </div>
-      <div className="w-[488px] h-[488px]">
+      <div className="w-[488px] h-[488px] ">
         <img
           src={images[0].url}
           alt={`Image ${images[0].id}`}
-          className="min-h-full min-w-full object-cover m-2 rounded-[24px] bg-red-400"
+          className="min-h-full min-w-full object-cover  rounded-[24px] bg-image-placeholder bg-center"
         />
       </div>
     </div>

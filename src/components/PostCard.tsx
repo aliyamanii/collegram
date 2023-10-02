@@ -26,7 +26,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
         <img
           src={images[0].url}
           alt="Post"
-          className="w-full h-[360px] object-cover"
+          className="w-full h-[360px] object-cover bg-image-placeholder bg-center"
         />
         <div className="w-full p-4 flex flex-col justify-end items-center">
           <div className="w-full flex items-center justify-end gap-3 text-gray-600">
