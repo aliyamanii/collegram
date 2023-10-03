@@ -119,3 +119,15 @@ export const editLastNameValidation = () => {
 export const editFirstNameValidation = () => {
   return { ...firstNameValidation, required: false };
 };
+
+export const descriptionValidation = () => {
+  return {
+    required: { value: true, message: ".فیلد توضیحات اجباریست" },
+  };
+};
+
+export const tagsValidation = () => {
+  return {
+    required: { value: true, message: ".فیلد تگ ها اجباریست" },
+  };
+};
