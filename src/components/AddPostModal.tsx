@@ -6,6 +6,7 @@ import { Controller, useForm } from "react-hook-form";
 import { useAddPostMutation } from "../api/Posts";
 import ErrorMessage from "./ErrorMessage";
 import PostPicturesSelect from "./PostPicturesSelect";
+import { descriptionValidation, tagsValidation } from "../utils/validation";
 
 export interface IAddPostValues {
   tags: string;
@@ -73,48 +74,55 @@ const AddPostModal: React.FC = () => {
           clearErrors={clearErrors}
           errors={errors}
         />
-        <div className="mb-4 font-primary">
-          <div className="flex justify-end my-2 text-[16px] font-medium leading-[20px] text-navy">
-            توضیحات
-          </div>
-          <textarea
-            className="w-full h-32 rounded-lg border-solid border-[1px] border-color[#cdcdcd] text-right py-[8px] pl-[16px] pr-[16px] text-[12px] font-normal placeholder:text-gray-300 resize-none"
-            {...register("description")}
-          />
-        </div>
-        <div>
-          <div className="flex justify-end my-2 text-[16px] font-medium leading-[20px] text-navy">
-            تگ ها
-          </div>
-          <textarea
-            className="w-full h-[40px] rounded-[30px] border-solid border-[1px] border-color[#cdcdcd] text-right py-[8px] pl-[16px] pr-[16px] text-[12px] font-normal placeholder:text-gray-300 resize-none"
-            {...register("tags")}
-          />
-        </div>
-        <div className="flex items-center justify-end text-[14px] font-medium text-navy">
-          فقط نمایش به دوستان نزدیک
-          <div className="ml-3">
-            <Controller
-              name="closeFriendsOnly"
-              control={control}
-              render={({ field: { onChange, value } }) => {
-                return <Switch checked={value} onChange={onChange} />;
-              }}
+        <div className="mb-4 font-primary flex flex-col gap-6">
+          <div className="flex flex-col gap-3 justify-between">
+            <div className="flex justify-end my-2 text-[16px] font-medium leading-[20px] text-navy">
+              توضیحات
+            </div>
+            <textarea
+              className="w-full h-32 rounded-lg border-solid border-[1px] border-color[#cdcdcd] text-right py-[8px] pl-[16px] pr-[16px] text-[12px] font-normal placeholder:text-gray-300 resize-none"
+              {...register("description", descriptionValidation())}
             />
+            <ErrorMessage errorMessage={errors?.description?.message} />
           </div>
-        </div>
 
-        <div className="flex">
-          <MainButton type="submit" isSubmitting={isSubmitting}>
-            ثبت عکس
-          </MainButton>
-          <button
-            type="button"
-            className="px-4 py-2 mr-2 text-sm font-normal text-black hover:font-semibold focus:outline-none"
-            onClick={onClose}
-          >
-            پشیمون شدم
-          </button>
+          <div>
+            <div className="flex justify-end my-2 text-[16px] font-medium leading-[20px] text-navy">
+              تگ ها
+            </div>
+            <div className="flex flex-col gap-3 justify-between">
+              <textarea
+                className="w-full h-[40px] rounded-[30px] border-solid border-[1px] border-color[#cdcdcd] text-right py-[8px] pl-[16px] pr-[16px] text-[12px] font-normal placeholder:text-gray-300 resize-none"
+                {...register("tags", tagsValidation())}
+              />
+              <ErrorMessage errorMessage={errors?.tags?.message} />
+            </div>
+          </div>
+          <div className="flex items-center justify-end text-[14px] font-medium text-navy">
+            <div> فقط نمایش به دوستان نزدیک</div>
+            <div className="ml-3">
+              <Controller
+                name="closeFriendsOnly"
+                control={control}
+                render={({ field: { onChange, value } }) => {
+                  return <Switch checked={value} onChange={onChange} />;
+                }}
+              />
+            </div>
+          </div>
+
+          <div className="flex">
+            <MainButton type="submit" isSubmitting={isSubmitting}>
+              ثبت عکس
+            </MainButton>
+            <button
+              type="button"
+              className="px-4 py-2 mr-2 text-sm font-normal text-black hover:font-semibold focus:outline-none"
+              onClick={onClose}
+            >
+              پشیمون شدم
+            </button>
+          </div>
         </div>
       </div>
     </form>

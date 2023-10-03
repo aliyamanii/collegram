@@ -5,7 +5,7 @@ function ErrorMessage({ errorMessage }: { errorMessage: string | undefined }) {
   return (
     <div className="flex w-full gap-2 flex-row-reverse">
       <img src={problem} />
-      <p className="text-red-500 text-xs">{errorMessage}</p>
+      <p className="text-red-500 text-xs font-primary">{errorMessage}</p>
     </div>
   );
 }
