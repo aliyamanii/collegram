@@ -6,10 +6,10 @@ import { UserInfo } from "../types/types";
 
 interface DropDownProps {
   onClose: () => void;
-  userId: string;
+  user: UserInfo;
 }
 
-const DropDown: React.FC<DropDownProps> = ({ onClose, userId }) => {
+const DropDown: React.FC<DropDownProps> = ({ onClose, user }) => {
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const [modalType, setModalType] = useState<"block" | "closeFriend" | null>(
     null
@@ -70,12 +70,12 @@ const DropDown: React.FC<DropDownProps> = ({ onClose, userId }) => {
       </ul>
       {modalType === "block" && (
         <Modal isOpen={true} onClose={closeModal}>
-          <BlockModal userId={userId} />
+          <BlockModal user={user} />
         </Modal>
       )}
       {modalType === "closeFriend" && (
         <Modal isOpen={true} onClose={closeModal}>
-          <CloseFriendModal userId={userId} />
+          <CloseFriendModal user={user} />
         </Modal>
       )}
     </div>

@@ -1,29 +1,32 @@
 import React from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { samplePosts } from "../assets/photos/samplePosts/samplePosts";
+import { useNavigate, useParams } from "react-router-dom";
 import UserMiniProfile from "../components/UserMiniProfile";
-import { UserInfo, UserMeInfo } from "../types/types";
-import pfp from "../assets/photos/samplePosts/reptile.jpg";
-import { useQuery } from "@tanstack/react-query";
-import { fetchUserInfo } from "../api/user";
-import UserPostsShow from "../components/UserPostsShow";
+import { useTargetUserInfo } from "../api/user";
+import UserPostsContainer from "../components/UserPostsShow";
 
 const UserProfilePage: React.FC = () => {
   const { userId } = useParams() as { userId: string };
+  const navigate = useNavigate();
 
-  const fakeUser = {
-    firstName: "مهشید",
-    lastName: "منزه",
-    bio: "Lover, not a fighter, spreading ✌️all over the 🌎",
-    isPrivate: false,
-    followers: 10,
-    followings: 20,
-  };
+  const { data: user, isError, isLoading } = useTargetUserInfo(userId);
+
+  if (isLoading) {
+    return <div className="flex justify-center items-center "></div>;
+  }
+
+  if (isError) {
+    navigate("/error", { replace: true });
+    return null;
+  }
 
   return (
     <div className="flex justify-between">
-      <UserMiniProfile userId={userId} />
-      <UserPostsShow userId={userId} />
+      <UserMiniProfile user={user} pageStatus={user.pageStatus} />
+      <UserPostsContainer
+        userId={userId}
+        pageStatus={user.pageStatus}
+        userFirstName={user.firstName || user.username || "این شخص"}
+      />
     </div>
   );
 };

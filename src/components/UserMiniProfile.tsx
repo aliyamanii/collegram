@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { UserInfo, UserMeInfo } from "../types/types";
+import { PageStatus, UserInfo, UserMeInfo } from "../types/types";
 import MainButton from "./MainButton";
 import pin from "../assets/photos/pin-dark.svg";
 import block from "../assets/photos/block.svg";
@@ -9,35 +9,18 @@ import sparkle from "../assets/photos/sparkle.svg";
 import Modal from "./Modal";
 import BlockModal from "./BlockModal";
 import CloseFriendModal from "./CloseFriendModal";
-import { useQuery } from "@tanstack/react-query";
-import { fetchUserInfo } from "../api/user";
-import SpinnerIcon from "../assets/photos/spinner.svg";
-import { useTargetUserInfo } from "../api/user";
 import UserActionButton from "./UserActionButton";
+import personIcon from "../assets/photos/person.svg";
 
 interface MiniProfileProps {
-  userId: string;
+  user: UserInfo;
+  pageStatus: PageStatus;
 }
 
-const MiniProfile: FC<MiniProfileProps> = ({ userId }) => {
+const MiniProfile: FC<MiniProfileProps> = ({ user, pageStatus }) => {
   const [blockModalOpen, setBlockModalOpen] = useState(false);
   const [closeFriendModalOpen, setCloseFriendModalOpen] = useState(false);
   const navigate = useNavigate();
-
-  const { data: user, isLoading, isError } = useTargetUserInfo(userId);
-
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center">
-        <img src={SpinnerIcon} alt="" className="animate-spin" />
-      </div>
-    );
-  }
-
-  if (isError) {
-    navigate("/error", { replace: true });
-    return null;
-  }
 
   function closeBlockModal() {
     setBlockModalOpen(false);
@@ -55,13 +38,13 @@ const MiniProfile: FC<MiniProfileProps> = ({ userId }) => {
     setCloseFriendModalOpen(true);
   }
 
-  const { firstName, lastName, url, followers, followings } = user;
+  const { firstName, lastName, profileUrl, followers, followings } = user;
   const displayName = `${firstName} ${lastName}`;
   return (
     <div className="w-[256px] h-[403px] p-[15px] flex flex-col items-center bg-vanilla border border-[#cdcdcd] font-primary">
       <div className="w-[106px] h-[106px] p-1 rounded-full  object-cover ring-gray-300 dark:ring-gray-500 -translate-y-[50%]">
         <img
-          src={url}
+          src={profileUrl || personIcon}
           alt={`${displayName}'s Profile`}
           className="w-[106px] h-[106px] p-1 rounded-full object-cover "
         />
@@ -85,7 +68,7 @@ const MiniProfile: FC<MiniProfileProps> = ({ userId }) => {
           </Link>
         </div>
         <div className="flex justify-center items-center w-[114px] h-[40px]">
-          <UserActionButton user={user} />
+          <UserActionButton user={user} pageStatus={pageStatus} />
         </div>
         <div>
           <img src={pin} />
@@ -98,7 +81,7 @@ const MiniProfile: FC<MiniProfileProps> = ({ userId }) => {
             onClick={openBlockModal}
           ></img>
           <Modal isOpen={blockModalOpen} onClose={closeBlockModal}>
-            <BlockModal userId={userId} />
+            <BlockModal user={user} />
           </Modal>
           <img
             src={chat}
@@ -112,7 +95,7 @@ const MiniProfile: FC<MiniProfileProps> = ({ userId }) => {
             onClick={openCloseFriendModal}
           ></img>
           <Modal isOpen={closeFriendModalOpen} onClose={closeCloseFriendModal}>
-            <CloseFriendModal userId={userId} />
+            <CloseFriendModal user={user} />
           </Modal>
         </div>
       </div>

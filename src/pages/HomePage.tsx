@@ -34,31 +34,6 @@ function Home() {
 
   const items = data.pages.map((page) => page.items).flat(1);
 
-  // const items: UserPostSummery[] = [
-  //   {
-  //     id: "3a17f030-f51d-48df-ae67-6e7883ea9395",
-  //     closeFriendsOnly: false,
-  //     likes: 0,
-  //     bookmarks: 0,
-  //     commentsNum: 2,
-  //     images: [
-  //       {
-  //         path: "/uploads/3f51e685cb3c90da6de9fe1ba60c50ae",
-  //         id: "f68e3642-bc04-410f-a800-9d80016d8ebe",
-  //       },
-  //     ],
-  //     tags: [
-  //       {
-  //         value: "nature",
-  //       },
-  //     ],
-  //     user: {
-  //       id: "cb929891-aab5-4f59-95da-69fa6fbd99f0",
-  //       username: "daltonz",
-  //     },
-  //   },
-  // ];
-
   if (items.length === 0) {
     return (
       <div

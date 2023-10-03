@@ -4,34 +4,18 @@ import block from "../assets/photos/block-dark.svg";
 
 import MainButton from "./MainButton";
 import { useModal } from "../customhook/useModal";
-import { UserInfo, UserSummary } from "../types/types";
+import { UserInfo, UserSummery } from "../types/types";
 import { Link } from "react-router-dom";
 import { useTargetUserInfo } from "../api/user";
 
 interface BlockModalProps {
-  userId: string;
+  user: UserInfo;
 }
 
-const BlockModal: FC<BlockModalProps> = ({ userId }) => {
+const BlockModal: FC<BlockModalProps> = ({ user }) => {
   const { isOpen, onClose } = useModal();
 
-  const { data: user, isLoading, isError } = useTargetUserInfo(userId);
-  if (isLoading) {
-    return (
-      <div className="w-fit h-fit max-w-[616px] p-12 align-middle transform bg-bone rounded-[24px] shadow-xl transition-all font-primary">
-        در حال لود
-      </div>
-    );
-  }
-  if (isError) {
-    return (
-      <div className="w-fit h-fit max-w-[616px] p-12 align-middle transform bg-bone rounded-[24px] shadow-xl transition-all font-primary">
-        خطا
-      </div>
-    );
-  }
-
-  const { firstName, lastName, url, followers, username } = user;
+  const { firstName, lastName, profileUrl, followers, username } = user;
   const displayName =
     firstName || lastName ? `${firstName || ""} ${lastName || ""}` : username;
   return (
@@ -46,7 +30,7 @@ const BlockModal: FC<BlockModalProps> = ({ userId }) => {
       <div className=" flex flex-col gap-6">
         <div className="flex justify-between items-center gap-[100px]">
           <img
-            src={url}
+            src={profileUrl}
             alt={`${displayName}'s Profile`}
             className="w-[80px] h-[80px] p-1 rounded-full object-cover "
           />

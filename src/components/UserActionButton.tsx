@@ -1,36 +1,67 @@
-import React from "react";
-import { UserInfo } from "../types/types";
+import React, { useState } from "react";
+import { PageStatus, UserInfo } from "../types/types";
 import MainButton from "./MainButton";
-import { useFollowUserMutation } from "../api/user";
+import { useFollowUserMutation, useUnFollowUserMutation } from "../api/user";
 import { useParams } from "react-router-dom";
 import { Mutation } from "@tanstack/react-query";
 
-function UserActionButton({ user }: { user: UserInfo }) {
+function UserActionButton({
+  user,
+  pageStatus,
+}: {
+  user: UserInfo;
+  pageStatus: PageStatus;
+}) {
   const { userId } = useParams() as { userId: string };
-  const followMutation = useFollowUserMutation(userId);
+  const { mutateAsync: followMutation } = useFollowUserMutation(userId);
+  const { mutateAsync: unFollowMutation } = useUnFollowUserMutation(userId);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
-  if (!user.hasFollow && !user.isPrivate) {
+  if (pageStatus === "PUBLIC" || pageStatus === "PRIVATE") {
     return (
       <MainButton
-        onClick={() => {
-          followMutation.mutate();
+        onClick={async () => {
+          setIsSubmitting(true);
+          await followMutation();
+          setIsSubmitting(false);
         }}
       >
         دنبال کردن
       </MainButton>
     );
   }
-  if (!user.hasFollow)
+  if (pageStatus === "REQUESTED")
     return (
       <MainButton
-        onClick={() => {
-          followMutation.mutate();
+        onClick={async () => {
+          setIsSubmitting(true);
+          await followMutation();
+          setIsSubmitting(false);
         }}
       >
-        دنبال کردن
+        لغو درخواست
       </MainButton>
     );
-  else return <MainButton> دنبال شده</MainButton>;
+
+  if (pageStatus === "FOLLOWED") {
+    return (
+      <MainButton
+        onClick={async () => {
+          setIsSubmitting(true);
+          unFollowMutation();
+          setIsSubmitting(false);
+        }}
+      >
+        دنبال شده
+      </MainButton>
+    );
+  }
+
+  return (
+    <MainButton onClick={() => {}} disabledMode={true}>
+      دنبال کردن
+    </MainButton>
+  );
 }
 
 export default UserActionButton;

@@ -8,18 +8,9 @@ import LikeContainer from "../../components/LikeContainer";
 import BookmarkContainer from "../../components/BookmarkContainer";
 import EditPostModal from "../../components/EditPostModal";
 import { relativeTime } from "../../utils/relativeTime";
-import { MyPost } from "../../types/types";
-
-const getRandomColor = () => {
-  const letters = "0123456789ABCDEF";
-  let color = "#";
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-};
-
-export interface Post {}
+import CustomCarousel from "../../components/Carousel";
+import { Post } from "../../types/types";
+import getTagCollor from "../../utils/getTagCollor";
 
 const MySinglePost: React.FC = () => {
   const { id } = useParams<{ id: string }>() as { id: string };
@@ -52,59 +43,41 @@ const MySinglePost: React.FC = () => {
     isLiked,
     isBookmarked,
     bookmarks,
-  } = data as MyPost;
+  } = data as Post;
 
   const timeDifference = relativeTime(updatedAt);
 
   return (
-    <div className="flex">
-      <div className="w-[500px] p-3">
-        <div className="font-primary">
-          <div className="w-full h-10 flex gap-2">
-            <button
-              id="submit__button"
-              className="flex items-center justify-center mt-auto mb-[20px] w-[128px] h-[36px] py-[8px] px-[16px] border-none bg-[#c19008] text-[#ffffff] rounded-[100px] hover:bg-[#ffc72d] hover:text-black hover:transition-all duration-300"
-              onClick={() => setEditPostModalIsOpen(true)}
-            >
-              ویرایش پست
-            </button>
-            <Modal
-              isOpen={editPostModalIsOpen}
-              onClose={() => setEditPostModalIsOpen(false)}
-            >
-              <EditPostModal />
-            </Modal>
-            <BookmarkContainer
-              postId={id}
-              isBookmarked={isBookmarked}
-              bookmarks={bookmarks}
-            />
-            <LikeContainer postId={id} isLiked={isLiked} likesCount={likes} />
+    <div className="flex gap-3  justify-center font-primary">
+      <div className="w-[500px] p-3 flex flex-col gap-3">
+        <div className="w-full h-10 flex justify-between items-center gap-2">
+          <button
+            id="submit__button"
+            className="flex items-center justify-center mt-auto mb-[20px] w-[128px] h-[36px] py-[8px] px-[16px] border-none bg-[#c19008] text-[#ffffff] rounded-[100px] hover:bg-[#ffc72d] hover:text-black hover:transition-all duration-300"
+            onClick={() => setEditPostModalIsOpen(true)}
+          >
+            ویرایش پست
+          </button>
+          <Modal
+            isOpen={editPostModalIsOpen}
+            onClose={() => setEditPostModalIsOpen(false)}
+          >
+            <EditPostModal />
+          </Modal>
+          <div className="flex gap-4 items-center">
+            <div className="flex gap-2">
+              <BookmarkContainer
+                postId={id}
+                isBookmarked={isBookmarked}
+                bookmarks={bookmarks}
+              />
+            </div>
+            <div className="flex gap-2">
+              <LikeContainer postId={id} isLiked={isLiked} likesCount={likes} />
+            </div>
           </div>
-          {/* <div className="flex">
-            <p>{updatedAt}</p>
-          </div>
-          <div className="flex justify-end text-right">
-            <p className="text-right">{description}</p>
-          </div>
-          <div className="">
-            <ul className="flex">
-              {tags.map((tag: { id: string; value: string }) => {
-                const { id, value } = tag;
-                return (
-                  <li key={id}>
-                    <div
-                      style={{ backgroundColor: getRandomColor() }}
-                      className="h-6 flex items-center justify-center rounded-lg p-2 mr-2 mb-2 text-white text-[14px]"
-                    >
-                      {value}
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
-          </div> */}
         </div>
+
         <div className="flex justify-end gap-1 text-right text-[11px] text-[#17494D] rtl">
           {timeDifference}
         </div>
@@ -113,12 +86,12 @@ const MySinglePost: React.FC = () => {
         </div>
         <div className="">
           <ul className="flex items-center justify-end">
-            {tags.map((tag: any) => {
-              const { id, value } = tag;
+            {tags.map((tag, index) => {
+              const { value } = tag;
               return (
                 <li key={id}>
                   <div
-                    style={{ backgroundColor: getRandomColor() }}
+                    style={{ backgroundColor: getTagCollor(value) }}
                     className="h-6 flex items-center justify-center rounded-lg p-2 mr-2 mb-2 text-white text-[14px]"
                   >
                     {value}
@@ -130,11 +103,15 @@ const MySinglePost: React.FC = () => {
         </div>
       </div>
       <div className="w-[488px] h-[488px] ">
-        <img
-          src={images[0].url}
-          alt={`Image ${images[0].id}`}
-          className="min-h-full min-w-full object-cover  rounded-[24px] bg-image-placeholder bg-center"
-        />
+        {images.length > 1 ? (
+          <CustomCarousel images={images} />
+        ) : (
+          <img
+            src={images[0].url}
+            alt={`Image ${images[0].id}`}
+            className="min-h-full min-w-full object-cover m-2 rounded-[24px] bg-red-400"
+          />
+        )}
       </div>
     </div>
   );

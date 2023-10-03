@@ -7,6 +7,7 @@ interface ButtonProps {
   children: ReactNode;
   type?: "button" | "submit" | "reset" | undefined;
   isSubmitting?: boolean;
+  disabledMode?: boolean;
 }
 
 const MainButton: React.FC<ButtonProps> = ({
@@ -15,14 +16,17 @@ const MainButton: React.FC<ButtonProps> = ({
   children,
   type = "button",
   isSubmitting,
+  disabledMode = false,
 }) => {
   console.log(isSubmitting);
   return (
     <button
-      className={`py-2 px-4 text-sm font-medium text-white bg-amber rounded-full  hover:text-black  ${className} flex justify-center items-center`}
+      className={`py-2 px-4 text-sm font-medium text-white bg-amber rounded-full  hover:text-black  ${className} flex justify-center items-center ${
+        disabledMode ? "bg-[#A89F87] hover:text-white" : ""
+      }`}
       onClick={onClick}
       type={type}
-      disabled={isSubmitting}
+      disabled={isSubmitting || disabledMode}
     >
       {isSubmitting && (
         <img

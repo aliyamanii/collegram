@@ -9,21 +9,13 @@ import { Link } from "react-router-dom";
 import { useTargetUserInfo } from "../api/user";
 
 interface CloseFriendModal {
-  userId: string;
+  user: UserInfo;
 }
 
-const CloseFriendModal: FC<CloseFriendModal> = ({ userId }) => {
+const CloseFriendModal: FC<CloseFriendModal> = ({ user }) => {
   const { isOpen, onClose } = useModal();
 
-  const { data: user, isLoading, isError } = useTargetUserInfo(userId);
-  if (isLoading) {
-    return <div>در حال بارگیری</div>;
-  }
-  if (isError) {
-    return <div>خطا در دستیابی به اطلاعات کاربر</div>;
-  }
-
-  const { firstName, lastName, url, followers, username } = user;
+  const { firstName, lastName, profileUrl, followers, username } = user;
   const displayName =
     firstName || lastName ? `${firstName || ""} ${lastName || ""}` : username;
   return (
@@ -38,7 +30,7 @@ const CloseFriendModal: FC<CloseFriendModal> = ({ userId }) => {
       <div className=" flex flex-col gap-8">
         <div className="flex justify-between items-center gap-[100px]">
           <img
-            src={url}
+            src={profileUrl}
             alt={`${displayName}'s Profile`}
             className="w-[80px] h-[80px] p-1 rounded-full object-cover "
           />
