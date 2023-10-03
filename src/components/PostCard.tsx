@@ -1,8 +1,6 @@
 import React from "react";
-import bookmarkEmpty from "../assets/photos/bookmarkEmpty.svg";
-import heartEmpty from "../assets/photos/heartEmpty.svg";
 import commentIcon from "../assets/photos/comment.svg";
-import { UserPost, UserPostSummary } from "../types/types";
+import { UserPostSummary } from "../types/types";
 import BookmarkContainer from "./BookmarkContainer";
 import LikeContainer from "./LikeContainer";
 
@@ -21,7 +19,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
     id: postId,
   } = post;
   return (
-    <div className="max-w-[360px] mx-auto my-4 hover:scale-105 transition-all duration-300">
+    <div className="max-w-[360px] w-[230px] mx-auto my-4 hover:scale-105 transition-all duration-300">
       <div className="bg-[#F9F9F9] rounded-lg overflow-hidden shadow-lg">
         <img
           src={images[0].url}

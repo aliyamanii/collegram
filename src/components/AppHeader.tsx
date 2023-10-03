@@ -5,6 +5,8 @@ import InputContainer from "./InputContainer";
 import AddPostModal from "./AddPostModal";
 import MainButton from "./MainButton";
 import Modal from "./Modal";
+import logOutIcon from "../assets/photos/logoutIcon.png";
+import { logOut } from "../utils/logOut";
 
 const AppHeader: React.FC = ({}) => {
   let [isOpen, setIsOpen] = useState(false);
@@ -22,7 +24,7 @@ const AppHeader: React.FC = ({}) => {
       id="header"
       className="w-[95%] flex justify-between items-center font-primary"
     >
-      <div id="left" className="w-[225px] flex justify-between">
+      <div id="left" className="min-w-[225px] flex gap-5 justify-between">
         <div id="logo">
           <img
             src={logo}
@@ -30,11 +32,18 @@ const AppHeader: React.FC = ({}) => {
             className="w-[68px] h-[40px] cursor-pointer"
           />
         </div>
-        <div className="button">
+        <div className="button flex  gap-5 items-center">
           <MainButton onClick={openModal}>افزودن پست</MainButton>
           <Modal isOpen={isOpen} onClose={closeModal}>
             <AddPostModal />
           </Modal>
+          <button onClick={logOut}>
+            <img
+              src={logOutIcon}
+              className="w-7 scale-x-[-1] hover:scale-x-[-1] hover:scale-110"
+              alt=""
+            />
+          </button>
         </div>
       </div>
       <div id="right" className="w-[360px]">
