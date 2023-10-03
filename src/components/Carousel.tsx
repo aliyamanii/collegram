@@ -24,7 +24,7 @@ const CustomCarousel: React.FC<CustomCarouselProps> = ({ images }) => {
   };
 
   return (
-    <div className="flex flex-col items-center gap-2 w-[488px] h-[488px] overflow-hidden">
+    <div className="flex flex-col items-center gap-2 w-[488px] h-[488px] overflow-hidden rounded-3xl">
       <div
         className="w-full h-full flex transition-transform duration-300 rounded-3xl"
         style={{

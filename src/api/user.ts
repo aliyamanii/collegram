@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { api } from "./instance";
 import { client } from "../App";
-import { UserInfo, UserMeInfo } from "../types/types";
+import { PageStatus, UserInfo, UserMeInfo } from "../types/types";
 
 export async function fetchMyInfo() {
   const res = await api.get("/users/me");
@@ -59,6 +59,24 @@ export function useFollowUserMutation(userId: string) {
     onSuccess: () => {
       client.invalidateQueries({ queryKey: ["user", userId] });
       client.invalidateQueries({ queryKey: ["posts", userId] });
+      client.invalidateQueries({ queryKey: ["posts", "homePage"] });
+    },
+  });
+}
+
+export async function unfollowUser(userId: string) {
+  const res = await api.post("/users/unfollow", { userId });
+  const data = res.data;
+  return data.data;
+}
+
+export function useUnFollowUserMutation(userId: string) {
+  return useMutation({
+    mutationFn: () => unfollowUser(userId),
+    onSuccess: () => {
+      client.invalidateQueries({ queryKey: ["user", userId] });
+      client.invalidateQueries({ queryKey: ["posts", userId] });
+      client.invalidateQueries({ queryKey: ["posts", "homePage"] });
     },
   });
 }

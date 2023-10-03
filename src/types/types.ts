@@ -5,14 +5,14 @@ export interface UserMeInfo {
   lastName?: string;
   email: string;
   bio?: string;
-  url?: string;
+  profileUrl?: string;
   isPrivate: boolean;
   followers: number;
   followings: number;
 }
 
 export interface UserInfo {
-  url?: string;
+  profileUrl?: string;
   username?: string;
   firstName?: string;
   lastName?: string;
@@ -26,9 +26,18 @@ export interface UserInfo {
   hasFollow: boolean;
   isBlocked: boolean;
   isClose: boolean;
+  pageStatus: PageStatus;
 }
 
-export interface UserSummary {
+export type PageStatus =
+  | "BLOCKED"
+  | "BLOCKED_BY_YOU"
+  | "FOLLOWED"
+  | "REQUESTED"
+  | "PUBLIC"
+  | "PRIVATE";
+
+export interface UserSummery {
   id: string;
   username?: string;
   firstName?: string;
@@ -73,13 +82,6 @@ export interface Post {
   isLiked: true;
   isBookmarked: true;
   tags: Tag[];
-}
-
-export interface UserPost extends Post {
-  user: UserSummary;
-}
-
-export interface MyPost extends Post {
   userId: string;
 }
 
@@ -94,8 +96,6 @@ export interface PostSummary {
   image: Image;
 }
 
-export interface MyPostSummary extends PostSummary {}
-
 export interface UserPostSummary extends PostSummary {
   closeFriendsOnly: boolean;
 }
@@ -108,7 +108,20 @@ export interface UserPostSummary {
   commentsNum: number;
   images: Image[];
   tags: Tag[];
-  user: UserSummary;
+  user: UserSummery;
+}
+
+export interface HomePagePostSummery {
+  id: string;
+  closeFriendsOnly: boolean;
+  likes: number;
+  bookmarks: number;
+  commentsNum: number;
+  images: Image[];
+  tags: Tag[];
+  user: UserSummery;
+  isLiked: boolean;
+  isBookmarked: boolean;
 }
 
 export interface Image {

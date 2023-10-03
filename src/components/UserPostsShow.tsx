@@ -1,53 +1,46 @@
 import { Link } from "react-router-dom";
-import SpinnerIcon from "../assets/photos/spinner.svg";
 import { useTargetUserPostsQuery } from "../api/Posts";
+import { PageStatus } from "../types/types";
+import UserPostsList from "./UserPostsList";
 
-interface IUserPostsShow {
+interface IUserPostsContainer {
   userId: string;
+  pageStatus: PageStatus;
+  userFirstName: string;
 }
 
-function UserPostsShow({ userId }: IUserPostsShow) {
-  const {
-    data,
-    isLoading,
-    isError,
-    isFetching,
-    isPreviousData,
-    fetchNextPage,
-  } = useTargetUserPostsQuery(userId);
-
-  if (isLoading) {
+function UserPostsContainer({
+  userId,
+  pageStatus,
+  userFirstName,
+}: IUserPostsContainer) {
+  if (pageStatus === "BLOCKED" || pageStatus === "BLOCKED_BY_YOU") {
     return (
-      <div className="w-full h-[700px] overflow-y-scroll no-scrollbar flex justify-center items-center">
-        <img src={SpinnerIcon} className="animate-spin" />
-      </div>
-    );
-  }
-  if (isError) {
-    return (
-      <div className="w-full h-[700px] overflow-y-scroll no-scrollbar flex justify-center items-center">
-        خطا در گرفتن پست ها
-      </div>
-    );
-  }
-
-  const items = data.pages.map((page) => page.items).flat(1);
-
-  return (
-    <div className="w-full h-[700px] overflow-y-scroll no-scrollbar flex flex-wrap gap-4">
-      {items.map((post) => (
-        <div key={post.id} className="relative">
-          <Link to={`/app/people/user/${userId}/post/${post.id}`}>
-            <img
-              src={post.image.url}
-              alt={`Post ${post.id}`}
-              className="w-[360px] h-[360px] object-cover m-2 rounded-[24px] hover:scale-105 transition-all duration-300"
-            />
-          </Link>
+      <div
+        className="w-full h-[500px] overflow-y-scroll no-scrollbar flex  flex-col gap-7 justify-center items-center text-center font-primary text-navy"
+        dir="rtl"
+      >
+        <h1 className="text-xl font-bold">مثل اینکه بلاک شدی</h1>
+        <div className="flex flex-col gap-3 text-base">
+          <p>متاسفانه {userFirstName} دیگه دوست نداره پست‌ها و </p>
+          <p>استوری‌هاش رو باهات به اشتراک بذاره.</p>
+          <p>برو دنبال دوست جدید بگرد :)</p>
         </div>
-      ))}
-    </div>
-  );
+      </div>
+    );
+  }
+
+  if (pageStatus === "PRIVATE" || pageStatus === "REQUESTED") {
+    return (
+      <div className="w-full h-[700px] overflow-y-scroll no-scrollbar flex justify-center flex-wrap gap-4">
+        <div className="w-[360px] h-[360px] object-cover m-2 rounded-[24px] hover:scale-105 transition-all duration-300 bg-[#c4c4c4bf] shadow-2xl"></div>
+        <div className="w-[360px] h-[360px] object-cover m-2 rounded-[24px] hover:scale-105 transition-all duration-300 bg-[#c4c4c4bf] shadow-2xl"></div>
+        <div className="w-[360px] h-[360px] object-cover m-2 rounded-[24px] hover:scale-105 transition-all duration-300 bg-[#c4c4c4bf] shadow-2xl"></div>
+        <div className="w-[360px] h-[360px] object-cover m-2 rounded-[24px] hover:scale-105 transition-all duration-300 bg-[#c4c4c4bf] shadow-2xl"></div>
+      </div>
+    );
+  }
+  return <UserPostsList userId={userId} />;
 }
 
-export default UserPostsShow;
+export default UserPostsContainer;

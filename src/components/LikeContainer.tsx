@@ -16,7 +16,7 @@ function LikeContainer({ postId, likesCount, isLiked }: ILikeContainer) {
       <p>{likesCount}</p>
       <img
         src={isLiked === true ? heartFull : heartEmpty}
-        className="w-6 h-6 hover:scale-150 transition-all duration-300"
+        className="w-6 h-6 hover:scale-110 transition-all duration-300"
         onClick={() => mutaiton.mutate()}
       />
     </>

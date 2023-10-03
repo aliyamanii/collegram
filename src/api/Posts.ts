@@ -1,12 +1,10 @@
 import { useInfiniteQuery, useMutation, useQuery } from "@tanstack/react-query";
 import {
-  MyPost,
   Post,
   UserMeInfo,
-  UserPost,
   PostSummary,
   UserPostSummary,
-  MyPostSummary,
+  HomePagePostSummery,
 } from "../types/types";
 import { api } from "./instance";
 import { client } from "../App";
@@ -14,7 +12,7 @@ import { client } from "../App";
 export async function addPost(form_Data: FormData) {
   const res = await api.post("/posts", form_Data);
   const data = res.data;
-  return data.data as MyPost;
+  return data.data as Post;
 }
 
 export function useAddPostMutation() {
@@ -67,7 +65,7 @@ export function useBookMarksPostQuery() {
 export async function fetchPostDetails(id: string) {
   const res = await api.get(`/posts/${id}`);
   const data = res.data;
-  return data.data as UserPost | Post;
+  return data.data as Post;
 }
 
 export function useMyDetailPostQuery(id: string) {
@@ -241,7 +239,7 @@ export async function fetchHomePagePosts(page = 1, limit = 25) {
   const res = await api.get(`/posts/followings?limit=${limit}&page=${page}`);
   const data = res.data;
   return data.data as {
-    items: UserPostSummary[];
+    items: HomePagePostSummery[];
     page: number;
     maxPage: number;
   };
@@ -278,7 +276,9 @@ export async function fetchTargetUserPost(
   page = 1,
   limit = 20
 ) {
-  const res = await api.get(`/posts/${userId}?limit=${limit}&page=${page}`);
+  const res = await api.get(
+    `/posts/users/${userId}?limit=${limit}&page=${page}`
+  );
   const data = res.data;
   return data.data as {
     items: UserPostSummary[];

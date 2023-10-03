@@ -37,7 +37,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({ user }) => {
 
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 
-  const { email, isPrivate, url, lastName, firstName, bio } = user;
+  const { email, isPrivate, profileUrl, lastName, firstName, bio } = user;
 
   const {
     register,
@@ -104,7 +104,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({ user }) => {
       <ProfilePictureSelect
         selectedFiles={selectedFiles}
         setSelectedFiles={setSelectedFiles}
-        currentImage={url || ""}
+        currentImage={profileUrl || ""}
       />
       <div className="flex flex-col gap-8">
         <h3 className="flex justify-center text-lg font-bold text-[20px] leading-[26px] text-navy font-primary">

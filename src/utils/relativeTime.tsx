@@ -5,7 +5,7 @@ export const relativeTime = (time: string | number) => {
   } else if (typeof time === "number") {
     timeStamp = time * 1000;
   } else {
-    return "Invalid input";
+    throw new Error("invalid input");
   }
 
   const now = Date.now();
