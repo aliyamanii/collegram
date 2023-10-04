@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import ellipsis from "../assets/photos/ellipsis.svg";
 import DropDown from "./UserDropDown";
 import personIcon from "../assets/photos/person.svg";
@@ -62,7 +62,11 @@ function UserBadge({ userId }: { userId: string }) {
         onClick={toggleDropDown}
       />
       {isDropDownOpen && (
-        <DropDown user={user} onClose={() => setIsDropDownOpen(false)} />
+        <DropDown
+          user={user}
+          onClose={() => setIsDropDownOpen(false)}
+          userId={userId}
+        />
       )}
     </div>
   );

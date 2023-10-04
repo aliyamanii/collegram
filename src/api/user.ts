@@ -80,3 +80,20 @@ export function useUnFollowUserMutation(userId: string) {
     },
   });
 }
+
+export async function blockUser(userId: string) {
+  const res = await api.post("/users/block", { userId });
+  const data = res.data;
+  return data.data;
+}
+
+export function useBlockUser(userId: string) {
+  return useMutation({
+    mutationFn: () => blockUser(userId),
+    onSuccess: () => {
+      client.invalidateQueries({ queryKey: ["user", userId] });
+      client.invalidateQueries({ queryKey: ["posts", userId] });
+      client.invalidateQueries({ queryKey: ["posts", "homePage"] });
+    },
+  });
+}

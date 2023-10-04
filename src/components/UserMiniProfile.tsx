@@ -1,7 +1,6 @@
-import React, { FC, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { PageStatus, UserInfo, UserMeInfo } from "../types/types";
-import MainButton from "./MainButton";
+import { FC, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { PageStatus, UserInfo } from "../types/types";
 import pin from "../assets/photos/pin-dark.svg";
 import block from "../assets/photos/block.svg";
 import chat from "../assets/photos/chat.svg";
@@ -18,6 +17,7 @@ interface MiniProfileProps {
 }
 
 const MiniProfile: FC<MiniProfileProps> = ({ user, pageStatus }) => {
+  const { userId } = useParams() as { userId: string };
   const [blockModalOpen, setBlockModalOpen] = useState(false);
   const [closeFriendModalOpen, setCloseFriendModalOpen] = useState(false);
   const navigate = useNavigate();
@@ -81,7 +81,7 @@ const MiniProfile: FC<MiniProfileProps> = ({ user, pageStatus }) => {
             onClick={openBlockModal}
           ></img>
           <Modal isOpen={blockModalOpen} onClose={closeBlockModal}>
-            <BlockModal user={user} />
+            <BlockModal user={user} userId={userId} />
           </Modal>
           <img
             src={chat}
@@ -95,7 +95,7 @@ const MiniProfile: FC<MiniProfileProps> = ({ user, pageStatus }) => {
             onClick={openCloseFriendModal}
           ></img>
           <Modal isOpen={closeFriendModalOpen} onClose={closeCloseFriendModal}>
-            <CloseFriendModal user={user} />
+            <CloseFriendModal user={user} userId={userId} />
           </Modal>
         </div>
       </div>
