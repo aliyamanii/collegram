@@ -59,14 +59,14 @@ function RecoverPassword() {
           {...register("usernameOrEmail", identifierValidation())}
         />
         <ErrorMessage errorMessage={errors?.usernameOrEmail?.message} />
-        <section id="buttons">
+        <section id="buttons" className="flex items-center ">
           <MainButton type="submit" isSubmitting={isSubmitting}>
             ارسال لینک بازیابی رمز عبور
           </MainButton>
           <Link
             to="/auth/login"
             id="cancel__link"
-            className="text-charcoal no-underline w-[104px] h-[36px] ml-[10px] hover:font-semibold"
+            className="text-charcoal no-underline w-[104px] h-[36px] ml-[10px] hover:font-semibold flex justify-center items-center"
           >
             انصراف
           </Link>

@@ -22,21 +22,16 @@ const AppHeader: React.FC = ({}) => {
   return (
     <div
       id="header"
-      className="w-[95%] flex justify-between items-center font-primary"
+      className="w-full flex justify-between items-center font-primary "
     >
-      <div id="left" className="min-w-[225px] flex gap-5 justify-between">
-        <div id="logo">
-          <img
-            src={logo}
-            alt="Logo"
-            className="w-[68px] h-[40px] cursor-pointer"
-          />
-        </div>
+      <InputContainer
+        placeholder="جستجو"
+        icon={search}
+        type="text"
+        width="360px"
+      />
+      <div className="min-w-[225px] flex gap-5 justify-between">
         <div className="button flex  gap-5 items-center">
-          <MainButton onClick={openModal}>افزودن پست</MainButton>
-          <Modal isOpen={isOpen} onClose={closeModal}>
-            <AddPostModal />
-          </Modal>
           <button onClick={logOut}>
             <img
               src={logOutIcon}
@@ -44,15 +39,18 @@ const AppHeader: React.FC = ({}) => {
               alt=""
             />
           </button>
+          <MainButton onClick={openModal}>افزودن پست</MainButton>
+          <Modal isOpen={isOpen} onClose={closeModal}>
+            <AddPostModal />
+          </Modal>
         </div>
-      </div>
-      <div id="right" className="w-[360px]">
-        <InputContainer
-          placeholder="جستجو"
-          icon={search}
-          type="text"
-          width="360px"
-        />
+        <div id="logo">
+          <img
+            src={logo}
+            alt="Logo"
+            className="w-[68px] h-[40px] cursor-pointer"
+          />
+        </div>
       </div>
     </div>
   );

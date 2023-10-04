@@ -5,11 +5,11 @@ import ProfileNavLinks, {
 
 function Profile() {
   return (
-    <div id="profile-page" className="w-full h-full flex">
-      <ProfileNavLinks list={navLinks}></ProfileNavLinks>
-      <div className="w-full h-full ml-4 ">
+    <div id="profile-page" className="w-full h-full flex pt-16" dir="rtl">
+      <div className="w-full h-full ml-4">
         <Outlet />
       </div>
+      <ProfileNavLinks list={navLinks}></ProfileNavLinks>
     </div>
   );
 }

@@ -17,7 +17,7 @@ function UserPostsContainer({
   if (pageStatus === "BLOCKED" || pageStatus === "BLOCKED_BY_YOU") {
     return (
       <div
-        className="w-full h-[500px] overflow-y-scroll no-scrollbar flex  flex-col gap-7 justify-center items-center text-center font-primary text-navy"
+        className="w-full h-full overflow-y-scroll no-scrollbar flex  flex-col gap-7 justify-center items-center text-center font-primary text-navy"
         dir="rtl"
       >
         <h1 className="text-xl font-bold">مثل اینکه بلاک شدی</h1>
@@ -32,7 +32,7 @@ function UserPostsContainer({
 
   if (pageStatus === "PRIVATE" || pageStatus === "REQUESTED") {
     return (
-      <div className="w-full h-[700px] overflow-y-scroll no-scrollbar flex justify-center flex-wrap gap-4">
+      <div className="w-full h-full overflow-y-scroll no-scrollbar flex justify-center flex-wrap gap-4">
         <div className="w-[360px] h-[360px] object-cover m-2 rounded-[24px] hover:scale-105 transition-all duration-300 bg-[#c4c4c4bf] shadow-2xl"></div>
         <div className="w-[360px] h-[360px] object-cover m-2 rounded-[24px] hover:scale-105 transition-all duration-300 bg-[#c4c4c4bf] shadow-2xl"></div>
         <div className="w-[360px] h-[360px] object-cover m-2 rounded-[24px] hover:scale-105 transition-all duration-300 bg-[#c4c4c4bf] shadow-2xl"></div>

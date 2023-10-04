@@ -20,13 +20,13 @@ const UserProfilePage: React.FC = () => {
   }
 
   return (
-    <div className="flex justify-between">
-      <UserMiniProfile user={user} pageStatus={user.pageStatus} />
+    <div className="h-full flex justify-between   pt-20" dir="rtl">
       <UserPostsContainer
         userId={userId}
         pageStatus={user.pageStatus}
         userFirstName={user.firstName || user.username || "این شخص"}
       />
+      <UserMiniProfile user={user} pageStatus={user.pageStatus} />
     </div>
   );
 };

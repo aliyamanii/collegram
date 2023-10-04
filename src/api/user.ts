@@ -56,6 +56,9 @@ export async function followUser(userId: string) {
 export function useFollowUserMutation(userId: string) {
   return useMutation({
     mutationFn: () => followUser(userId),
+    onMutate: () => {
+      client.invalidateQueries({ queryKey: ["user", "me"] });
+    },
     onSuccess: () => {
       client.invalidateQueries({ queryKey: ["user", userId] });
       client.invalidateQueries({ queryKey: ["posts", userId] });
@@ -90,10 +93,14 @@ export async function blockUser(userId: string) {
 export function useBlockUser(userId: string) {
   return useMutation({
     mutationFn: () => blockUser(userId),
+    onMutate: () => {
+      client.invalidateQueries({ queryKey: ["user", "me"] });
+    },
     onSuccess: () => {
       client.invalidateQueries({ queryKey: ["user", userId] });
       client.invalidateQueries({ queryKey: ["posts", userId] });
       client.invalidateQueries({ queryKey: ["posts", "homePage"] });
+      client.invalidateQueries({ queryKey: ["user", "me"] });
     },
   });
 }
