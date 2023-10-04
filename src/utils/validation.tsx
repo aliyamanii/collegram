@@ -70,6 +70,12 @@ export const passwordValidation = () => {
       value: 32,
       message: ".رمز عبور باید کمتر از 32 کارکتر باشد",
     },
+    validate: (value: string) => {
+      return (
+        (/[a-z]/g.test(value) && /[A-Z]/g.test(value)) ||
+        "رمز عبور باید هم حرف بزرگ و هم حرف کوچک داشته باشد"
+      );
+    },
   };
 };
 
