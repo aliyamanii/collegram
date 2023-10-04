@@ -5,6 +5,7 @@ import {
   PostSummary,
   UserPostSummary,
   HomePagePostSummery,
+  SearchPostSummery,
 } from "../types/types";
 import { api } from "./instance";
 import { client } from "../App";
@@ -285,4 +286,33 @@ export async function fetchTargetUserPost(
     page: number;
     maxPage: number;
   };
+}
+
+export async function fetchSearchPosts(
+  searchTag: string,
+  page = 1,
+  limit = 25
+) {
+  const res = await api.get(
+    `/posts/search?search=${searchTag}&page=${page}&limit=${limit}`
+  );
+  const data = res.data;
+  return data.data as {
+    items: SearchPostSummery[];
+    maxPage: number;
+    page: number;
+  };
+}
+
+export function useFetchSearchPosts(searchTag: string) {
+  return useInfiniteQuery({
+    queryFn: ({ pageParam = 1 }) => fetchSearchPosts(searchTag, pageParam),
+    queryKey: ["posts", "search", searchTag],
+    staleTime: 5 * 60 * 1000,
+    keepPreviousData: true,
+    getNextPageParam: (lastPage, _allPage) => {
+      const { maxPage, page } = lastPage;
+      return maxPage > page ? page + 1 : undefined;
+    },
+  });
 }

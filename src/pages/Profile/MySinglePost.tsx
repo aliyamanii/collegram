@@ -12,6 +12,7 @@ import CustomCarousel from "../../components/Carousel";
 import { Post } from "../../types/types";
 import getTagCollor from "../../utils/getTagCollor";
 import CommentsContainer from "../../components/CommentsContainer";
+import TagItem from "../../components/TagItem";
 
 const MySinglePost: React.FC = () => {
   const { id } = useParams<{ id: string }>() as { id: string };
@@ -103,17 +104,7 @@ const MySinglePost: React.FC = () => {
         </div>
         <ul className="flex items-center justify-start flex-wrap gap-2">
           {tags.map((tag, index) => {
-            const { value } = tag;
-            return (
-              <li key={id}>
-                <div
-                  style={{ backgroundColor: getTagCollor(value) }}
-                  className="h-6 flex items-center justify-center rounded-lg p-2  mb-2 text-white text-[14px]"
-                >
-                  {value}
-                </div>
-              </li>
-            );
+            return <TagItem tag={tag} key={index} />;
           })}
         </ul>
         <CommentsContainer />

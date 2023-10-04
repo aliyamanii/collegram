@@ -85,7 +85,7 @@ export interface Post {
   userId: string;
 }
 
-interface Tag {
+export interface Tag {
   id?: string;
   value: string;
 }
@@ -127,4 +127,11 @@ export interface HomePagePostSummery {
 export interface Image {
   id: string;
   url: string;
+}
+
+export interface SearchPostSummery {
+  id: string;
+  images: Image[];
+  isLiked: boolean;
+  likes: number;
 }

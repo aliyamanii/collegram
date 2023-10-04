@@ -6,6 +6,7 @@ import LikeContainer from "./LikeContainer";
 import galleryIcon from "../assets/photos/board.svg";
 import { Link } from "react-router-dom";
 import getTagCollor from "../utils/getTagCollor";
+import TagItem from "./TagItem";
 
 interface PostCardProps {
   post: HomePagePostSummery;
@@ -72,14 +73,8 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
             {displayName}
           </Link>
           <div className="w-full flex justify-start mt-2">
-            {tags.map(({ value }, index) => (
-              <span
-                key={index}
-                className={`inline-block bg-gray-200 text-gray-600 rounded-[4px] px-2 py-1 text-xs ml-2 mb-2`}
-                style={{ backgroundColor: getTagCollor(value) }}
-              >
-                {value}
-              </span>
+            {tags.map((tag, index) => (
+              <TagItem tag={tag} key={index} />
             ))}
           </div>
         </div>

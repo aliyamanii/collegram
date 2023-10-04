@@ -16,6 +16,7 @@ import LikeContainer from "../components/LikeContainer";
 import getTagCollor from "../utils/getTagCollor";
 import UserBadge from "../components/UserBadge";
 import CommentsContainer from "../components/CommentsContainer";
+import TagItem from "../components/TagItem";
 
 const UserSinglePost: React.FC = () => {
   const { id, userId } = useParams() as { id: string; userId: string };
@@ -88,15 +89,9 @@ const UserSinglePost: React.FC = () => {
         <div className="flex text-right">
           <p className="text-right">{description}</p>
         </div>
-        <ul className="flex flex-row items-center">
+        <ul className="flex items-center justify-start flex-wrap gap-2">
           {tags.map((tag, index) => (
-            <li
-              key={index}
-              style={{ backgroundColor: getTagCollor(tag.value) }}
-              className="h-6 flex items-center justify-center rounded-lg p-2 ml-2 mb-2 text-white text-[14px]"
-            >
-              {tag.value}
-            </li>
+            <TagItem tag={tag} key={index} />
           ))}
         </ul>
         <CommentsContainer />
