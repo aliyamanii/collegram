@@ -26,7 +26,7 @@ const BookmarksPage: React.FC = () => {
   const items = data.pages.map((page) => page.items).flat(1);
 
   return (
-    <div className="w-full h-[700px] overflow-y-scroll no-scrollbar flex flex-wrap gap-4">
+    <div className="w-full h-full overflow-y-scroll no-scrollbar flex justify-start  pb-10 flex-wrap gap-4">
       {/* {samplePosts.map((image) => ( */}
       {items.map((image) => (
         <div key={image.id} className="relative">

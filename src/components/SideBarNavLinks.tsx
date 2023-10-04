@@ -16,19 +16,22 @@ export const items: INavLink[] = [
 
 function SideBarNavLinks({ list }: { list: INavLink[] }) {
   return (
-    <div className="inline-flex w-[240px] gap-8 flex-col items-end text-right font-primary">
+    <div
+      className="inline-flex w-[240px] gap-4 flex-col items-end text-right font-primary"
+      dir="rtl"
+    >
       {list.map((item) => (
         <NavLink
           to={item.destinationUrl}
-          className="flex w-full h-6 justify-end items-start gap-4 self-stretch text-amber"
+          className="flex w-full  justify-start items-start gap-4 self-stretch text-amber "
           style={({ isActive, isPending }) => {
             return { color: isActive ? "#17494D" : "#C19008" };
           }}
         >
-          <div className="h-6 text-sm flex flex-col justify-center ">
+          <img src={item.icon} />
+          <h3 className="h-6 text-xs flex flex-col justify-center">
             {item.title}
-          </div>
-          <img src={item.icon}></img>
+          </h3>
         </NavLink>
       ))}
     </div>

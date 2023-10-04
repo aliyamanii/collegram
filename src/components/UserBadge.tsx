@@ -35,7 +35,7 @@ function UserBadge({ userId }: { userId: string }) {
     firstName || lastName ? `${firstName} ${lastName}` : username;
 
   return (
-    <div className="flex min-h-[64px] p-2 justify-between gap-7 items-center rounded-3xl hover:bg-vanilla transition-all duration-300">
+    <div className="flex min-h-[64px]  justify-between gap-7 items-center rounded-3xl ">
       <Link to={`/app/people/user/${userId}`}>
         <img
           src={profileUrl || personIcon}
@@ -58,7 +58,7 @@ function UserBadge({ userId }: { userId: string }) {
       <img
         src={ellipsis}
         alt={`options`}
-        className="w-[18px] h-[18px] hover:scale-125 transition-all duration-300 cursor-pointer"
+        className="w-[18px] h-[18px] cursor-pointer"
         onClick={toggleDropDown}
       />
       {isDropDownOpen && (

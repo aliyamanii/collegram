@@ -25,6 +25,7 @@ import BookmarksPage from "./pages/Profile/BookmarksPage";
 import UserProfilePage from "./pages/UserProfilePage";
 import UserSinglePost from "./pages/UserSinglePost";
 import CommunityPage from "./pages/CommunityPage";
+import SearchPage from "./pages/SearchPage";
 
 export const client = new QueryClient();
 
@@ -71,6 +72,7 @@ function App() {
               <Route path="history" element={<div>History?</div>} />
               <Route path="post/:id" element={<MySinglePost />} />
             </Route>
+            <Route path="search/:searchTag" element={<SearchPage />} />
           </Route>
           <Route path="error" element={<ErrorPage />} />
         </Routes>

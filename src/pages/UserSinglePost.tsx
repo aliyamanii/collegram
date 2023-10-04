@@ -50,11 +50,24 @@ const UserSinglePost: React.FC = () => {
   // firstName || lastName ? `${firstName} ${lastName}` : username;
 
   return (
-    <div className="flex font-primary">
-      <div className="flex flex-col gap-3 w-[500px] p-3">
-        <div className="w-full h-10 flex items-center justify-between">
-          <UserBadge userId={userId} />
+    <div className="flex gap-6 h-full font-primary  mt-16 " dir="rtl">
+      <div className="basis-1/2 h-[488px]">
+        {images.length > 1 ? (
+          <Carousel images={images} />
+        ) : (
+          <img
+            src={post.images[0].url}
+            alt={`Image ${id}`}
+            className="min-h-full min-w-full object-cover  rounded-[24px] bg-image-placeholder bg-center"
+          />
+        )}
+      </div>
+      <div className="basis-1/2 flex flex-col gap-3 w-[500px] p-3">
+        <div className="w-full  flex items-center justify-between">
           <div className="flex gap-4">
+            <div id="like" className="flex gap-2">
+              <LikeContainer likesCount={likes} isLiked={isLiked} postId={id} />
+            </div>
             <div id="bookmark" className="flex gap-2">
               <BookmarkContainer
                 bookmarks={bookmarks}
@@ -62,18 +75,19 @@ const UserSinglePost: React.FC = () => {
                 postId={id}
               />
             </div>
-            <div id="like" className="flex gap-2">
-              <LikeContainer likesCount={likes} isLiked={isLiked} postId={id} />
-            </div>
           </div>
+          <UserBadge userId={userId} />
         </div>
-        <div className="flex justify-end gap-1 text-right text-[11px] text-navy">
+        <div
+          className="flex  gap-1 justify-end text-[11px] text-navy"
+          dir="ltr"
+        >
           {timeDifference}
         </div>
-        <div className="flex justify-end text-right">
+        <div className="flex text-right">
           <p className="text-right">{description}</p>
         </div>
-        <ul className="flex flex-row-reverse items-center">
+        <ul className="flex flex-row items-center">
           {tags.map((tag, index) => (
             <li
               key={index}
@@ -84,17 +98,6 @@ const UserSinglePost: React.FC = () => {
             </li>
           ))}
         </ul>
-      </div>
-      <div className="w-[488px] h-[488px]">
-        {images.length > 1 ? (
-          <Carousel images={images} />
-        ) : (
-          <img
-            src={post.images[0].url}
-            alt={`Image ${id}`}
-            className="min-h-full min-w-full object-cover m-2 rounded-[24px] bg-image-placeholder bg-center"
-          />
-        )}
       </div>
     </div>
   );

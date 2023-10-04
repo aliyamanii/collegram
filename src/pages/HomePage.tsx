@@ -59,9 +59,11 @@ function Home() {
   return (
     <div
       id="page"
-      className="w-full h-[700px] flex flex-col  overflow-y-scroll no-scrollbar gap-[25px] font-primary"
+      className="w-full h-full flex flex-col items-start overflow-y-scroll no-scrollbar gap-4 font-primary py-6"
+      dir="rtl"
     >
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <h3 className="text-xl font-bold font-primary pr-4 ">خانه</h3>
+      <div className="grid w-full h-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 ">
         {items.map((post) => (
           <PostCard key={post.id} post={post} />
         ))}

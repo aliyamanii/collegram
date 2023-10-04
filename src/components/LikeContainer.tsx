@@ -13,12 +13,12 @@ function LikeContainer({ postId, likesCount, isLiked }: ILikeContainer) {
 
   return (
     <>
-      <p>{likesCount}</p>
       <img
         src={isLiked === true ? heartFull : heartEmpty}
         className="w-6 h-6 hover:scale-110 transition-all duration-300"
         onClick={() => mutaiton.mutate()}
       />
+      <p>{likesCount}</p>
     </>
   );
 }

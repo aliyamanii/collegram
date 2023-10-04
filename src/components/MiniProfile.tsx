@@ -52,23 +52,32 @@ const MiniProfile: FC = () => {
   }
 
   return (
-    <div className="w-[256px] h-[403px] p-[15px] flex flex-col items-center bg-vanilla border border-gray-300 font-primary">
-      <div className="w-[133.42] h-[133.42] p-1 rounded-full mb-[20px] object-cover ring-gray-300 dark:ring-gray-500">
+    <div
+      className="w-[256px] h-fit p-3 flex flex-col items-center bg-vanilla border border-gray-300 font-primary  gap-5"
+      dir="rtl"
+    >
+      <div>
         {profileUrl ? (
           <img
-            src={profileUrl || personIcon}
+            src={profileUrl}
             alt={`${username}'s Profile`}
-            className="w-[133.42px] h-[133.42px] p-1 rounded-full object-cover"
+            className="w-32 h-32 p-1 rounded-full object-cover"
           />
         ) : (
-          <div className="w-[133.42px] h-[133.42px] p-1 rounded-full flex justify-center items-center bg-bone">
+          <div className="w-32 h-32 p-1 rounded-full flex justify-center items-center bg-bone">
             <img src={personIcon} alt="" className="w-16 h-16" />
           </div>
         )}
       </div>
-      <div className=" flex flex-col gap-[15px]">
-        <div className="w-full flex items-center justify-center  text-[14px] text-amber font-montserrat font-normal text-center leading-[17.07px]">
-          @{username}
+      <div className=" flex flex-col justify-center gap-3 ">
+        <div className="w-full flex items-center justify-center">
+          <p
+            className="text-[14px] text-amber font-montserrat font-normal text-center leading-[17.07px]"
+            dir="ltr"
+          >
+            @{username}
+          </p>
+
           <img
             src={arrowDown}
             alt="Back Icon"
@@ -82,28 +91,35 @@ const MiniProfile: FC = () => {
           id="follow-info"
           className="flex justify-between items-center w-[201px] h-[21px] text-[14px] font-normal text-navy"
         >
-          <Link to="" id="following-button" className="flex">
+          <Link to="" id="following-button" className="flex gap-1">
+            <p>{followings}</p>
             <div>دنبال شونده</div>
-            {followings}
           </Link>
           <div className="w-[1px] h-[10px] bg-navy"></div>
-          <Link to="" id="followers-button" className="flex">
+          <Link to="" id="followers-button" className="flex gap-1">
+            <p>{followers}</p>
             <div>دنبال کننده</div>
-            {followers}
           </Link>
         </div>
         <div className="w-[201px] text-[14px] leading-[18.2px] text-center text-cloud">
           {bio}
         </div>
       </div>
-      {isProfileRoute && (
-        <div className="my-4 hover:cursor-pointer">
-          <img src={penIcon} alt="Edit Profile" onClick={openModal} />
-          <Modal isOpen={isOpen} onClose={closeModal}>
-            <EditProfileModal user={user} />
-          </Modal>
-        </div>
-      )}
+      <div>
+        {isProfileRoute && (
+          <div className="flex justify-center items-center  hover:cursor-pointer">
+            <img
+              src={penIcon}
+              alt="Edit Profile"
+              onClick={openModal}
+              className="w-5"
+            />
+            <Modal isOpen={isOpen} onClose={closeModal}>
+              <EditProfileModal user={user} />
+            </Modal>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

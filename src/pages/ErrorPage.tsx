@@ -6,7 +6,7 @@ import MainButton from "../components/MainButton";
 function ErrorPage() {
   const navigate = useNavigate();
   return (
-    <div className="flex gap-8 h-screen min-w-[1920px] w-screen  flex-col min-h-screen  justify-center items-center bg-bone font-primary text-navy">
+    <div className="flex gap-8 h-screen w-full  flex-col min-h-screen  justify-center items-center bg-bone font-primary text-navy">
       <div className="flex flex-col items-center gap-6">
         <h1 className="text-[40px] font-bold">وای اینجا چه خبره؟</h1>
         <h3 className="text-xl font-bold">ظاهرا مشکلی وجود داره</h3>

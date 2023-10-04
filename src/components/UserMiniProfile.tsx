@@ -41,7 +41,7 @@ const MiniProfile: FC<MiniProfileProps> = ({ user, pageStatus }) => {
   const { firstName, lastName, profileUrl, followers, followings } = user;
   const displayName = `${firstName} ${lastName}`;
   return (
-    <div className="w-[256px] h-[403px] p-[15px] flex flex-col items-center bg-vanilla border border-[#cdcdcd] font-primary">
+    <div className="w-[256px] h-[403px] p-[15px] flex flex-col items-center bg-vanilla border border-[#cdcdcd] font-primary ">
       <div className="w-[106px] h-[106px] p-1 rounded-full  object-cover ring-gray-300 dark:ring-gray-500 -translate-y-[50%]">
         <img
           src={profileUrl || personIcon}
@@ -57,14 +57,14 @@ const MiniProfile: FC<MiniProfileProps> = ({ user, pageStatus }) => {
           id="follow-info"
           className="flex justify-between items-center w-[201px] h-[21px] text-[11px] font-normal text-navy"
         >
-          <Link to="" id="following-button" className="flex">
-            <div>دنبال شونده</div>
+          <Link to="" id="following-button" className="flex gap-1">
             {followings}
+            <div>دنبال شونده</div>
           </Link>
           <div className="w-[1px] h-[10px] bg-navy"></div>
-          <Link to="" id="followers-button" className="flex">
-            <div>دنبال کننده</div>
+          <Link to="" id="followers-button" className="flex gap-1">
             {followers}
+            <div>دنبال کننده</div>
           </Link>
         </div>
         <div className="flex justify-center items-center w-[114px] h-[40px]">
@@ -76,7 +76,7 @@ const MiniProfile: FC<MiniProfileProps> = ({ user, pageStatus }) => {
         <div className="w-[212px] h-[72px] flex items-center justify-center bg-bone gap-8 border border-solid border-[#CDCDCD]">
           <img
             src={block}
-            className="hover:scale-150 transition-all duration-300 hover:cursor-pointer"
+            className="hover:scale-110 transition-all duration-300 hover:cursor-pointer"
             title="block"
             onClick={openBlockModal}
           ></img>
@@ -85,12 +85,12 @@ const MiniProfile: FC<MiniProfileProps> = ({ user, pageStatus }) => {
           </Modal>
           <img
             src={chat}
-            className="hover:scale-150 transition-all duration-300 hover:cursor-pointer"
+            className="hover:scale-110 transition-all duration-300 hover:cursor-pointer"
             title="chat"
           ></img>
           <img
             src={sparkle}
-            className="hover:scale-150 transition-all duration-300 hover:cursor-pointer"
+            className="hover:scale-110 transition-all duration-300 hover:cursor-pointer"
             title="close friends"
             onClick={openCloseFriendModal}
           ></img>

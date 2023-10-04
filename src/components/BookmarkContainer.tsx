@@ -17,12 +17,12 @@ function BookmarkContainer({
 
   return (
     <>
-      <p>{bookmarks}</p>
       <img
         src={isBookmarked ? bookmarkFull : bookmarkEmpty}
         className="w-6 h-6 hover:scale-110 transition-all duration-300"
         onClick={() => mutaiton.mutate()}
       />
+      <p>{bookmarks}</p>
     </>
   );
 }

@@ -9,25 +9,30 @@ import SideBarNavLinks, {
 
 function AppLayout() {
   return (
-    <div className="w-screen h-[calc(55%-55px)] py-[52px] px-[204px] flex justify-center bg-bone">
-      <div id="page" className="w-full h-full">
-        <AppHeader />
-        <div className="mt-[10%] max-h-[300px]">
-          <Outlet />
-        </div>
-      </div>
+    <div
+      className="w-screen min-h-fit h-screen  flex justify-center gap-14 bg-bone  px-32 py-12 overflow-x-hidden"
+      dir="rtl"
+    >
       <div
         id="navbar"
-        className="w-[256px] h-full flex flex-col justify-start gap-[30px]"
+        className="w-[256px] h-full flex flex-col justify-between gap-7"
       >
-        <MiniProfile />
-        <SideBarNavLinks list={navLinks} />
-        <img
-          src={tree}
-          id="tree"
-          className="w-[189.33] h-[213px] mx-auto"
-          alt="Tree"
-        />
+        <div className="flex flex-col gap-7">
+          <MiniProfile />
+          <SideBarNavLinks list={navLinks} />
+        </div>
+
+        <img src={tree} id="tree" className="h-36 mx-auto" alt="Tree" />
+      </div>
+      <div
+        id="page"
+        className="w-full h-[calc(100%+48px)] mb-[-48px]  flex flex-col "
+        dir="rtl"
+      >
+        <AppHeader />
+        <div className="h-full overflow-y-hidden" dir="ltr">
+          <Outlet />
+        </div>
       </div>
     </div>
   );
