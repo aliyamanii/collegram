@@ -1,19 +1,25 @@
-import { FC } from "react";
-
+import { FC, useState } from "react";
 import block from "../assets/photos/block-dark.svg";
-
 import MainButton from "./MainButton";
 import { useModal } from "../customhook/useModal";
 import { UserInfo, UserSummery } from "../types/types";
-import { Link } from "react-router-dom";
-import { useTargetUserInfo } from "../api/user";
+import { useBlockUser, useTargetUserInfo } from "../api/user";
 
 interface BlockModalProps {
   user: UserInfo;
+  userId: string;
 }
 
-const BlockModal: FC<BlockModalProps> = ({ user }) => {
+const BlockModal: FC<BlockModalProps> = ({ user, userId }) => {
   const { isOpen, onClose } = useModal();
+  const { mutateAsync: blockMutatation } = useBlockUser(userId);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+
+  async function doBlock() {
+    setIsSubmitting(true);
+    await blockMutatation();
+    setIsSubmitting(false);
+  }
 
   const { firstName, lastName, profileUrl, followers, username } = user;
   const displayName =
@@ -52,7 +58,9 @@ const BlockModal: FC<BlockModalProps> = ({ user }) => {
           لایک کردن و کامنت گذاشتن زیر پست‌های تو هم براش مسدود میشه.
         </div>
         <div className="flex">
-          <MainButton>آره، حتما</MainButton>
+          <MainButton onClick={doBlock} isSubmitting={isSubmitting}>
+            آره، حتما
+          </MainButton>
           <button
             type="button"
             className="px-4 py-2 mr-2 text-sm font-normal text-black hover:font-semibold focus:outline-none"

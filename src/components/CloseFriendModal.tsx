@@ -1,18 +1,15 @@
 import { FC } from "react";
-
 import sparkle from "../assets/photos/sparkle-dark.svg";
-
 import MainButton from "./MainButton";
 import { useModal } from "../customhook/useModal";
 import { UserInfo, UserMeInfo } from "../types/types";
-import { Link } from "react-router-dom";
-import { useTargetUserInfo } from "../api/user";
 
 interface CloseFriendModal {
   user: UserInfo;
+  userId: string;
 }
 
-const CloseFriendModal: FC<CloseFriendModal> = ({ user }) => {
+const CloseFriendModal: FC<CloseFriendModal> = ({ user, userId }) => {
   const { isOpen, onClose } = useModal();
 
   const { firstName, lastName, profileUrl, followers, username } = user;
