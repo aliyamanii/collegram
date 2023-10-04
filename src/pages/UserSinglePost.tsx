@@ -15,6 +15,7 @@ import BookmarkContainer from "../components/BookmarkContainer";
 import LikeContainer from "../components/LikeContainer";
 import getTagCollor from "../utils/getTagCollor";
 import UserBadge from "../components/UserBadge";
+import CommentsContainer from "../components/CommentsContainer";
 
 const UserSinglePost: React.FC = () => {
   const { id, userId } = useParams() as { id: string; userId: string };
@@ -98,6 +99,7 @@ const UserSinglePost: React.FC = () => {
             </li>
           ))}
         </ul>
+        <CommentsContainer />
       </div>
     </div>
   );

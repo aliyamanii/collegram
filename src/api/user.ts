@@ -57,7 +57,7 @@ export function useFollowUserMutation(userId: string) {
   return useMutation({
     mutationFn: () => followUser(userId),
     onMutate: () => {
-      client.invalidateQueries({ queryKey: ["user", "me"] });
+      client.invalidateQueries({ queryKey: ["user", "me"], type: "all" });
     },
     onSuccess: () => {
       client.invalidateQueries({ queryKey: ["user", userId] });

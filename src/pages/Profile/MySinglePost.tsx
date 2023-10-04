@@ -11,6 +11,7 @@ import { relativeTime } from "../../utils/relativeTime";
 import CustomCarousel from "../../components/Carousel";
 import { Post } from "../../types/types";
 import getTagCollor from "../../utils/getTagCollor";
+import CommentsContainer from "../../components/CommentsContainer";
 
 const MySinglePost: React.FC = () => {
   const { id } = useParams<{ id: string }>() as { id: string };
@@ -91,7 +92,10 @@ const MySinglePost: React.FC = () => {
           </div>
         </div>
 
-        <div className="flex justify-start gap-1 text-right text-[11px] text-[#17494D] rtl">
+        <div
+          className="flex justify-end gap-1 text-right text-[11px] text-[#17494D] "
+          dir="ltr"
+        >
           {timeDifference}
         </div>
         <div className="flex justify-start text-right">
@@ -112,6 +116,7 @@ const MySinglePost: React.FC = () => {
             );
           })}
         </ul>
+        <CommentsContainer />
       </div>
     </div>
   );
