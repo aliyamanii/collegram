@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import logo from "../assets/photos/logo.svg";
-import search from "../assets/photos/search.svg";
 import InputContainer from "./InputContainer";
 import AddPostModal from "./AddPostModal";
 import MainButton from "./MainButton";
 import Modal from "./Modal";
 import logOutIcon from "../assets/photos/logoutIcon.png";
 import { logOut } from "../utils/logOut";
+import SearchBar from "./SearchBar";
 
 const AppHeader: React.FC = ({}) => {
   let [isOpen, setIsOpen] = useState(false);
@@ -24,12 +24,8 @@ const AppHeader: React.FC = ({}) => {
       id="header"
       className="w-full flex justify-between items-center font-primary "
     >
-      <InputContainer
-        placeholder="جستجو"
-        icon={search}
-        type="text"
-        width="360px"
-      />
+      <SearchBar />
+
       <div className="min-w-[225px] flex gap-5 justify-between">
         <div className="button flex  gap-5 items-center">
           <button onClick={logOut}>
