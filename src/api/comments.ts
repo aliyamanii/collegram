@@ -1,6 +1,7 @@
 import { useInfiniteQuery, useMutation } from "@tanstack/react-query";
 import { api } from "./instance";
 import { client } from "../App";
+import { UserSummery } from "../types/types";
 
 export interface AddCommentData {
   text: string;
@@ -19,7 +20,7 @@ export interface AddCommentResponse {
 
 export interface Comment {
   id: string;
-  userId: string;
+  user: UserSummery;
   postId: string;
   commentText: string;
   createdAt: string;

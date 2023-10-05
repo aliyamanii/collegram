@@ -4,6 +4,7 @@ import heartEmpty from "../assets/photos/heartEmpty.svg";
 import heartFull from "../assets/photos/heartFull.svg";
 import { Comment } from "../api/comments";
 import { relativeTime } from "../utils/relativeTime";
+import { Link } from "react-router-dom";
 
 interface ICommentItemProps {
   type: "comment" | "reply";
@@ -18,6 +19,16 @@ function CommentItem({
   changeParentCommentId,
   currentSelectedId,
 }: ICommentItemProps) {
+  const {
+    id,
+    user: { firstName, lastName, id: userId, username },
+    commentText,
+    createdAt,
+  } = comment;
+
+  const displayName =
+    firstName || lastName ? `${firstName} ${lastName}` : `${username}`;
+
   return (
     <div className="flex flex-col gap-3">
       <li
@@ -32,7 +43,12 @@ function CommentItem({
               type === "reply" ? "pr-8" : ""
             }`}
           >
-            <div className="text-xs font-bold text-navy">مهشید منزه</div>
+            <Link
+              to={`/app/people/user/${userId}`}
+              className="text-xs font-bold text-navy"
+            >
+              {displayName}
+            </Link>
             <div className="text-[10px] text-cloud" dir="ltr">
               {relativeTime(comment.createdAt)}
             </div>
