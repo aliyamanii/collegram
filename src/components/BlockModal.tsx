@@ -26,7 +26,7 @@ const BlockModal: FC<BlockModalProps> = ({ user, userId }) => {
     onClose();
   }
 
-  const { firstName, lastName, profileUrl, username } = user;
+  const { firstName, lastName, followers, profileUrl, username } = user;
   const displayName =
     firstName || lastName ? `${firstName || ""} ${lastName || ""}` : username;
   return (
@@ -51,8 +51,7 @@ const BlockModal: FC<BlockModalProps> = ({ user, userId }) => {
             </div>
             <div className="flex text-navy">
               <div>دنبال کننده</div>
-              {/* {followers} */}
-              {5}
+              {followers}
             </div>
           </div>
         </div>

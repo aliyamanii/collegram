@@ -148,6 +148,7 @@ export interface RelationUserSummery {
   firstName?: string;
   lastName?: string;
   profileUrl?: string;
+  followers: number;
 } // ??????????????
 
 export async function fetchFollowingsList(page = 1, limit = 10) {

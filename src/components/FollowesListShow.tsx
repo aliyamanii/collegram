@@ -25,7 +25,7 @@ function FollowersListShow() {
   const items = data.pages.map((page) => page.items).flat(1);
 
   return (
-    <div className="w-full h-fit max-h-full overflow-y-hidden no-scrollbar  inline-grid grid-cols-2  gap-x-3 gap-y-7">
+    <div className="w-full h-fit max-h-full overflow-y-hidden no-scrollbar  inline-grid grid-cols-2  gap-x-3 gap-y-7 pb-32">
       {items.map((user) => {
         return <UserListItemBagde user={user} />;
       })}
