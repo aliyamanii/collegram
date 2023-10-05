@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { PageStatus, UserInfo } from "../types/types";
 import MainButton from "./MainButton";
-import { useFollowUserMutation, useUnFollowUserMutation } from "../api/user";
+import {
+  useFollowUserMutation,
+  useUnBlockUser,
+  useUnFollowUserMutation,
+} from "../api/user";
 import { useParams } from "react-router-dom";
 import { Mutation } from "@tanstack/react-query";
 
@@ -15,6 +19,7 @@ function UserActionButton({
   const { userId } = useParams() as { userId: string };
   const { mutateAsync: followMutation } = useFollowUserMutation(userId);
   const { mutateAsync: unFollowMutation } = useUnFollowUserMutation(userId);
+  const { mutateAsync: unBlockMutation } = useUnBlockUser(userId);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   if (pageStatus === "PUBLIC" || pageStatus === "PRIVATE") {
@@ -57,11 +62,26 @@ function UserActionButton({
     );
   }
 
-  return (
-    <MainButton onClick={() => {}} disabledMode={true}>
-      دنبال کردن
-    </MainButton>
-  );
+  if (pageStatus === "BLOCKED") {
+    return (
+      <MainButton onClick={() => {}} disabledMode={true}>
+        دنبال کردن
+      </MainButton>
+    );
+  } else
+    return (
+      <MainButton
+        onClick={async () => {
+          console.log("jhea");
+          setIsSubmitting(true);
+          await unBlockMutation();
+          setIsSubmitting(false);
+        }}
+        isSubmitting={isSubmitting}
+      >
+        آنبلاک
+      </MainButton>
+    );
 }
 
 export default UserActionButton;
