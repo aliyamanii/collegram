@@ -1,5 +1,7 @@
 import axios from "axios";
 import { logOut } from "../utils/logOut";
+import { errorToast } from "../utils/customToast";
+import { toast } from "react-toastify";
 
 const api = axios.create({ baseURL: "https://daltonz-backend.darkube.app" });
 

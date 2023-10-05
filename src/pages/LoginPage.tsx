@@ -10,6 +10,8 @@ import { api } from "../../src/api/instance";
 import { identifierValidation } from "../utils/validation";
 import MainButton from "../components/MainButton";
 import { ILoginFormValues } from "../types/types";
+import { toast } from "react-toastify";
+import { successToast } from "../utils/customToast";
 
 function Login() {
   const navigate = useNavigate();
@@ -46,14 +48,15 @@ function Login() {
       .then((result) => {
         localStorage.setItem("token", result.data.data.token);
         navigate(state?.lastPath || "/app/home");
+        successToast("با وموفقیت وارد شدید");
       })
       .catch((error) => {
         // trigger toast message
-        setError("usernameOrEmail", {
+        setValue("password", "");
+        setError("password", {
           type: "validate",
           message: "یوزر نیم یا پسورد اشتباه است",
         });
-        setValue("password", "");
       });
   };
 
@@ -97,8 +100,10 @@ function Login() {
           icon={key}
           type="password"
           width="320px"
+          hasError={Boolean(errors?.password?.message)}
           {...register("password")}
         />
+        <ErrorMessage errorMessage={errors?.password?.message} />
         <section
           id="remember__section"
           className="flex items-center justify-end w-full"
