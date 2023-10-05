@@ -7,6 +7,7 @@ import { useAddPostMutation } from "../api/Posts";
 import ErrorMessage from "./ErrorMessage";
 import PostPicturesSelect from "./PostPicturesSelect";
 import { descriptionValidation, tagsValidation } from "../utils/validation";
+import { successToast } from "../utils/customToast";
 
 export interface IAddPostValues {
   tags: string;
@@ -47,16 +48,13 @@ const AddPostModal: React.FC = () => {
     });
     selectedFiles.forEach((file) => form_data.append("photos", file));
 
-  
-
     await mutateAsync(form_data, {
       onSuccess: () => {
+        successToast("پست با موفقیت افزوده شد");
         onClose();
       },
     });
   };
-
-  
 
   return (
     <form

@@ -17,6 +17,7 @@ import { useModal } from "../customhook/useModal";
 import { useEditUserInfo } from "../api/user";
 import ProfilePictureSelect from "./ProfilePictureSelect";
 import { UserMeInfo } from "../types/types";
+import { successToast } from "../utils/customToast";
 
 export interface IEditProfileValues {
   email: string;
@@ -80,6 +81,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({ user }) => {
     await mutateAsync(form_data, {
       onSuccess: () => {
         onClose();
+        successToast("اطلاعات کاربری با موفقیت بروزرسانی شد");
       },
     });
   };

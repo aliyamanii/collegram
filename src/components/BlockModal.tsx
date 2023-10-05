@@ -8,6 +8,7 @@ import {
   useBlockUser,
   useTargetUserInfo,
 } from "../api/user";
+import { infoToast } from "../utils/customToast";
 
 interface BlockModalProps {
   user: UserInfo | RelationUserSummery;
@@ -19,16 +20,21 @@ const BlockModal: FC<BlockModalProps> = ({ user, userId }) => {
   const { mutateAsync: blockMutatation } = useBlockUser(userId);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
+  const { firstName, lastName, followers, profileUrl, username } = user;
+  const displayName =
+    firstName || lastName ? `${firstName || ""} ${lastName || ""}` : username;
+
   async function doBlock() {
     setIsSubmitting(true);
-    await blockMutatation();
+    await blockMutatation()
+      .then(() => {
+        infoToast(`${displayName} رو زدی بلاک کردی`);
+      })
+      .catch();
     setIsSubmitting(false);
     onClose();
   }
 
-  const { firstName, lastName, followers, profileUrl, username } = user;
-  const displayName =
-    firstName || lastName ? `${firstName || ""} ${lastName || ""}` : username;
   return (
     <div className="w-fit h-fit max-w-[616px] p-12 align-middle transform bg-bone rounded-[24px] shadow-xl transition-all font-primary">
       <div id="header" className=" flex flex-col items-center">

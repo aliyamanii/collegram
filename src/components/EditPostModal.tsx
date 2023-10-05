@@ -5,6 +5,7 @@ import { useModal } from "../customhook/useModal";
 import { Controller, useForm } from "react-hook-form";
 import { fetchPostDetails, useEditPost } from "../api/Posts";
 import { useParams } from "react-router-dom";
+import { successToast } from "../utils/customToast";
 
 export interface IEditPostValues {
   tags: string;
@@ -48,6 +49,7 @@ const EditPostModal: React.FC = () => {
     mutateAsync(requestBody, {
       onSuccess: () => {
         onClose();
+        successToast("پست با موفقیت ویرایش شد");
       },
     });
     const form_data = new FormData();
