@@ -58,10 +58,10 @@ const AddPostModal: React.FC = () => {
 
   return (
     <form
-      className="w-fit h-fit max-w-[616px] p-12 align-middle transform bg-bone rounded-[24px] shadow-xl transition-all"
+      className="w-fit h-fit max-w-[616px] p-12 align-middle transform bg-bone rounded-[24px] shadow-xl transition-all font-primary"
       onSubmit={handleSubmit(submitForm)}
     >
-      <h3 className="flex justify-center text-lg font-bold text-[20px] leading-[26px] text-navy font-primary">
+      <h3 className="flex justify-center text-lg font-bold text-[20px] leading-[26px] text-navy">
         افزودن پست
       </h3>
       <div className=" flex flex-col object-cover  ">

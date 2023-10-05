@@ -88,7 +88,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({ user }) => {
 
   return (
     <form
-      className="w-[375px] px-12 py-6 flex flex-col gap-3 align-middle transform bg-bone rounded-[24px] shadow-xl transition-all"
+      className="w-[375px] px-12 py-6 flex flex-col gap-3 align-middle transform bg-bone rounded-[24px] shadow-xl transition-all font-primary"
       dir="rtl"
       onSubmit={handleSubmit(submitHandler)}
     >
