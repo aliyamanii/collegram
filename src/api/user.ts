@@ -219,3 +219,48 @@ export function useBlackListQuery() {
     },
   });
 }
+
+export async function fetchCloseFriendsList(page = 1, limit = 10) {
+  const res = await api.get(`/users/friends?limit=${limit}&page=${page}`);
+  const data = res.data;
+  return data.data as {
+    items: RelationUserSummery[];
+    page: number;
+    maxPage: number;
+  };
+}
+
+export function useCloseFriendsListQuery() {
+  return useInfiniteQuery({
+    queryFn: ({ pageParam = 1 }) => fetchCloseFriendsList(pageParam),
+    queryKey: ["user", "closefriendslist"],
+    staleTime: 5 * 60 * 1000,
+    keepPreviousData: true,
+    getNextPageParam: (lastPage, _allPage) => {
+      const { maxPage, page } = lastPage;
+      return maxPage > page ? page + 1 : undefined;
+    },
+  });
+}
+
+export async function addCloseFriendUser(userId: string) {
+  const res = await api.post("/users/friends", { userId });
+  const data = res.data;
+  return data.data;
+}
+
+export function useAddCloseFriendMutation(userId: string) {
+  return useMutation({
+    mutationFn: () => addCloseFriendUser(userId),
+    onSuccess: () => {
+      client.invalidateQueries({ queryKey: ["user", userId] });
+      client.invalidateQueries({ queryKey: ["posts", userId] });
+      client.invalidateQueries({ queryKey: ["posts", "homePage"] });
+
+      client.invalidateQueries({
+        queryKey: ["user", "closefriendslist"],
+        type: "all",
+      });
+    },
+  });
+}

@@ -1,9 +1,9 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import sparkle from "../assets/photos/sparkle-dark.svg";
 import MainButton from "./MainButton";
 import { useModal } from "../customhook/useModal";
 import { UserInfo, UserMeInfo } from "../types/types";
-import { RelationUserSummery } from "../api/user";
+import { RelationUserSummery, useAddCloseFriendMutation } from "../api/user";
 
 interface CloseFriendModal {
   user: UserInfo | RelationUserSummery;
@@ -12,6 +12,17 @@ interface CloseFriendModal {
 
 const CloseFriendModal: FC<CloseFriendModal> = ({ user, userId }) => {
   const { isOpen, onClose } = useModal();
+
+  const { mutateAsync: addCloseFriendsMutation } =
+    useAddCloseFriendMutation(userId);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+
+  async function doAddCloseFriend() {
+    setIsSubmitting(true);
+    await addCloseFriendsMutation();
+    setIsSubmitting(false);
+    onClose();
+  }
 
   const { firstName, lastName, followers, profileUrl, username } = user;
   const displayName =
@@ -51,7 +62,7 @@ const CloseFriendModal: FC<CloseFriendModal> = ({ user, userId }) => {
           گذاشتی رو ببینه
         </div>
         <div className="flex">
-          <MainButton>آره، حتما</MainButton>
+          <MainButton onClick={doAddCloseFriend}>آره، حتما</MainButton>
           <button
             type="button"
             className="px-4 py-2 mr-2 text-sm font-normal text-black hover:font-semibold focus:outline-none"

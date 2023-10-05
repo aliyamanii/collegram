@@ -47,6 +47,8 @@ const MySinglePost: React.FC = () => {
     bookmarks,
   } = data as Post;
 
+  console.log(updatedAt);
+
   const timeDifference = relativeTime(updatedAt);
 
   return (

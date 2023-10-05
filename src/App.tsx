@@ -30,6 +30,7 @@ import RelationsPage from "./pages/Profile/RelationsPage";
 import BlackListShow from "./components/BlackListShow";
 import FollowersListShow from "./components/FollowesListShow";
 import FollowingsListShow from "./components/FollowingsListShow";
+import CloseFriendsListShow from "./components/CloseFriendsListShow";
 
 export const client = new QueryClient();
 
@@ -77,7 +78,7 @@ function App() {
                   index={true}
                   element={<Navigate to={"followers"} replace={true} />}
                 />
-                <Route path="closeFriends" element={<div>firendssss</div>} />
+                <Route path="closeFriends" element={<CloseFriendsListShow />} />
                 <Route path="followers" element={<FollowersListShow />} />
                 <Route path="followings" element={<FollowingsListShow />} />
                 <Route path="blackList" element={<BlackListShow />} />
