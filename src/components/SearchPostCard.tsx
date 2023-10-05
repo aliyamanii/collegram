@@ -11,12 +11,12 @@ interface SearchPostCardProPs {
 }
 
 export const SearchPostCard: React.FC<SearchPostCardProPs> = ({ post }) => {
-  const { images, likes, id: postId, isLiked } = post;
+  const { images, likes, id: postId, isLiked, userId } = post;
 
   return (
     <div className="w-[290px] mx-auto my-4 hover:scale-105 transition-all duration-300 ">
       <div className="bg-[#F9F9F9] rounded-b-2xl rounded-t-3xl overflow-hidden shadow-lg">
-        <Link to={`/app/people/user/${"k"}/post/${postId}`}>
+        <Link to={`/app/people/user/${userId}/post/${postId}`}>
           <img
             src={images[0].url}
             alt="Post"

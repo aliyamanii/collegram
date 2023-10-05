@@ -23,6 +23,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
     id: postId,
     isLiked,
     isBookmarked,
+    
   } = post;
 
   const displayName =

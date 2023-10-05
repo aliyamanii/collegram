@@ -134,4 +134,5 @@ export interface SearchPostSummery {
   images: Image[];
   isLiked: boolean;
   likes: number;
+  userId: string;
 }
