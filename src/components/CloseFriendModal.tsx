@@ -3,16 +3,17 @@ import sparkle from "../assets/photos/sparkle-dark.svg";
 import MainButton from "./MainButton";
 import { useModal } from "../customhook/useModal";
 import { UserInfo, UserMeInfo } from "../types/types";
+import { RelationUserSummery } from "../api/user";
 
 interface CloseFriendModal {
-  user: UserInfo;
+  user: UserInfo | RelationUserSummery;
   userId: string;
 }
 
 const CloseFriendModal: FC<CloseFriendModal> = ({ user, userId }) => {
   const { isOpen, onClose } = useModal();
 
-  const { firstName, lastName, profileUrl, followers, username } = user;
+  const { firstName, lastName, profileUrl, username } = user;
   const displayName =
     firstName || lastName ? `${firstName || ""} ${lastName || ""}` : username;
   return (
@@ -37,7 +38,8 @@ const CloseFriendModal: FC<CloseFriendModal> = ({ user, userId }) => {
             </div>
             <div className="flex text-navy">
               <div>دنبال کننده</div>
-              {followers}
+              {/* {followers} */}
+              {5}
             </div>
           </div>
         </div>
