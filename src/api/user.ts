@@ -56,13 +56,12 @@ export async function followUser(userId: string) {
 export function useFollowUserMutation(userId: string) {
   return useMutation({
     mutationFn: () => followUser(userId),
-    onMutate: () => {
-      client.invalidateQueries({ queryKey: ["user", "me"], type: "all" });
-    },
+    onMutate: () => {},
     onSuccess: () => {
       client.invalidateQueries({ queryKey: ["user", userId] });
       client.invalidateQueries({ queryKey: ["posts", userId] });
       client.invalidateQueries({ queryKey: ["posts", "homePage"] });
+      client.invalidateQueries({ queryKey: ["user", "me"], type: "all" });
     },
   });
 }
@@ -80,6 +79,7 @@ export function useUnFollowUserMutation(userId: string) {
       client.invalidateQueries({ queryKey: ["user", userId] });
       client.invalidateQueries({ queryKey: ["posts", userId] });
       client.invalidateQueries({ queryKey: ["posts", "homePage"] });
+      client.invalidateQueries({ queryKey: ["user", "me"], type: "all" });
     },
   });
 }
@@ -100,7 +100,7 @@ export function useBlockUser(userId: string) {
       client.invalidateQueries({ queryKey: ["user", userId] });
       client.invalidateQueries({ queryKey: ["posts", userId] });
       client.invalidateQueries({ queryKey: ["posts", "homePage"] });
-      client.invalidateQueries({ queryKey: ["user", "me"] });
+      client.invalidateQueries({ queryKey: ["user", "me"], type: "all" });
     },
   });
 }
@@ -121,7 +121,7 @@ export function useUnBlockUser(userId: string) {
       client.invalidateQueries({ queryKey: ["user", userId] });
       client.invalidateQueries({ queryKey: ["posts", userId] });
       client.invalidateQueries({ queryKey: ["posts", "homePage"] });
-      client.invalidateQueries({ queryKey: ["user", "me"] });
+      client.invalidateQueries({ queryKey: ["user", "me"], type: "all" });
     },
   });
 }
