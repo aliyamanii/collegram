@@ -26,6 +26,10 @@ import UserProfilePage from "./pages/UserProfilePage";
 import UserSinglePost from "./pages/UserSinglePost";
 import CommunityPage from "./pages/CommunityPage";
 import SearchPage from "./pages/SearchPage";
+import RelationsPage from "./pages/Profile/RelationsPage";
+import BlackListShow from "./components/BlackListShow";
+import FollowersListShow from "./components/FollowesListShow";
+import FollowingsListShow from "./components/FollowingsListShow";
 
 export const client = new QueryClient();
 
@@ -68,7 +72,13 @@ function App() {
               <Route path="bookmarks" element={<BookmarksPage />} />
               <Route path="chat" element={<div>chat</div>} />
               <Route path="notifications" element={<div>Notifications</div>} />
-              <Route path="list" element={<div>List?</div>} />
+              <Route path="list" element={<RelationsPage />}>
+                <Route path="closeFriends" element={<div>firendssss</div>} />
+                <Route path="followers" element={<FollowersListShow />} />
+                <Route path="followings" element={<FollowingsListShow />} />
+                <Route path="blackList" element={<BlackListShow />} />
+              </Route>
+
               <Route path="history" element={<div>History?</div>} />
               <Route path="post/:id" element={<MySinglePost />} />
             </Route>

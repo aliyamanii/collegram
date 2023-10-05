@@ -3,10 +3,11 @@ import Modal from "./Modal";
 import BlockModal from "./BlockModal";
 import CloseFriendModal from "./CloseFriendModal";
 import { UserInfo } from "../types/types";
+import { RelationUserSummery } from "../api/user";
 
 interface DropDownProps {
   onClose: () => void;
-  user: UserInfo;
+  user: UserInfo | RelationUserSummery;
   userId: string;
 }
 
@@ -47,7 +48,7 @@ const DropDown: React.FC<DropDownProps> = ({ onClose, user, userId }) => {
   return (
     <div
       ref={dropdownRef}
-      className="absolute left-[210px] top-[280px] right-0 mt-2 w-56 bg-vanilla border border-[#CDCDCD] rounded-s-3xl rounded-b-3xl shadow-lg text-right"
+      className="absolute left-[0px]  bottom-0 translate-y-full z-10   w-56 bg-vanilla border border-[#CDCDCD] rounded-s-3xl rounded-b-3xl shadow-lg text-right"
     >
       <ul>
         <li

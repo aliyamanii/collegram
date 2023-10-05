@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useMutation, useQuery } from "@tanstack/react-query";
 import { api } from "./instance";
 import { client } from "../App";
 import { PageStatus, UserInfo, UserMeInfo } from "../types/types";
@@ -62,6 +62,10 @@ export function useFollowUserMutation(userId: string) {
       client.invalidateQueries({ queryKey: ["posts", userId] });
       client.invalidateQueries({ queryKey: ["posts", "homePage"] });
       client.invalidateQueries({ queryKey: ["user", "me"], type: "all" });
+      client.invalidateQueries({
+        queryKey: ["user", "followingsList"],
+        type: "all",
+      });
     },
   });
 }
@@ -80,6 +84,10 @@ export function useUnFollowUserMutation(userId: string) {
       client.invalidateQueries({ queryKey: ["posts", userId] });
       client.invalidateQueries({ queryKey: ["posts", "homePage"] });
       client.invalidateQueries({ queryKey: ["user", "me"], type: "all" });
+      client.invalidateQueries({
+        queryKey: ["user", "followingsList"],
+        type: "all",
+      });
     },
   });
 }
@@ -101,6 +109,10 @@ export function useBlockUser(userId: string) {
       client.invalidateQueries({ queryKey: ["posts", userId] });
       client.invalidateQueries({ queryKey: ["posts", "homePage"] });
       client.invalidateQueries({ queryKey: ["user", "me"], type: "all" });
+      client.invalidateQueries({
+        queryKey: ["user", "blackList"],
+        type: "all",
+      });
     },
   });
 }
@@ -122,6 +134,87 @@ export function useUnBlockUser(userId: string) {
       client.invalidateQueries({ queryKey: ["posts", userId] });
       client.invalidateQueries({ queryKey: ["posts", "homePage"] });
       client.invalidateQueries({ queryKey: ["user", "me"], type: "all" });
+      client.invalidateQueries({
+        queryKey: ["user", "blackList"],
+        type: "all",
+      });
+    },
+  });
+}
+
+export interface RelationUserSummery {
+  id: string;
+  username: string;
+  firstName?: string;
+  lastName?: string;
+  profileUrl?: string;
+} // ??????????????
+
+export async function fetchFollowingsList(page = 1, limit = 10) {
+  const res = await api.get(`/users/followings?limit=${limit}&page=${page}`);
+  const data = res.data;
+  return data.data as {
+    items: RelationUserSummery[];
+    page: number;
+    maxPage: number;
+  };
+}
+
+export function useFollowingsListQuery() {
+  return useInfiniteQuery({
+    queryFn: ({ pageParam = 1 }) => fetchFollowingsList(pageParam),
+    queryKey: ["user", "followingsList"],
+    staleTime: 5 * 60 * 1000,
+    keepPreviousData: true,
+    getNextPageParam: (lastPage, _allPage) => {
+      const { maxPage, page } = lastPage;
+      return maxPage > page ? page + 1 : undefined;
+    },
+  });
+}
+
+export async function fetchFollowersList(page = 1, limit = 10) {
+  const res = await api.get(`/users/followers?limit=${limit}&page=${page}`);
+  const data = res.data;
+  return data.data as {
+    items: RelationUserSummery[];
+    page: number;
+    maxPage: number;
+  };
+}
+
+export function useFollowersListQuery() {
+  return useInfiniteQuery({
+    queryFn: ({ pageParam = 1 }) => fetchFollowersList(pageParam),
+    queryKey: ["user", "followersList"],
+    staleTime: 5 * 60 * 1000,
+    keepPreviousData: true,
+    getNextPageParam: (lastPage, _allPage) => {
+      const { maxPage, page } = lastPage;
+      return maxPage > page ? page + 1 : undefined;
+    },
+  });
+}
+
+export async function fetchBlackList(page = 1, limit = 10) {
+  const res = await api.get(`/users/blocked?limit=${limit}&page=${page}`);
+  const data = res.data;
+  return data.data as {
+    items: RelationUserSummery[];
+    page: number;
+    maxPage: number;
+  };
+}
+
+export function useBlackListQuery() {
+  return useInfiniteQuery({
+    queryFn: ({ pageParam = 1 }) => fetchBlackList(pageParam),
+    queryKey: ["user", "blackList"],
+    staleTime: 5 * 60 * 1000,
+    keepPreviousData: true,
+    getNextPageParam: (lastPage, _allPage) => {
+      const { maxPage, page } = lastPage;
+      return maxPage > page ? page + 1 : undefined;
     },
   });
 }

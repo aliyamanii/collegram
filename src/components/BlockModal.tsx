@@ -3,10 +3,14 @@ import block from "../assets/photos/block-dark.svg";
 import MainButton from "./MainButton";
 import { useModal } from "../customhook/useModal";
 import { UserInfo, UserSummery } from "../types/types";
-import { useBlockUser, useTargetUserInfo } from "../api/user";
+import {
+  RelationUserSummery,
+  useBlockUser,
+  useTargetUserInfo,
+} from "../api/user";
 
 interface BlockModalProps {
-  user: UserInfo;
+  user: UserInfo | RelationUserSummery;
   userId: string;
 }
 
@@ -22,7 +26,7 @@ const BlockModal: FC<BlockModalProps> = ({ user, userId }) => {
     onClose();
   }
 
-  const { firstName, lastName, profileUrl, followers, username } = user;
+  const { firstName, lastName, profileUrl, username } = user;
   const displayName =
     firstName || lastName ? `${firstName || ""} ${lastName || ""}` : username;
   return (
@@ -47,7 +51,8 @@ const BlockModal: FC<BlockModalProps> = ({ user, userId }) => {
             </div>
             <div className="flex text-navy">
               <div>دنبال کننده</div>
-              {followers}
+              {/* {followers} */}
+              {5}
             </div>
           </div>
         </div>

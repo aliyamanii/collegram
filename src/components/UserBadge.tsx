@@ -35,7 +35,7 @@ function UserBadge({ userId }: { userId: string }) {
     firstName || lastName ? `${firstName} ${lastName}` : username;
 
   return (
-    <div className="flex min-h-[64px]  justify-between gap-7 items-center rounded-3xl ">
+    <div className="flex min-h-[64px]  justify-between gap-7 items-center rounded-3xl pb-2 relative">
       <Link to={`/app/people/user/${userId}`}>
         <img
           src={profileUrl || personIcon}
