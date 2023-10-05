@@ -13,7 +13,7 @@ interface CloseFriendModal {
 const CloseFriendModal: FC<CloseFriendModal> = ({ user, userId }) => {
   const { isOpen, onClose } = useModal();
 
-  const { firstName, lastName, profileUrl, username } = user;
+  const { firstName, lastName, followers, profileUrl, username } = user;
   const displayName =
     firstName || lastName ? `${firstName || ""} ${lastName || ""}` : username;
   return (
@@ -38,8 +38,7 @@ const CloseFriendModal: FC<CloseFriendModal> = ({ user, userId }) => {
             </div>
             <div className="flex text-navy">
               <div>دنبال کننده</div>
-              {/* {followers} */}
-              {5}
+              {followers}
             </div>
           </div>
         </div>

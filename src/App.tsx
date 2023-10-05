@@ -73,6 +73,10 @@ function App() {
               <Route path="chat" element={<div>chat</div>} />
               <Route path="notifications" element={<div>Notifications</div>} />
               <Route path="list" element={<RelationsPage />}>
+                <Route
+                  index={true}
+                  element={<Navigate to={"followers"} replace={true} />}
+                />
                 <Route path="closeFriends" element={<div>firendssss</div>} />
                 <Route path="followers" element={<FollowersListShow />} />
                 <Route path="followings" element={<FollowingsListShow />} />
