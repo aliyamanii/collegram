@@ -46,7 +46,7 @@ function ProfilePictureSelect({
     <div className="flex justify-center items-center ">
       <label
         htmlFor="fileInput"
-        className="w-[150px] h-[150px] flex items-center justify-center rounded-full overflow-hidden cursor-pointer border border-gray-300"
+        className="w-[120px] h-[120px] flex items-center justify-center rounded-full overflow-hidden cursor-pointer border border-gray-300"
       >
         {selectedFiles.length === 0 ? (
           currentImage ? (
