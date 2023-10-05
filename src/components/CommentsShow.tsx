@@ -22,8 +22,6 @@ function CommentsShow({
 
   const items = data.pages.map((page) => page.items).flat(1);
 
-  console.log(items);
-
   return (
     <div className="flex flex-col gap-5 h-full">
       {items.map((Comment) => (

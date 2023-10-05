@@ -18,7 +18,6 @@ const MainButton: React.FC<ButtonProps> = ({
   isSubmitting,
   disabledMode,
 }) => {
-  console.log(isSubmitting);
   return (
     <button
       className={`py-2 px-4 text-sm font-medium text-white bg-amber rounded-full  hover:text-black  ${className} flex justify-center items-center ${

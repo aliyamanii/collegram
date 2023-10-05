@@ -22,7 +22,7 @@ const EditPostModal: React.FC = () => {
   } = useForm<IEditPostValues>({
     defaultValues: async () => {
       const data = await fetchPostDetails(id);
-      console.log(data);
+
       const tagTexts = data.tags.map((tag: any) => tag.value).join(" ");
       const defaultValue: IEditPostValues = {
         tags: tagTexts,
@@ -40,7 +40,6 @@ const EditPostModal: React.FC = () => {
   const { isOpen, onClose } = useModal();
 
   const submitForm = async (formValues: IEditPostValues) => {
-    console.log(formValues);
     const requestBody = {
       ...formValues,
       tags: formValues.tags.trim().replace(/\s+/g, " ").split(" "),

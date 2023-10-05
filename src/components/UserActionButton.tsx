@@ -72,7 +72,6 @@ function UserActionButton({
     return (
       <MainButton
         onClick={async () => {
-          console.log("jhea");
           setIsSubmitting(true);
           await unBlockMutation();
           setIsSubmitting(false);

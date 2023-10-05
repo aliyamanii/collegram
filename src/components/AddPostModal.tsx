@@ -47,7 +47,7 @@ const AddPostModal: React.FC = () => {
     });
     selectedFiles.forEach((file) => form_data.append("photos", file));
 
-    console.log(form_data);
+  
 
     await mutateAsync(form_data, {
       onSuccess: () => {
@@ -56,7 +56,7 @@ const AddPostModal: React.FC = () => {
     });
   };
 
-  console.log("form", isSubmitting);
+  
 
   return (
     <form

@@ -33,7 +33,7 @@ const MySinglePost: React.FC = () => {
     navigate("/error", { replace: true });
     return null;
   }
-  console.log(data);
+
   const {
     userId,
     closeFriendsOnly,
@@ -46,8 +46,6 @@ const MySinglePost: React.FC = () => {
     isBookmarked,
     bookmarks,
   } = data as Post;
-
-  console.log(updatedAt);
 
   const timeDifference = relativeTime(updatedAt);
 

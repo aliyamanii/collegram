@@ -70,7 +70,6 @@ const MyPostsPage: React.FC = () => {
     );
   }
 
-  console.log(items);
   return (
     <div
       className="w-full h-full overflow-y-scroll no-scrollbar flex justify-around  pb-10 flex-wrap gap-4 "
