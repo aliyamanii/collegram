@@ -11,6 +11,7 @@ import {
 import MainButton from "../components/MainButton";
 import { INewPasswordFormValues } from "../types/types";
 import { api } from "../api/instance";
+import { successToast } from "../utils/customToast";
 
 function NewPassword() {
   const navigate = useNavigate();
@@ -36,6 +37,7 @@ function NewPassword() {
     await api
       .put("/users/password", { password: formData.password, token })
       .then(() => {
+        successToast("رمز عبور با موفقیت تغیر کرد");
         navigate("/auth/login");
       })
       .catch();

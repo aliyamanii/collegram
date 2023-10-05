@@ -31,6 +31,8 @@ import BlackListShow from "./components/BlackListShow";
 import FollowersListShow from "./components/FollowesListShow";
 import FollowingsListShow from "./components/FollowingsListShow";
 import CloseFriendsListShow from "./components/CloseFriendsListShow";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const client = new QueryClient();
 
@@ -93,6 +95,18 @@ function App() {
         </Routes>
       </BrowserRouter>
       <ReactQueryDevtools />
+      <ToastContainer
+        position="bottom-center"
+        autoClose={3000}
+        hideProgressBar
+        newestOnTop
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover
+        rtl
+        theme="light"
+        closeButton={false}
+      />
     </QueryClientProvider>
   );
 }

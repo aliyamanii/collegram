@@ -8,6 +8,7 @@ import { api } from "../api/instance";
 import { identifierValidation } from "../utils/validation";
 import MainButton from "../components/MainButton";
 import { IRecoverPasswordValues } from "../types/types";
+import { errorToast, successToast } from "../utils/customToast";
 
 function RecoverPassword() {
   const { state } = useLocation();
@@ -31,10 +32,14 @@ function RecoverPassword() {
         identifier: formData.usernameOrEmail,
       })
       .then((result) => {
+        console.log(result);
         // triger toasst success send email
+        successToast(
+          `ایمیل بازیابی رمز عبور به این آدرس ${result.data.data.email} فرستاده شد`
+        );
       })
       .catch((error) => {
-        // trigger toast error message
+        // errorToast("چیزی اشتباه پیش رفت");
       });
   };
 

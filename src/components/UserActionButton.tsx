@@ -8,6 +8,7 @@ import {
 } from "../api/user";
 import { useParams } from "react-router-dom";
 import { Mutation } from "@tanstack/react-query";
+import { infoToast, successToast } from "../utils/customToast";
 
 function UserActionButton({
   user,
@@ -22,12 +23,22 @@ function UserActionButton({
   const { mutateAsync: unBlockMutation } = useUnBlockUser(userId);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
+  const { firstName, lastName, followers, profileUrl, username } = user;
+  const displayName =
+    firstName || lastName ? `${firstName || ""} ${lastName || ""}` : username;
+
   if (pageStatus === "PUBLIC" || pageStatus === "PRIVATE") {
     return (
       <MainButton
         onClick={async () => {
           setIsSubmitting(true);
-          await followMutation();
+          await followMutation().then(() => {
+            if (pageStatus === "PUBLIC") {
+              successToast(`${displayName} رو از این به بعد فالو داری`);
+            } else if (pageStatus === "PRIVATE") {
+              infoToast(`در خواست برای ${displayName} ارسال شد`);
+            }
+          });
           setIsSubmitting(false);
         }}
       >
@@ -40,7 +51,9 @@ function UserActionButton({
       <MainButton
         onClick={async () => {
           setIsSubmitting(true);
-          await followMutation();
+          await followMutation().then(() => {
+            infoToast(`درخواست دوستیت رو برداشتی`);
+          });
           setIsSubmitting(false);
         }}
       >
@@ -53,7 +66,9 @@ function UserActionButton({
       <MainButton
         onClick={async () => {
           setIsSubmitting(true);
-          unFollowMutation();
+          unFollowMutation().then(() => {
+            infoToast(`زدی ${displayName} رو آنفالو کردی`);
+          });
           setIsSubmitting(false);
         }}
       >
@@ -74,6 +89,7 @@ function UserActionButton({
         onClick={async () => {
           setIsSubmitting(true);
           await unBlockMutation();
+          successToast(`${displayName} از این به بعد میتونه پستات رو ببینه`);
           setIsSubmitting(false);
         }}
         isSubmitting={isSubmitting}
