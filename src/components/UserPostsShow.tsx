@@ -14,7 +14,7 @@ function UserPostsContainer({
   pageStatus,
   userFirstName,
 }: IUserPostsContainer) {
-  if (pageStatus === "BLOCKED" || pageStatus === "BLOCKED_BY_YOU") {
+  if (pageStatus === "BLOCKED") {
     return (
       <div
         className="w-full h-full overflow-y-scroll no-scrollbar flex  flex-col gap-7 justify-center items-center text-center font-primary text-navy"
@@ -30,6 +30,23 @@ function UserPostsContainer({
     );
   }
 
+  if (pageStatus === "BLOCKED_BY_YOU") {
+    return (
+      <div
+        className="w-full h-full overflow-y-scroll no-scrollbar flex  flex-col gap-7 justify-center items-center text-center font-primary text-navy"
+        dir="rtl"
+      >
+        <h1 className="text-xl font-bold">
+          مثل اینکه {userFirstName} رو بلاک کردی
+        </h1>
+        <div className="flex flex-col gap-3 text-base">
+          <p>{userFirstName} دیگه نمی تونه پست ها و</p>
+          <p>استوری‌هات رو ببینه.</p>
+          <p>شاید بخوای آنبلاکش کنی</p>
+        </div>
+      </div>
+    );
+  }
   if (pageStatus === "PRIVATE" || pageStatus === "REQUESTED") {
     return (
       <div className="w-full h-full overflow-y-scroll no-scrollbar flex justify-center flex-wrap gap-4">

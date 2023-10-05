@@ -26,6 +26,7 @@ const UserProfilePage: React.FC = () => {
         pageStatus={user.pageStatus}
         userFirstName={user.firstName || user.username || "این شخص"}
       />
+
       <UserMiniProfile user={user} pageStatus={user.pageStatus} />
     </div>
   );

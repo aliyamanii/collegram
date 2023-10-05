@@ -104,3 +104,24 @@ export function useBlockUser(userId: string) {
     },
   });
 }
+
+export async function unBlockUser(userId: string) {
+  const res = await api.post("/users/unblock", { userId });
+  const data = res.data;
+  return data.data;
+}
+
+export function useUnBlockUser(userId: string) {
+  return useMutation({
+    mutationFn: () => unBlockUser(userId),
+    onMutate: () => {
+      client.invalidateQueries({ queryKey: ["user", "me"] });
+    },
+    onSuccess: () => {
+      client.invalidateQueries({ queryKey: ["user", userId] });
+      client.invalidateQueries({ queryKey: ["posts", userId] });
+      client.invalidateQueries({ queryKey: ["posts", "homePage"] });
+      client.invalidateQueries({ queryKey: ["user", "me"] });
+    },
+  });
+}

@@ -19,6 +19,7 @@ const BlockModal: FC<BlockModalProps> = ({ user, userId }) => {
     setIsSubmitting(true);
     await blockMutatation();
     setIsSubmitting(false);
+    onClose();
   }
 
   const { firstName, lastName, profileUrl, followers, username } = user;
