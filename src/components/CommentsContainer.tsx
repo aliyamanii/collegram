@@ -10,7 +10,9 @@ function CommentsContainer() {
     undefined
   );
   function changeParentCommentId(id: string) {
-    setParrentCommentId(id);
+    if (id === parentCommentId) {
+      setParrentCommentId("");
+    } else setParrentCommentId(id);
   }
 
   return (
