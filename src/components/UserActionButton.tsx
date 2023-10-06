@@ -5,6 +5,7 @@ import {
   useFollowUserMutation,
   useUnBlockUser,
   useUnFollowUserMutation,
+  userCancelFollowRequestUser,
 } from "../api/user";
 import { useParams } from "react-router-dom";
 import { Mutation } from "@tanstack/react-query";
@@ -22,6 +23,8 @@ function UserActionButton({
   const { mutateAsync: unFollowMutation } = useUnFollowUserMutation(userId);
   const { mutateAsync: unBlockMutation } = useUnBlockUser(userId);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const { mutateAsync: cancelRequestMutation } =
+    userCancelFollowRequestUser(userId);
 
   const { firstName, lastName, followers, profileUrl, username } = user;
   const displayName =
@@ -51,7 +54,7 @@ function UserActionButton({
       <MainButton
         onClick={async () => {
           setIsSubmitting(true);
-          await followMutation().then(() => {
+          await cancelRequestMutation().then(() => {
             infoToast(`درخواست دوستیت رو برداشتی`);
           });
           setIsSubmitting(false);

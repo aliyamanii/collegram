@@ -76,6 +76,29 @@ export function useFollowUserMutation(userId: string) {
   });
 }
 
+export async function cancelFollowRequestUser(userId: string) {
+  const res = await api.delete("/users/request", { data: { userId } });
+  const data = res.data;
+  return data.data;
+}
+
+export function userCancelFollowRequestUser(userId: string) {
+  return useMutation({
+    mutationFn: () => cancelFollowRequestUser(userId),
+    onMutate: () => {},
+    onSuccess: () => {
+      client.invalidateQueries({ queryKey: ["user", userId] });
+      client.invalidateQueries({ queryKey: ["posts", userId] });
+      client.invalidateQueries({ queryKey: ["posts", "homePage"] });
+      client.invalidateQueries({ queryKey: ["user", "me"], type: "all" });
+      client.invalidateQueries({
+        queryKey: ["user", "followingsList"],
+        type: "all",
+      });
+    },
+  });
+}
+
 export async function unfollowUser(userId: string) {
   const res = await api.post("/users/unfollow", { userId });
   const data = res.data;
