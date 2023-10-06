@@ -48,14 +48,14 @@ function Login() {
       .then((result) => {
         localStorage.setItem("token", result.data.data.token);
         navigate(state?.lastPath || "/app/home");
-        successToast("با وموفقیت وارد شدید");
+        successToast("با موفقیت وارد شدید");
       })
       .catch((error) => {
         // trigger toast message
         setValue("password", "");
         setError("password", {
           type: "validate",
-          message: "یوزر نیم یا پسورد اشتباه است",
+          message: "نام کاربری یا رمز عبور اشتباه است",
         });
       });
   };

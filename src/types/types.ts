@@ -44,6 +44,10 @@ export interface UserSummery {
   lastName?: string;
 }
 
+export interface UserPicturedSummary extends UserSummery {
+  profileUrl: string;
+}
+
 export interface INavLink {
   title: string;
   destinationUrl: string;
@@ -145,4 +149,53 @@ export interface UserExploreItem {
   lastName?: string;
   profileUrl: string;
   posts: { id: string; userId: string; images: Image[] }[];
+}
+
+type NotifTypes =
+  | "REQUEST"
+  | "FOLLOW_ACCEPT"
+  | "FOLLOW"
+  | "POST_LIKE"
+  | "POST_COMMENT"
+  | "COMMENT_LIKE";
+
+export interface BaseNotif {
+  id: string;
+  user: UserPicturedSummary;
+  targetUser: UserSummery;
+  type: NotifTypes;
+}
+
+export interface FollowingStatesNotif extends BaseNotif {
+  type: "REQUEST" | "FOLLOW_ACCEPT" | "FOLLOW";
+}
+
+export interface PostsLikeNotif extends BaseNotif {
+  type: "POST_LIKE";
+  post: { images: Image[]; postId: string };
+}
+
+export interface PostCommentNofit extends BaseNotif {
+  type: "POST_COMMENT";
+  comment: {
+    post: PostSummary;
+    commentText: "string";
+  };
+}
+
+export interface CommentsLikesNotif extends BaseNotif {
+  type: "COMMENT_LIKE";
+  post: { images: Image[]; postId: string; text: string };
+}
+
+export type Notif =
+  | FollowingStatesNotif
+  | PostsLikeNotif
+  | PostCommentNofit
+  | CommentsLikesNotif;
+
+export interface PaginatedApiData<T> {
+  items: T[];
+  page: number;
+  maxPage: number;
 }

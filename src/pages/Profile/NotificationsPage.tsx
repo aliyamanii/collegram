@@ -10,15 +10,15 @@ import {
   useParams,
 } from "react-router-dom";
 
-function RelationsPage() {
+function NotificationPage() {
   return (
-    <div className="w-[85%] h-full flex flex-col  gap-9">
+    <div className="w-[85%] h-full flex flex-col gap-11 ">
       <NotificationNavLinks />
-      <div className="w-full  h-full overflow-scroll no-scrollbar ">
+      <div className="w-full  h-full overflow-scroll no-scrollbar bg-green-200">
         <Outlet />
       </div>
     </div>
   );
 }
 
-export default RelationsPage;
+export default NotificationPage;
