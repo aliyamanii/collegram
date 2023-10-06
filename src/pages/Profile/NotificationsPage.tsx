@@ -14,7 +14,7 @@ function NotificationPage() {
   return (
     <div className="w-[85%] h-full flex flex-col gap-11 ">
       <NotificationNavLinks />
-      <div className="w-full  h-full overflow-scroll no-scrollbar bg-green-200">
+      <div className="w-full  h-full overflow-scroll no-scrollbar ">
         <Outlet />
       </div>
     </div>
