@@ -36,6 +36,7 @@ import "react-toastify/dist/ReactToastify.css";
 import NotificationNavLinks from "./components/Notifications/NotificationNavLinks";
 import MyNotifs from "./components/Notifications/MyNotifs";
 import OtherNotifs from "./components/Notifications/OtherNotifs";
+import NotificationPage from "./pages/Profile/NotificationsPage";
 
 export const client = new QueryClient();
 
@@ -77,7 +78,7 @@ function App() {
               <Route path="posts" element={<MyPostPage />} />
               <Route path="bookmarks" element={<BookmarksPage />} />
               <Route path="chat" element={<div>chat</div>} />
-              <Route path="notifications" element={<NotificationNavLinks />}>
+              <Route path="notifications" element={<NotificationPage />}>
                 <Route
                   index={true}
                   element={<Navigate to="my-notifs" replace={true} />}

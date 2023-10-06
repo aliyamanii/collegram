@@ -6,6 +6,7 @@ import {
   UserPostSummary,
   HomePagePostSummery,
   SearchPostSummery,
+  PaginatedApiData,
 } from "../types/types";
 import { api } from "./instance";
 import { client } from "../App";
@@ -281,11 +282,7 @@ export async function fetchTargetUserPost(
     `/posts/users/${userId}?limit=${limit}&page=${page}`
   );
   const data = res.data;
-  return data.data as {
-    items: UserPostSummary[];
-    page: number;
-    maxPage: number;
-  };
+  return data.data as PaginatedApiData<UserPostSummary>;
 }
 
 export async function fetchSearchPosts(

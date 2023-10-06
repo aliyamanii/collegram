@@ -18,7 +18,7 @@ function NotificationNavLinks() {
       {items.map((item, index) => (
         <NavLink
           to={item.destinationUrl}
-          className={`flex w-full justify-center items-center grow font-primary text-lg  leading-4`}
+          className={` w-[25%] flex justify-center font-primary text-lg  leading-4`}
           style={({ isActive, isPending }) => {
             return {
               color: isActive ? "#191919" : "#A5A5A5",
