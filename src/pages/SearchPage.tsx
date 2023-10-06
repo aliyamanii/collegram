@@ -33,7 +33,7 @@ export default function SearchPage() {
 
   return (
     <div
-      className="h-full overflow-hidden pt-12 flex flex-col gap-7 font-primary text-2xl font-bold "
+      className="h-full overflow-hidden pt-12 flex flex-col gap-7 font-secondary text-2xl font-bold "
       dir="rtl"
     >
       <div className="flex gap-4 items-center text-xl font-bold text-[#587052]">

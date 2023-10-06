@@ -41,7 +41,7 @@ const MiniProfile: FC<MiniProfileProps> = ({ user, pageStatus }) => {
   const { firstName, lastName, profileUrl, followers, followings } = user;
   const displayName = `${firstName} ${lastName}`;
   return (
-    <div className="w-[256px] h-[403px] p-[15px] flex flex-col items-center bg-vanilla border border-[#cdcdcd] font-primary ">
+    <div className="w-[256px] h-[403px] p-[15px] flex flex-col items-center bg-vanilla border border-[#cdcdcd] font-secondary ">
       <div className="w-[106px] h-[106px] p-1 rounded-full  object-cover ring-gray-300 dark:ring-gray-500 -translate-y-[50%]">
         <img
           src={profileUrl || personIcon}

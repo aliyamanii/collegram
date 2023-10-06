@@ -61,7 +61,7 @@ function Login() {
   };
 
   return (
-    <div className="flex flex-col  items-center w-full h-full p-5 bg-bone font-primary ">
+    <div className="flex flex-col  items-center w-full h-full p-5 bg-bone font-secondary ">
       <section
         id="switch-mode"
         className="flex justify-between w-full mb-[20px]"

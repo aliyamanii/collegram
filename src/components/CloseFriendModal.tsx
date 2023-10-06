@@ -31,9 +31,9 @@ const CloseFriendModal: FC<CloseFriendModal> = ({ user, userId }) => {
   }
 
   return (
-    <div className="w-fit h-fit max-w-[616px] p-12 align-middle transform bg-bone rounded-[24px] shadow-xl transition-all font-primary">
+    <div className="w-fit h-fit max-w-[616px] p-12 align-middle transform bg-bone rounded-[24px] shadow-xl transition-all font-secondary">
       <div id="header" className="flex justify-center gap-3">
-        <h3 className="flex justify-center text-xl font-semibold text-[20px] leading-[26px] text-navy font-primary">
+        <h3 className="flex justify-center text-xl font-semibold text-[20px] leading-[26px] text-navy font-secondary">
           دوست نزدیک
         </h3>
         <img src={sparkle} className="w-6 h-6"></img>

@@ -16,7 +16,7 @@ const MiniProfile: FC = () => {
 
   if (isLoading) {
     return (
-      <div className="w-[256px] h-[403px] p-[15px] flex flex-col justify-center items-center bg-vanilla border border-gray-300 font-primary">
+      <div className="w-[256px] h-[403px] p-[15px] flex flex-col justify-center items-center bg-vanilla border border-gray-300 font-secondary">
         در حال گرفتن اطلاعات کاربر
       </div>
     );
@@ -24,7 +24,7 @@ const MiniProfile: FC = () => {
 
   if (isError) {
     return (
-      <div className="w-[256px] h-[403px] p-[15px] flex flex-col justify-center items-center bg-vanilla border border-gray-300 font-primary">
+      <div className="w-[256px] h-[403px] p-[15px] flex flex-col justify-center items-center bg-vanilla border border-gray-300 font-secondary">
         خطا در بازیابی اطلاعات کاربر
       </div>
     );
@@ -53,7 +53,7 @@ const MiniProfile: FC = () => {
 
   return (
     <div
-      className="w-[256px] h-fit p-3 flex flex-col items-center bg-vanilla border border-gray-300 font-primary  gap-5"
+      className="w-[256px] h-fit p-3 flex flex-col items-center bg-vanilla border border-gray-300 font-secondary  gap-5"
       dir="rtl"
     >
       <div>

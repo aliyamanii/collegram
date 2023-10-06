@@ -17,7 +17,7 @@ function UserListItemBagde({ user }: { user: RelationUserSummery }) {
 
   return (
     <div
-      className="flex min-h-[64px] w-64  justify-between gap-7 items-center rounded-3xl font-primary pb-2 relative "
+      className="flex min-h-[64px] w-64  justify-between gap-7 items-center rounded-3xl font-secondary pb-2 relative "
       dir="rtl"
     >
       <Link to={`/app/people/user/${id}`}>

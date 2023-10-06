@@ -14,11 +14,11 @@ export const items = [
 
 function NotificationNavLinks() {
   return (
-    <div className="flex text-center font-primary " dir="rtl">
+    <div className="flex text-center font-secondary " dir="rtl">
       {items.map((item, index) => (
         <NavLink
           to={item.destinationUrl}
-          className={` w-[25%] flex justify-center font-primary text-lg  leading-4`}
+          className={` w-[25%] flex justify-center font-secondary text-lg  leading-4`}
           style={({ isActive, isPending }) => {
             return {
               color: isActive ? "#191919" : "#A5A5A5",

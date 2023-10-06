@@ -36,10 +36,10 @@ const BlockModal: FC<BlockModalProps> = ({ user, userId }) => {
   }
 
   return (
-    <div className="w-fit h-fit max-w-[616px] p-12 align-middle transform bg-bone rounded-[24px] shadow-xl transition-all font-primary">
+    <div className="w-fit h-fit max-w-[616px] p-12 align-middle transform bg-bone rounded-[24px] shadow-xl transition-all font-secondary">
       <div id="header" className=" flex flex-col items-center">
         <img src={block} className="w-6 h-6"></img>
-        <h3 className="flex justify-center text-xl font-semibold text-[20px] leading-[26px] text-navy font-primary">
+        <h3 className="flex justify-center text-xl font-semibold text-[20px] leading-[26px] text-navy font-secondary">
           بلاک
         </h3>
       </div>

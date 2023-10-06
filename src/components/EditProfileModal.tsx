@@ -88,7 +88,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({ user }) => {
 
   return (
     <form
-      className="w-[375px] px-12 py-6 flex flex-col gap-3 align-middle transform bg-bone rounded-[24px] shadow-xl transition-all font-primary"
+      className="w-[375px] px-12 py-6 flex flex-col gap-3 align-middle transform bg-bone rounded-[24px] shadow-xl transition-all font-secondary"
       dir="rtl"
       onSubmit={handleSubmit(submitHandler)}
     >
@@ -110,7 +110,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({ user }) => {
         currentImage={profileUrl || ""}
       />
       <div className="flex flex-col gap-7">
-        <h3 className="flex justify-center text-lg font-bold text-[16px] leading-[22px] text-navy font-primary">
+        <h3 className="flex justify-center text-lg font-bold text-[16px] leading-[22px] text-navy font-secondary">
           ویرایش حساب
         </h3>
         <InputContainer

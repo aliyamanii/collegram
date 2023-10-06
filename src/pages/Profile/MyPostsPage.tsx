@@ -27,7 +27,7 @@ const MyPostsPage: React.FC = () => {
   }
   if (isError) {
     return (
-      <div className="w-full h-full overflow-y-scroll no-scrollbar flex justify-center items-center font-primary text-xl font-bold">
+      <div className="w-full h-full overflow-y-scroll no-scrollbar flex justify-center items-center font-secondary text-xl font-bold">
         خطا در گرفتن پست ها
       </div>
     );
@@ -38,7 +38,7 @@ const MyPostsPage: React.FC = () => {
   if (items.length === 0) {
     return (
       <div
-        className="w-full h-full overflow-y-scroll no-scrollbar flex justify-center items-center text-center font-primary "
+        className="w-full h-full overflow-y-scroll no-scrollbar flex justify-center items-center text-center font-secondary "
         dir="rtl"
       >
         <div className="flex flex-col w-96 items-center gap-6">

@@ -19,7 +19,7 @@ const FollowNotif: React.FC<NotificationProps> = ({ notification }) => {
   switch (notification.type) {
     case "REQUEST":
       content = (
-        <div className="flex gap-4 font-primary">
+        <div className="flex gap-4 font-secondary">
           <div className="flex gap-1">
             <p>{displayName}</p> <p>درخواست دوستی داده.</p>
           </div>
@@ -32,7 +32,7 @@ const FollowNotif: React.FC<NotificationProps> = ({ notification }) => {
       break;
     case "FOLLOW_ACCEPT":
       content = (
-        <div className="flex gap-4 font-primary">
+        <div className="flex gap-4 font-secondary">
           <div className="flex gap-1">
             <p>{displayName}</p> <p>درخواست دوستی ات رو قبول کرد</p>
           </div>
@@ -47,7 +47,7 @@ const FollowNotif: React.FC<NotificationProps> = ({ notification }) => {
       break;
     case "FOLLOW":
       content = (
-        <div className="flex gap-4 font-primary">
+        <div className="flex gap-4 font-secondary">
           <Link to={`/app/people/user/${notification.user.id}`}>
             <img
               src={profileUrl}

@@ -44,7 +44,7 @@ function RecoverPassword() {
   };
 
   return (
-    <div className="flex flex-col items-center w-full h-full p-5 bg-bone font-primary ">
+    <div className="flex flex-col items-center w-full h-full p-5 bg-bone font-secondary ">
       <text
         id="title"
         className="text-[16px] leading-[20px] text-center font-normal mb-[25px]"

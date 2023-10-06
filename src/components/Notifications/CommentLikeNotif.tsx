@@ -10,7 +10,7 @@ const CommentLikeNotif: React.FC<CommentLikeNotificationProps> = ({
   notification,
 }) => {
   return (
-    <div className="flex gap-4 font-primary">
+    <div className="flex gap-4 font-secondary">
       <div className="flex gap-1">
         <p>{notification.user.username}</p>
         <p>این کامنت رو لایک کرده:</p>

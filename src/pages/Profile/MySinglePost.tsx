@@ -49,7 +49,7 @@ const MySinglePost: React.FC = () => {
   const timeDifference = relativeTime(updatedAt);
 
   return (
-    <div className="flex gap-5  pb-3 justify-center font-primary h-full">
+    <div className="flex gap-5  pb-3 justify-center font-secondary h-full">
       <div className="basis-1/2 aspect-square">
         {images.length > 1 ? (
           <Carousel images={images} />

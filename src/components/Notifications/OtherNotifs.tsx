@@ -26,7 +26,7 @@ const MyPostsPage: React.FC = () => {
   }
   if (isError) {
     return (
-      <div className="w-full h-full overflow-y-scroll no-scrollbar flex justify-center items-center font-primary text-xl font-bold">
+      <div className="w-full h-full overflow-y-scroll no-scrollbar flex justify-center items-center font-secondary text-xl font-bold">
         خطا در گرفتن اعلانات
       </div>
     );

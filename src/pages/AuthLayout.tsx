@@ -5,7 +5,7 @@ import Header from "../components/AppHeader";
 
 function Auth() {
   return (
-    <div className="flex flex-col w-full min-h-screen  bg-vanilla font-primary">
+    <div className="flex flex-col w-full min-h-screen  bg-vanilla font-secondary">
       <div
         id="app__container"
         className="min-h-fit h-[55%] grow  flex  bg-bone  text-center flex-col items-center justify-center pt-7 pb-1 gap-2"

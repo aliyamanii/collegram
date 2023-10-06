@@ -6,7 +6,7 @@ import infoIcon from "../assets/photos/info-circle.svg";
 export function successToast(massage: string) {
   toast(massage, {
     className:
-      "font-primary text-base bg-green-100 rounded-2xl text-center w-[400px]",
+      "font-secondary text-base bg-green-100 rounded-2xl text-center w-[400px]",
     icon: () => <img src={successIcon} alt="" />,
   });
 }
@@ -14,7 +14,7 @@ export function successToast(massage: string) {
 export function errorToast(massage: string) {
   toast(massage, {
     className:
-      "font-primary text-base bg-red-100 rounded-2xl text-center w-[400px]",
+      "font-secondary text-base bg-red-100 rounded-2xl text-center w-[400px]",
     icon: () => <img src={errorIcon} alt="" />,
   });
 }
@@ -22,7 +22,7 @@ export function errorToast(massage: string) {
 export function infoToast(massage: string) {
   toast(massage, {
     className:
-      "font-primary text-base bg-blue-100 rounded-2xl text-center w-[400px]",
+      "font-secondary text-base bg-blue-100 rounded-2xl text-center w-[400px]",
     icon: () => <img src={infoIcon} alt="" />,
   });
 }

@@ -22,7 +22,7 @@ function Home() {
 
   if (isLoading) {
     return (
-      <div className="w-full h-[700px] flex flex-col justify-center items-center gap-[25px] font-primary">
+      <div className="w-full h-[700px] flex flex-col justify-center items-center gap-[25px] font-secondary">
         <img src={SpinnerIcon} className="animate-spin" alt="" />
       </div>
     );
@@ -38,7 +38,7 @@ function Home() {
     return (
       <div
         id="page"
-        className="w-full h-[700px] flex flex-col justify-center items-center gap-[25px] font-primary"
+        className="w-full h-[700px] flex flex-col justify-center items-center gap-[25px] font-secondary"
       >
         <div className=" w-[360px] text-[20px] font-bold leading-[26px] text-center text-navy">
           !سلام به کالج گرام خوش اومدی
@@ -59,10 +59,10 @@ function Home() {
   return (
     <div
       id="page"
-      className="w-full h-full flex flex-col items-start overflow-y-scroll no-scrollbar gap-4 font-primary py-6"
+      className="w-full h-full flex flex-col items-start overflow-y-scroll no-scrollbar gap-4 font-secondary py-6"
       dir="rtl"
     >
-      <h3 className="text-xl font-bold font-primary pr-4 ">خانه</h3>
+      <h3 className="text-xl font-bold font-secondary pr-4 ">خانه</h3>
       <div className="grid w-full h-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 ">
         {items.map((post) => (
           <PostCard key={post.id} post={post} />

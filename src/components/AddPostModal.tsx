@@ -58,7 +58,7 @@ const AddPostModal: React.FC = () => {
 
   return (
     <form
-      className="w-fit h-fit max-w-[616px] p-12 align-middle transform bg-bone rounded-[24px] shadow-xl transition-all font-primary"
+      className="w-fit h-fit max-w-[616px] p-12 align-middle transform bg-bone rounded-[24px] shadow-xl transition-all font-secondary"
       onSubmit={handleSubmit(submitForm)}
     >
       <h3 className="flex justify-center text-lg font-bold text-[20px] leading-[26px] text-navy">
@@ -72,7 +72,7 @@ const AddPostModal: React.FC = () => {
           clearErrors={clearErrors}
           errors={errors}
         />
-        <div className="mb-4 font-primary flex flex-col gap-6">
+        <div className="mb-4 font-secondary flex flex-col gap-6">
           <div className="flex flex-col gap-3 justify-between">
             <div className="flex justify-end my-2 text-[16px] font-medium leading-[20px] text-navy">
               توضیحات

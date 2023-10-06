@@ -12,8 +12,8 @@ export default {
       },
     },
     fontFamily: {
-      primary: "Vazirmatn",
-      secondary: "IRANYekanXFaNum",
+      secondary: "Vazirmatn",
+      secondary: "dana",
       montserrat: "montserrat",
     },
     backgroundImage: {

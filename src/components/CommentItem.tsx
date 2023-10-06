@@ -32,7 +32,7 @@ function CommentItem({
   return (
     <div className="flex flex-col gap-3">
       <li
-        className={`flex flex-col  w-full  font-primary gap-2 text-right px-2 ${
+        className={`flex flex-col  w-full  font-secondary gap-2 text-right px-2 ${
           comment.id === currentSelectedId ? "bg-gray-200 rounded-md" : ""
         }`}
         dir="rtl"

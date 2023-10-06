@@ -17,7 +17,7 @@ export const items: INavLink[] = [
 function SideBarNavLinks({ list }: { list: INavLink[] }) {
   return (
     <div
-      className="inline-flex w-[240px] gap-4 flex-col items-end text-right font-primary"
+      className="inline-flex w-[240px] gap-4 flex-col items-end text-right font-secondary"
       dir="rtl"
     >
       {list.map((item) => (

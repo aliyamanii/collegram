@@ -22,7 +22,7 @@ function UserPostsList({ userId }: { userId: string }) {
   }
   if (isError) {
     return (
-      <div className="w-full h-[500px] overflow-y-scroll no-scrollbar flex justify-center items-center font-primary">
+      <div className="w-full h-[500px] overflow-y-scroll no-scrollbar flex justify-center items-center font-secondary">
         خطا در گرفتن پست ها
       </div>
     );

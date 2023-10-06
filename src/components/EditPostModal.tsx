@@ -64,11 +64,11 @@ const EditPostModal: React.FC = () => {
       className="w-fit h-fit max-w-[616px] p-12 align-middle transform bg-bone rounded-[24px] shadow-xl transition-all"
       onSubmit={handleSubmit(submitForm)}
     >
-      <h3 className="flex justify-center text-lg font-bold text-[20px] leading-[26px] text-navy font-primary">
+      <h3 className="flex justify-center text-lg font-bold text-[20px] leading-[26px] text-navy font-secondary">
         ویرایش پست
       </h3>
       <div className=" flex flex-col object-cover  ">
-        <div className="mb-4 font-primary">
+        <div className="mb-4 font-secondary">
           <div className="flex justify-end my-2 text-[16px] font-medium leading-[20px] text-navy">
             توضیحات
           </div>

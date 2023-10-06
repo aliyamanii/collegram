@@ -22,7 +22,7 @@ export default function CloseFriendsListShow() {
     );
   if (isError)
     return (
-      <div className="w-full h-full flex justify-center items-center font-primary text-xl">
+      <div className="w-full h-full flex justify-center items-center font-secondary text-xl">
         خطا در بارگذاری
       </div>
     );

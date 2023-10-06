@@ -52,7 +52,7 @@ const UserSinglePost: React.FC = () => {
   // firstName || lastName ? `${firstName} ${lastName}` : username;
 
   return (
-    <div className="flex gap-6 h-full font-primary  mt-16 " dir="rtl">
+    <div className="flex gap-6 h-full font-secondary  mt-16 " dir="rtl">
       <div className="basis-1/2 h-[488px]">
         {images.length > 1 ? (
           <Carousel images={images} />

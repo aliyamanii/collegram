@@ -22,7 +22,7 @@ const AppHeader: React.FC = ({}) => {
   return (
     <div
       id="header"
-      className="w-full flex justify-between items-center font-primary "
+      className="w-full flex justify-between items-center font-secondary "
     >
       <SearchBar />
 

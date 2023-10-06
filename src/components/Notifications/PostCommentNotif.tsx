@@ -8,7 +8,7 @@ interface IPostCommentNotif {
 
 const PostCommentNotif: React.FC<IPostCommentNotif> = ({ notification }) => {
   return (
-    <div className="flex gap-4 font-primary">
+    <div className="flex gap-4 font-secondary">
       <div className="flex gap-1">
         <p>{notification.user.username}</p>
         <p>برای این عکس کامنت داده.</p>
