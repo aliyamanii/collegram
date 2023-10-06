@@ -24,7 +24,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import BookmarksPage from "./pages/Profile/BookmarksPage";
 import UserProfilePage from "./pages/UserProfilePage";
 import UserSinglePost from "./pages/UserSinglePost";
-import CommunityPage from "./pages/CommunityPage";
+import ExplorePage from "./pages/ExplorePage";
 import SearchPage from "./pages/SearchPage";
 import RelationsPage from "./pages/Profile/RelationsPage";
 import BlackListShow from "./components/BlackListShow";
@@ -66,7 +66,7 @@ function App() {
             <Route index={true} element={<Navigate to="home" replace />} />
             <Route path="home" element={<Home />} />
             <Route path="people">
-              <Route index={true} element={<CommunityPage />} />
+              <Route index={true} element={<ExplorePage />} />
               <Route path="user/:userId">
                 <Route index={true} element={<UserProfilePage />} />
                 <Route path="post/:id" element={<UserSinglePost />} />

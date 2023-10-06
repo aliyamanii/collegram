@@ -8,9 +8,8 @@ import LikeContainer from "../../components/LikeContainer";
 import BookmarkContainer from "../../components/BookmarkContainer";
 import EditPostModal from "../../components/EditPostModal";
 import { relativeTime } from "../../utils/relativeTime";
-import CustomCarousel from "../../components/Carousel";
+import Carousel from "../../components/Carousel";
 import { Post } from "../../types/types";
-import getTagCollor from "../../utils/getTagCollor";
 import CommentsContainer from "../../components/CommentsContainer";
 import TagItem from "../../components/TagItem";
 
@@ -53,12 +52,12 @@ const MySinglePost: React.FC = () => {
     <div className="flex gap-5  pb-3 justify-center font-primary h-full">
       <div className="basis-1/2 aspect-square">
         {images.length > 1 ? (
-          <CustomCarousel images={images} />
+          <Carousel images={images} />
         ) : (
           <img
             src={images[0].url}
             alt={`Image ${images[0].id}`}
-            className="w-full aspect-square object-cover mx-2 rounded-[24px] "
+            className="w-full aspect-square object-cover rounded-[24px]"
           />
         )}
       </div>
