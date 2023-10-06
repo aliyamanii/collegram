@@ -80,7 +80,7 @@ const MyPostsPage: React.FC = () => {
           <Link to={`/app/profile/post/${post.id}`}>
             <img
               src={post.image?.url}
-              className="w-[230px] h-[230px] object-cover  rounded-[24px] hover:scale-105 transition-all duration-300 bg-image-placeholder bg-center bg-cover"
+              className="w-[230px] h-[230px] object-cover  rounded-[24px] hover:scale-95 transition-all duration-300 bg-image-placeholder bg-center bg-cover"
             />
           </Link>
         </div>

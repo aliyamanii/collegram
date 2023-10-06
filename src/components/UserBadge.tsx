@@ -5,7 +5,7 @@ import personIcon from "../assets/photos/person.svg";
 import { useTargetUserInfo } from "../api/user";
 import { Link } from "react-router-dom";
 
-function UserBadge({ userId }: { userId: string }) {
+function UserBadge({ userId, rtl = false }: { userId: string; rtl?: boolean }) {
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
   const toggleDropDown = () => {
     setIsDropDownOpen((prev) => !prev);
@@ -35,7 +35,11 @@ function UserBadge({ userId }: { userId: string }) {
     firstName || lastName ? `${firstName} ${lastName}` : username;
 
   return (
-    <div className="flex min-h-[64px]  justify-between gap-7 items-center rounded-3xl pb-2 relative">
+    <div
+      className={`flex min-h-[64px] justify-between gap-7 items-center rounded-3xl pb-2 relative ${
+        rtl ? "flex-row-reverse" : ""
+      }`}
+    >
       <Link to={`/app/people/user/${userId}`}>
         <img
           src={profileUrl || personIcon}

@@ -29,7 +29,7 @@ const CustomCarousel: React.FC<CustomCarouselProps> = ({ images }) => {
       dir="ltr"
     >
       <div
-        className="w-full h-full flex transition-transform duration-300 rounded-3xl"
+        className="w-full h-[90%] flex transition-transform duration-300 rounded-3xl"
         style={{
           transform: `translateX(-${currentImageIndex * 100}%)`,
         }}
