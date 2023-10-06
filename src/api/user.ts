@@ -1,7 +1,13 @@
 import { useInfiniteQuery, useMutation, useQuery } from "@tanstack/react-query";
 import { api } from "./instance";
 import { client } from "../App";
-import { PageStatus, UserInfo, UserMeInfo } from "../types/types";
+import {
+  Image,
+  PageStatus,
+  UserExploreItem,
+  UserInfo,
+  UserMeInfo,
+} from "../types/types";
 
 export async function fetchMyInfo() {
   const res = await api.get("/users/me");
@@ -267,12 +273,23 @@ export function useAddCloseFriendMutation(userId: string) {
 
 export async function fetchExploreData(page = 1, limit = 20) {
   const res = await api.get(`/users/explore?limit=${limit}&page=${page}`);
+  const data = res.data;
+  return data.data as {
+    items: UserExploreItem[];
+    page: number;
+    maxPage: number;
+  };
 }
 
 export function useExploreDataQuery() {
-  return useQuery({
+  return useInfiniteQuery({
     queryKey: ["user", "explore"],
     queryFn: () => fetchExploreData(),
     staleTime: 5 * 60 * 1000,
+    keepPreviousData: true,
+    getNextPageParam: (lastPage, _allPage) => {
+      const { maxPage, page } = lastPage;
+      return maxPage > page ? page + 1 : undefined;
+    },
   });
 }

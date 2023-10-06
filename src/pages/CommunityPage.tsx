@@ -4,22 +4,15 @@ import { useNavigate, useParams } from "react-router-dom";
 import UserBadge from "../components/UserBadge";
 import SpinnerIcon from "../assets/photos/spinner.svg";
 
-interface ExploreItem {
-  id: string;
-  followers: number;
-  username: string;
-  posts: {
-    id: string;
-    userId: string;
-    image: {
-      id: string;
-      path: string;
-    };
-  }[];
-}
-
 function CommunityPage() {
-  const { data, isLoading, isError } = useExploreDataQuery();
+  const {
+    data,
+    isLoading,
+    isError,
+    isFetching,
+    isFetchingNextPage,
+    hasNextPage,
+  } = useExploreDataQuery();
   const navigate = useNavigate();
 
   if (isLoading) {
@@ -31,9 +24,11 @@ function CommunityPage() {
   }
 
   if (isError) {
-    // navigate("/error", { replace: true });
+    navigate("/error", { replace: true });
     return null;
   }
+
+  const items = data.pages.map((page) => page.items).flat(1);
 
   return (
     <div className="mr-16 font-primary">
@@ -41,32 +36,21 @@ function CommunityPage() {
         کالج گرامی ها
       </h1>
       <div className="w-full h-[650px] mr-16 overflow-y-scroll no-scrollbar  justify-center items-center">
-        {data.items.map((item: ExploreItem) => (
-          <div key={item.id}>
+        {items.map((user) => (
+          <div key={user.id}>
             <div className="flex flex-col justify-end items-end">
               <div className="flex items-end justify-end">
-                {item.posts.map((post) => (
+                {user.posts.map((post) => (
                   <img
                     key={post.id}
-                    src={post.image.path}
+                    src={post.images[0].url}
                     alt="Post Image"
                     className="w-[230px] h-[230px] object-cover m-2 rounded-[24px] hover:scale-105 transition-all duration-300"
                   />
                 ))}
               </div>
 
-              <div className="flex items-center gap-4">
-                <div>
-                  <div className="text-[16px] font-semibold text-center leading-[26px] text-amber">
-                    {item.username}
-                  </div>
-                  <div className="flex text-navy">
-                    <div> دنبال کننده </div>
-                    {item.followers}
-                  </div>
-                </div>
-                <UserBadge userId={item.id} />
-              </div>
+              <UserBadge userId={user.id} />
             </div>
           </div>
         ))}

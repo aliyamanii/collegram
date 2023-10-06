@@ -136,3 +136,13 @@ export interface SearchPostSummery {
   likes: number;
   userId: string;
 }
+
+export interface UserExploreItem {
+  id: string;
+  followers: number;
+  username?: string;
+  firstName?: string;
+  lastName?: string;
+  profileUrl: string;
+  posts: { id: string; userId: string; images: Image[] }[];
+}
