@@ -33,6 +33,9 @@ import FollowingsListShow from "./components/FollowingsListShow";
 import CloseFriendsListShow from "./components/CloseFriendsListShow";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import NotificationNavLinks from "./components/Notifications/NotificationNavLinks";
+import MyNotifs from "./components/Notifications/MyNotifs";
+import OtherNotifs from "./components/Notifications/OtherNotifs";
 
 export const client = new QueryClient();
 
@@ -74,7 +77,14 @@ function App() {
               <Route path="posts" element={<MyPostPage />} />
               <Route path="bookmarks" element={<BookmarksPage />} />
               <Route path="chat" element={<div>chat</div>} />
-              <Route path="notifications" element={<div>Notifications</div>} />
+              <Route path="notifications" element={<NotificationNavLinks />}>
+                <Route
+                  index={true}
+                  element={<Navigate to="my-notifs" replace={true} />}
+                />
+                <Route path="my-notifs" element={<MyNotifs />} />
+                <Route path="other-notifs" element={<OtherNotifs />} />
+              </Route>
               <Route path="list" element={<RelationsPage />}>
                 <Route
                   index={true}
