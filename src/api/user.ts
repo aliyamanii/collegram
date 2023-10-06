@@ -264,3 +264,15 @@ export function useAddCloseFriendMutation(userId: string) {
     },
   });
 }
+
+export async function fetchExploreData(page = 1, limit = 20) {
+  const res = await api.get(`/users/explore?limit=${limit}&page=${page}`);
+}
+
+export function useExploreDataQuery() {
+  return useQuery({
+    queryKey: ["user", "explore"],
+    queryFn: () => fetchExploreData(),
+    staleTime: 5 * 60 * 1000,
+  });
+}
