@@ -164,6 +164,7 @@ export interface BaseNotif {
   user: UserPicturedSummary;
   targetUser: UserSummery;
   type: NotifTypes;
+  createdAt: string;
 }
 
 export interface FollowingStatesNotif extends BaseNotif {

@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import SpinnerIcon from "../../assets/photos/spinner.svg";
 import { useFriendsNotificationQuery } from "../../api/notification";
-import FollowNotif from "./FollowNotif";
+import MyFollowNotif from "./MyFollowNotif";
 import CommentLikeNotif from "./CommentLikeNotif";
 import PostLikeNotif from "./PostLikeNotif";
-import PostCommentNotif from "./PostCommentNotif";
+import MyPostCommentNotif from "./MyPostCommentNotif";
+import FriendsFollowNotif from "./FriendsFollowNotif";
 
 const FriendsNotifsShow: React.FC = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -44,18 +45,14 @@ const FriendsNotifsShow: React.FC = () => {
       dir="rtl"
     >
       {items.map((notif) => {
-        if (
-          notif.type === "FOLLOW" ||
-          notif.type === "FOLLOW_ACCEPT" ||
-          notif.type === "REQUEST"
-        ) {
-          return <FollowNotif notification={notif} />;
+        if (notif.type === "FOLLOW") {
+          return <FriendsFollowNotif notification={notif} />;
         }
         if (notif.type === "POST_LIKE") {
           return <PostLikeNotif notification={notif} />;
         }
         if (notif.type === "POST_COMMENT") {
-          return <div></div>;
+          return <div>Comment notif</div>;
         }
         if (notif.type === "COMMENT_LIKE") {
           return <CommentLikeNotif notification={notif} />;

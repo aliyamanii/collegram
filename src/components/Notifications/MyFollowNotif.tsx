@@ -1,12 +1,15 @@
 import React from "react";
 import { FollowingStatesNotif } from "../../types/types";
 import { Link } from "react-router-dom";
+import { relativeTime } from "../../utils/relativeTime";
 
 interface NotificationProps {
   notification: FollowingStatesNotif;
 }
 
-const FollowNotif: React.FC<NotificationProps> = ({ notification }) => {
+const MyFollowNotif: React.FC<NotificationProps> = ({ notification }) => {
+  const timeDifference = relativeTime(notification.createdAt);
+
   let content: JSX.Element | null = null;
 
   const {
@@ -26,8 +29,11 @@ const FollowNotif: React.FC<NotificationProps> = ({ notification }) => {
               className="w-[64px] h-[64px] rounded-full object-cover hover:scale-95 transition-all duration-200"
             ></img>
           </Link>
-          <div className="flex gap-1">
-            <p>{displayName}</p> <p>درخواست دوستی داده.</p>
+          <div className="flex flex-col justify-center ">
+            <div className="flex gap-1">
+              <p>{displayName}</p> <p>درخواست دوستی داده.</p>
+            </div>
+            <p className="text-sm text-navy">{timeDifference}</p>
           </div>
         </div>
       );
@@ -41,8 +47,11 @@ const FollowNotif: React.FC<NotificationProps> = ({ notification }) => {
               className="w-[64px] h-[64px] rounded-full object-cover hover:scale-95 transition-all duration-200"
             ></img>
           </Link>
-          <div className="flex gap-1">
-            <p>{displayName}</p> <p>درخواست دوستی ات رو قبول کرد</p>
+          <div className="flex flex-col justify-center ">
+            <div className="flex gap-1">
+              <p>{displayName}</p> <p>درخواست دوستی ات رو قبول کرد</p>
+            </div>
+            <p className="text-sm text-navy">{timeDifference}</p>
           </div>
         </div>
       );
@@ -56,8 +65,13 @@ const FollowNotif: React.FC<NotificationProps> = ({ notification }) => {
               className="w-[64px] h-[64px] rounded-full object-cover hover:scale-95 transition-all duration-200"
             />
           </Link>
-          <div className="flex gap-1">
-            <p>{displayName}</p> <p>دنبالت کرد. </p>
+          <div className="flex flex-col justify-center items-start">
+            <div className="flex gap-1">
+              <p>{displayName}</p> <p>دنبالت کرد. </p>
+            </div>
+            <p className="text-sm text-navy" dir="ltr">
+              {timeDifference}
+            </p>
           </div>
         </div>
       );
@@ -69,4 +83,4 @@ const FollowNotif: React.FC<NotificationProps> = ({ notification }) => {
   return <div className="notification">{content}</div>;
 };
 
-export default FollowNotif;
+export default MyFollowNotif;

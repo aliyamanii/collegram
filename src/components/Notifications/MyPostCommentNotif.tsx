@@ -1,12 +1,15 @@
 import React from "react";
 import { PostCommentNofit } from "../../types/types";
 import { Link } from "react-router-dom";
+import { relativeTime } from "../../utils/relativeTime";
 
 interface IPostCommentNotif {
   notification: PostCommentNofit;
 }
 
-const PostCommentNotif: React.FC<IPostCommentNotif> = ({ notification }) => {
+const MyPostCommentNotif: React.FC<IPostCommentNotif> = ({ notification }) => {
+  const timeDifference = relativeTime(notification.createdAt);
+
   const {
     user: { firstName, lastName, username, profileUrl },
   } = notification;
@@ -25,12 +28,15 @@ const PostCommentNotif: React.FC<IPostCommentNotif> = ({ notification }) => {
           className="w-[64px] h-[64px] rounded-3xl object-cover hover:scale-95 transition-all duration-200"
         />
       </Link>
-      <div className="flex gap-1">
-        <p>{displayName}</p>
-        <p>برای این عکس کامنت داده.</p>
+      <div className="flex flex-col justify-center ">
+        <div className="flex gap-1">
+          <p>{displayName}</p>
+          <p>برای این عکس کامنت داده.</p>
+          <p className="text-sm text-navy">{timeDifference}</p>
+        </div>
       </div>
     </div>
   );
 };
 
-export default PostCommentNotif;
+export default MyPostCommentNotif;
