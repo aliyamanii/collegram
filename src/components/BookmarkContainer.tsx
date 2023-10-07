@@ -1,6 +1,7 @@
 import bookmarkEmpty from "../assets/photos/bookmarkEmpty.svg";
 import bookmarkFull from "../assets/photos/bookmarkFull.svg";
 import { usePostBookMarkMutation } from "../api/Posts";
+import { useState } from "react";
 
 interface IBookMarkContainer {
   postId: string;
@@ -13,14 +14,19 @@ function BookmarkContainer({
   bookmarks,
   isBookmarked,
 }: IBookMarkContainer) {
-  const mutaiton = usePostBookMarkMutation(postId, isBookmarked);
+  const { mutateAsync } = usePostBookMarkMutation(postId, isBookmarked);
+  const [isSubmitting, setIsSubmiting] = useState(false);
 
   return (
     <>
       <img
         src={isBookmarked ? bookmarkFull : bookmarkEmpty}
         className="w-6 h-6 hover:scale-110 transition-all duration-300"
-        onClick={() => mutaiton.mutate()}
+        onClick={async () => {
+          setIsSubmiting(true);
+          await mutateAsync();
+          setIsSubmiting(false);
+        }}
       />
       <p>{bookmarks}</p>
     </>
