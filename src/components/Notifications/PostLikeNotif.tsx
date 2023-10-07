@@ -8,6 +8,14 @@ interface IPostLikeNotif {
 
 const PostLikeNotif: React.FC<IPostLikeNotif> = ({ notification }) => {
   console.log(notification.post.id);
+
+  const {
+    user: { firstName, lastName, username, profileUrl },
+  } = notification;
+
+  const displayName =
+    firstName || lastName ? `${firstName || ""} ${lastName || ""}` : username;
+
   return (
     <div className="flex gap-4 font-secondary">
       <Link
@@ -20,7 +28,7 @@ const PostLikeNotif: React.FC<IPostLikeNotif> = ({ notification }) => {
         />
       </Link>
       <div className="flex gap-1">
-        <p>{notification.user.username}</p>
+        <p>{displayName}</p>
         <p>این عکس رو لایک کرده.</p>
       </div>
     </div>

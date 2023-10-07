@@ -7,6 +7,13 @@ interface IPostCommentNotif {
 }
 
 const PostCommentNotif: React.FC<IPostCommentNotif> = ({ notification }) => {
+  const {
+    user: { firstName, lastName, username, profileUrl },
+  } = notification;
+
+  const displayName =
+    firstName || lastName ? `${firstName || ""} ${lastName || ""}` : username;
+
   return (
     <div className="flex gap-4 font-secondary">
       <Link
@@ -19,7 +26,7 @@ const PostCommentNotif: React.FC<IPostCommentNotif> = ({ notification }) => {
         />
       </Link>
       <div className="flex gap-1">
-        <p>{notification.user.username}</p>
+        <p>{displayName}</p>
         <p>برای این عکس کامنت داده.</p>
       </div>
     </div>

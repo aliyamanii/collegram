@@ -36,7 +36,7 @@ import "react-toastify/dist/ReactToastify.css";
 import NotificationNavLinks from "./components/Notifications/NotificationNavLinks";
 import MyNotifs from "./components/Notifications/MyNotifs";
 import NotificationPage from "./pages/Profile/NotificationsPage";
-import FriendsNotifsShow from "./components/Notifications/FriendsNotifs";
+import FriendsNotifsShow from "./components/Notifications/OtherNotifs";
 
 export const client = new QueryClient();
 
