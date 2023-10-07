@@ -61,7 +61,7 @@ const MySinglePost: React.FC = () => {
             <img
               src={images[0].url}
               alt={`Image ${images[0].id}`}
-              className="w-full aspect-square object-cover rounded-[24px]"
+              className="w-full aspect-square object-cover rounded-3xl"
             />
           )}
         </div>

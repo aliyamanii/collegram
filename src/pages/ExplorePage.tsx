@@ -36,7 +36,7 @@ function ExplorePage() {
       <h1 className="w-full flex flex-col text-right text-[22px] font-bold justify-start">
         کالج گرامی ها
       </h1>
-      <div className="w-full h-full flex flex-col gap-6  overflow-y-scroll no-scrollbar">
+      <div className="w-full h-full flex flex-col gap-6  overflow-y-scroll no-scrollbar pb-32">
         {items.map((user) => (
           <div key={user.id}>
             <div className="flex flex-col gap-2 justify-end items-end">

@@ -23,7 +23,6 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
     id: postId,
     isLiked,
     isBookmarked,
-    
   } = post;
 
   const displayName =
@@ -48,7 +47,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
                 isLiked={isLiked}
               />
             </div>
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1 cursor-pointer">
               <BookmarkContainer
                 bookmarks={bookmarks}
                 postId={postId}
@@ -58,7 +57,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
             <div className="flex items-center gap-1">
               <img
                 src={commentIcon}
-                className="w-6 h-6 hover:scale-125 transition-all duration-300 cursor-pointer"
+                className="w-6 h-6 hover:scale-125 transition-all duration-300"
                 alt="Like"
               />
               <span>{commentsNum}</span>
@@ -73,7 +72,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
           >
             {displayName}
           </Link>
-          <div className="w-full flex justify-start mt-2">
+          <div className="w-full flex justify-start gap-2 mt-2">
             {tags.map((tag, index) => (
               <TagItem tag={tag} key={index} />
             ))}
