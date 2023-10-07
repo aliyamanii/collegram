@@ -73,8 +73,8 @@ export const passwordValidation = () => {
     validate: (value: string) => {
       if (value === "") return true;
       return (
-        (/[a-z]/g.test(value) && /[A-Z]/g.test(value)) ||
-        "رمز عبور باید هم حرف بزرگ و هم حرف کوچک داشته باشد"
+        (/[a-z]/g.test(value) && /[A-Z]/g.test(value) && /\d/g.test(value)) ||
+        "رمز عبور باید هم حرف بزرگ و هم حرف کوچک و هم عدد داشته باشد"
       );
     },
   };
