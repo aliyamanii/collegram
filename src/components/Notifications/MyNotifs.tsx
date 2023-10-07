@@ -5,7 +5,6 @@ import { useMyNotificationQuery } from "../../api/notification";
 import MyFollowNotif from "./MyFollowNotif";
 import CommentLikeNotif from "./CommentLikeNotif";
 import PostLikeNotif from "./PostLikeNotif";
-import MyPostCommentNotif from "./PostCommentNotif";
 import PostCommentNotif from "./PostCommentNotif";
 
 const MyNotifsShow: React.FC = () => {

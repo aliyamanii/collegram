@@ -2,6 +2,7 @@ import React from "react";
 import { FollowingStatesNotif } from "../../types/types";
 import { Link } from "react-router-dom";
 import { relativeTime } from "../../utils/relativeTime";
+import personIcon from "../../assets/photos/person.svg";
 
 interface NotificationProps {
   notification: FollowingStatesNotif;
@@ -25,9 +26,9 @@ const MyFollowNotif: React.FC<NotificationProps> = ({ notification }) => {
         <div className="flex gap-4 font-secondary">
           <Link to={`/app/people/user/${notification.user.id}`}>
             <img
-              src={profileUrl}
+              src={profileUrl || personIcon}
               className="w-[64px] h-[64px] rounded-full object-cover hover:scale-95 transition-all duration-200"
-            ></img>
+            />
           </Link>
           <div className="flex flex-col justify-center ">
             <div className="flex gap-1">
@@ -43,7 +44,7 @@ const MyFollowNotif: React.FC<NotificationProps> = ({ notification }) => {
         <div className="flex gap-4 font-secondary">
           <Link to={`/app/people/user/${notification.user.id}`}>
             <img
-              src={profileUrl}
+              src={profileUrl || personIcon}
               className="w-[64px] h-[64px] rounded-full object-cover hover:scale-95 transition-all duration-200"
             ></img>
           </Link>
@@ -61,7 +62,7 @@ const MyFollowNotif: React.FC<NotificationProps> = ({ notification }) => {
         <div className="flex gap-4 font-secondary">
           <Link to={`/app/people/user/${notification.user.id}`}>
             <img
-              src={profileUrl}
+              src={profileUrl || personIcon}
               className="w-[64px] h-[64px] rounded-full object-cover hover:scale-95 transition-all duration-200"
             />
           </Link>

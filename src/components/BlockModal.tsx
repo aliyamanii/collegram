@@ -9,6 +9,7 @@ import {
   useTargetUserInfo,
 } from "../api/user";
 import { infoToast } from "../utils/customToast";
+import personIcon from "../assets/photos/person.svg";
 
 interface BlockModalProps {
   user: UserInfo | RelationUserSummery;
@@ -47,7 +48,7 @@ const BlockModal: FC<BlockModalProps> = ({ user, userId }) => {
       <div className=" flex flex-col gap-6">
         <div className="flex justify-between items-center gap-[100px]">
           <img
-            src={profileUrl}
+            src={profileUrl || personIcon}
             alt={`${displayName}'s Profile`}
             className="w-[80px] h-[80px] p-1 rounded-full object-cover "
           />
