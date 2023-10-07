@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import SpinnerIcon from "../../assets/photos/spinner.svg";
-import { useMyNotificationQuery } from "../../api/notification";
+import { useFriendsNotificationQuery } from "../../api/notification";
 import FollowNotif from "./FollowNotif";
 import CommentLikeNotif from "./CommentLikeNotif";
 import PostLikeNotif from "./PostLikeNotif";
 import PostCommentNotif from "./PostCommentNotif";
 
-const MyNotifsShow: React.FC = () => {
+const FriendsNotifsShow: React.FC = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const {
@@ -17,7 +17,7 @@ const MyNotifsShow: React.FC = () => {
     isFetching,
     isFetchingNextPage,
     hasNextPage,
-  } = useMyNotificationQuery();
+  } = useFriendsNotificationQuery();
 
   if (isLoading) {
     return (
@@ -40,7 +40,7 @@ const MyNotifsShow: React.FC = () => {
 
   return (
     <div
-      className="w-full h-full flex flex-col gap-5  overflow-y-scroll no-scrollbar pb-10  "
+      className="w-full h-full flex flex-col gap-5 overflow-y-scroll no-scrollbar pb-10"
       dir="rtl"
     >
       {items.map((notif) => {
@@ -65,4 +65,4 @@ const MyNotifsShow: React.FC = () => {
   );
 };
 
-export default MyNotifsShow;
+export default FriendsNotifsShow;

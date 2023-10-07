@@ -172,7 +172,7 @@ export interface FollowingStatesNotif extends BaseNotif {
 
 export interface PostsLikeNotif extends BaseNotif {
   type: "POST_LIKE";
-  post: { images: Image[]; postId: string };
+  post: { images: Image[]; id: string };
 }
 
 export interface PostCommentNofit extends BaseNotif {
@@ -185,7 +185,7 @@ export interface PostCommentNofit extends BaseNotif {
 
 export interface CommentsLikesNotif extends BaseNotif {
   type: "COMMENT_LIKE";
-  post: { images: Image[]; postId: string; text: string };
+  post: { images: Image[]; id: string; text: string };
 }
 
 export type Notif =

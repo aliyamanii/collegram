@@ -7,15 +7,16 @@ interface IPostLikeNotif {
 }
 
 const PostLikeNotif: React.FC<IPostLikeNotif> = ({ notification }) => {
+  console.log(notification.post.id);
   return (
     <div className="flex gap-4 font-secondary">
       <Link
-        to={`/app/people/user/${notification.user.id}/post/${notification.post.postId}`}
+        to={`/app/people/user/${notification.user.id}/post/${notification.post.id}`}
       >
         <img
           src={notification.post.images[0].url}
           alt="Post"
-          className="w-[64px] h-[64px] rounded-3xl object-cover"
+          className="w-[64px] h-[64px] rounded-3xl object-cover hover:scale-95 transition-all duration-200 "
         />
       </Link>
       <div className="flex gap-1">
