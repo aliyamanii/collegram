@@ -2,6 +2,7 @@ import React from "react";
 import { PostsLikeNotif } from "../../types/types";
 import { Link } from "react-router-dom";
 import { relativeTime } from "../../utils/relativeTime";
+import personIcon from "../../assets/photos/person.svg";
 
 interface IPostLikeNotif {
   notification: PostsLikeNotif;
@@ -23,7 +24,7 @@ const PostLikeNotif: React.FC<IPostLikeNotif> = ({ notification }) => {
         to={`/app/people/user/${notification.user.id}/post/${notification.post.id}`}
       >
         <img
-          src={notification.post.images[0].url}
+          src={notification.post.images[0].url || personIcon}
           alt="Post"
           className="w-[64px] h-[64px] rounded-3xl object-cover hover:scale-95 transition-all duration-200 "
         />

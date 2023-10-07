@@ -2,6 +2,7 @@ import React from "react";
 import { PostCommentNofit } from "../../types/types";
 import { Link } from "react-router-dom";
 import { relativeTime } from "../../utils/relativeTime";
+import personIcon from "../../assets/photos/person.svg";
 
 interface IPostCommentNotif {
   notification: PostCommentNofit;
