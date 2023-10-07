@@ -15,7 +15,7 @@ const PostCommentNotif: React.FC<IPostCommentNotif> = ({ notification }) => {
         <img
           src={notification.comment.post.image.url}
           alt="Post"
-          className="w-[64px] h-[64px] rounded-3xl object-cover"
+          className="w-[64px] h-[64px] rounded-3xl object-cover hover:scale-95 transition-all duration-200"
         />
       </Link>
       <div className="flex gap-1">

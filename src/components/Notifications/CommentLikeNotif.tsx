@@ -18,7 +18,7 @@ const CommentLikeNotif: React.FC<CommentLikeNotificationProps> = ({
       </div>
       <div className="post-image">
         <Link
-          to={`/app/people/user/${notification.user.id}/post/${notification.post.postId}`}
+          to={`/app/people/user/${notification.user.id}/post/${notification.post.id}`}
         >
           <img src={notification.post.images[0].url} alt="Post" />
         </Link>
