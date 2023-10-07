@@ -23,17 +23,18 @@ const PostCommentNotif: React.FC<IPostCommentNotif> = ({ notification }) => {
         to={`/app/people/user/${notification.user.id}/post/${notification.comment.post.id}`}
       >
         <img
-          src={notification.comment.post.image.url}
+          src={notification.comment.post.images[0].url}
           alt="Post"
           className="w-[64px] h-[64px] rounded-3xl object-cover hover:scale-95 transition-all duration-200"
         />
       </Link>
       <div className="flex flex-col justify-center ">
-        <div className="flex gap-1">
+        <div className="flex  items-center gap-1">
           <p>{displayName}</p>
           <p>برای این عکس کامنت داده.</p>
-          <p className="text-sm text-navy">{timeDifference}</p>
+          <p className="text-xs ">{notification.comment.commentText}</p>
         </div>
+        <p className="text-sm text-navy">{timeDifference}</p>
       </div>
     </div>
   );

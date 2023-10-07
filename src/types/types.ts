@@ -179,7 +179,7 @@ export interface PostsLikeNotif extends BaseNotif {
 export interface PostCommentNofit extends BaseNotif {
   type: "POST_COMMENT";
   comment: {
-    post: PostSummary;
+    post: HomePagePostSummery;
     commentText: "string";
   };
 }
