@@ -32,7 +32,7 @@ function ExplorePage() {
   const items = data.pages.map((page) => page.items).flat(1);
 
   return (
-    <div className="h-full font-secondary">
+    <div className="h-full  mt-8 flex flex-col gap-8 font-secondary">
       <h1 className="w-full flex flex-col text-right text-[22px] font-bold justify-start">
         کالج گرامی ها
       </h1>
