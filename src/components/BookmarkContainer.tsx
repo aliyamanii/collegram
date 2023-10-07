@@ -1,6 +1,6 @@
 import bookmarkEmpty from "../assets/photos/bookmarkEmpty.svg";
 import bookmarkFull from "../assets/photos/bookmarkFull.svg";
-import { useToggleBookMarkMutation } from "../api/Posts";
+import { usePostBookMarkMutation } from "../api/Posts";
 
 interface IBookMarkContainer {
   postId: string;
@@ -13,7 +13,7 @@ function BookmarkContainer({
   bookmarks,
   isBookmarked,
 }: IBookMarkContainer) {
-  const mutaiton = useToggleBookMarkMutation(postId, isBookmarked);
+  const mutaiton = usePostBookMarkMutation(postId, isBookmarked);
 
   return (
     <>

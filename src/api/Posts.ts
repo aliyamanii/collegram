@@ -1,4 +1,9 @@
-import { useInfiniteQuery, useMutation, useQuery } from "@tanstack/react-query";
+import {
+  InfiniteData,
+  useInfiniteQuery,
+  useMutation,
+  useQuery,
+} from "@tanstack/react-query";
 import {
   Post,
   UserMeInfo,
@@ -92,76 +97,131 @@ export async function toggleBookMark(id: string, bookmark: boolean) {
   return data.data;
 }
 
-export function useToggleBookMarkMutation(
-  postId: string,
-  isBookmarked: boolean
-) {
+// export function useToggleBookMarkMutation(
+//   postId: string,
+//   isBookmarked: boolean
+// ) {
+//   return useMutation({
+//     mutationFn: () => toggleBookMark(postId, !isBookmarked),
+//     onMutate: () => {
+//       // optimisticly update bookmark in data and ui
+//       client.setQueryData(["posts", "details", postId], (post: any) => {
+//         if (post === undefined) return;
+//         return {
+//           ...post,
+//           isBookmarked: !isBookmarked,
+//           bookmarks: post.bookmarks + (!isBookmarked ? +1 : -1),
+//         };
+//       });
+//     },
+//     onError: () => {
+//       // fall ball optimistic update in case of error
+//       client.setQueriesData(["posts", "details", postId], (post: any) => {
+//         if (post === undefined) return;
+//         return {
+//           ...post,
+//           isBookmarked: isBookmarked,
+//           bookmarks: post.bookmarks + (isBookmarked ? +1 : -1),
+//         };
+//       });
+//     },
+//     onSuccess: () => {
+//       // eventualy update bookmark status of this post in homepage data
+//       client.setQueryData(["posts", "homePage"], (data: any) => {
+//         if (data === undefined) return;
+//         return {
+//           ...data,
+//           items: data.items.map((post: Post) => {
+//             if (post.id === postId) {
+//               return {
+//                 ...post,
+//                 isBookmarked: !isBookmarked,
+//                 bookmarks: post.bookmarks + (!isBookmarked ? +1 : -1),
+//               };
+//             }
+//             return post;
+//           }),
+//         };
+//       });
+
+//       // update the bookmark page list
+
+//       if (isBookmarked === true) {
+//         client.invalidateQueries({
+//           queryKey: ["posts", "bookmarks"],
+//           type: "all",
+//         });
+//       }
+//       if (isBookmarked === false) {
+//         client.setQueryData(["posts", "bookmarks"], (infiniteData: any) => {
+//           return {
+//             ...infiniteData,
+//             pages: infiniteData.pages.map((pageData: any) => {
+//               const oldItems = pageData.items as PostSummary[];
+//               let updatedItems = oldItems.filter((post) => {
+//                 return post.id !== postId;
+//               });
+
+//               return { ...pageData, items: updatedItems };
+//             }),
+//           };
+//         });
+//       }
+//     },
+//   });
+// }
+
+export function usePostBookMarkMutation(postId: string, isBookmarked: boolean) {
   return useMutation({
     mutationFn: () => toggleBookMark(postId, !isBookmarked),
-    onMutate: () => {
-      // optimisticly update bookmark in data and ui
-      client.setQueryData(["posts", "details", postId], (post: any) => {
-        if (post === undefined) return;
-        return {
-          ...post,
-          isBookmarked: !isBookmarked,
-          bookmarks: post.bookmarks + (!isBookmarked ? +1 : -1),
-        };
-      });
+    onMutate: async () => {
+      await client.cancelQueries({ queryKey: ["posts", "details", postId] });
+      const oldPost = client.getQueryData<Post | undefined>([
+        "posts",
+        "details",
+        postId,
+      ]);
+
+      if (oldPost === undefined) return { oldPost };
+      const newData: Post = {
+        ...oldPost,
+        // @ts-ignore
+        isBookmarked: !isBookmarked,
+        bookmarks: !isBookmarked
+          ? oldPost.bookmarks + 1
+          : oldPost.bookmarks - 1,
+      };
+      client.setQueryData(["posts", "details", postId], newData);
+      return { oldPost };
     },
-    onError: () => {
-      // fall ball optimistic update in case of error
-      client.setQueriesData(["posts", "details", postId], (post: any) => {
-        if (post === undefined) return;
-        return {
-          ...post,
-          isBookmarked: isBookmarked,
-          bookmarks: post.bookmarks + (isBookmarked ? +1 : -1),
-        };
-      });
+    onError: (_, __, context) => {
+      if (context?.oldPost === undefined) return;
+      client.setQueryData(["posts", "details", postId], context.oldPost);
     },
     onSuccess: () => {
-      // eventualy update bookmark status of this post in homepage data
-      client.setQueryData(["posts", "homePage"], (data: any) => {
-        if (data === undefined) return;
+      // eventualy update like status of this post in homepage data
+
+      client.setQueryData(["posts", "homePage"], (infiniteData: any) => {
+        if (infiniteData === undefined) return;
         return {
-          ...data,
-          items: data.items.map((post: Post) => {
-            if (post.id === postId) {
-              return {
-                ...post,
-                isBookmarked: !isBookmarked,
-                bookmarks: post.bookmarks + (!isBookmarked ? +1 : -1),
-              };
-            }
-            return post;
+          ...infiniteData,
+          pages: infiniteData.pages.map((pageData: any) => {
+            return {
+              ...pageData,
+              items: pageData.items.map((post: Post) => {
+                if (post.id === postId) {
+                  return {
+                    ...post,
+                    isBookmarked: !isBookmarked,
+                    bookmarks: post.bookmarks + (!isBookmarked ? +1 : -1),
+                  };
+                }
+                return post;
+              }),
+            };
           }),
         };
       });
-
-      // update the bookmark page list
-
-      if (isBookmarked === true) {
-        client.invalidateQueries({
-          queryKey: ["posts", "bookmarks"],
-          type: "all",
-        });
-      }
-      if (isBookmarked === false) {
-        client.setQueryData(["posts", "bookmarks"], (infiniteData: any) => {
-          return {
-            ...infiniteData,
-            pages: infiniteData.pages.map((pageData: any) => {
-              const oldItems = pageData.items as PostSummary[];
-              let updatedItems = oldItems.filter((post) => {
-                return post.id !== postId;
-              });
-
-              return { ...pageData, items: updatedItems };
-            }),
-          };
-        });
-      }
     },
   });
 }
@@ -175,25 +235,26 @@ export async function toggleLike(id: string, like: boolean) {
 export function usePostLikeMutatuin(postId: string, isLiked: boolean) {
   return useMutation({
     mutationFn: () => toggleLike(postId, !isLiked),
-    onMutate: () => {
-      client.setQueryData(["posts", "details", postId], (post: any) => {
-        if (post === undefined) return undefined;
-        return {
-          ...post,
-          isLiked: !isLiked,
-          likes: post.likes + (!isLiked ? +1 : -1),
-        };
-      });
+    onMutate: async () => {
+      await client.cancelQueries({ queryKey: ["posts", "details", postId] });
+      const oldPost = client.getQueryData<Post | undefined>([
+        "posts",
+        "details",
+        postId,
+      ]);
+      if (oldPost === undefined) return;
+      const newData: Post = {
+        ...oldPost,
+        // @ts-ignore
+        isLiked: !isLiked,
+        likes: !isLiked ? oldPost.likes + 1 : oldPost.likes - 1,
+      };
+      client.setQueryData(["posts", "details", postId], newData);
+      return { oldPost };
     },
-    onError: () => {
-      client.setQueriesData(["posts", "details", postId], (post: any) => {
-        if (post === undefined) return undefined;
-        return {
-          ...post,
-          isLiked: isLiked,
-          likes: post.likes + (isLiked ? +1 : -1),
-        };
-      });
+    onError: (_, __, context) => {
+      if (context?.oldPost === undefined) return;
+      client.setQueryData(["posts", "details", postId], context.oldPost);
     },
     onSuccess: () => {
       // eventualy update like status of this post in homepage data
