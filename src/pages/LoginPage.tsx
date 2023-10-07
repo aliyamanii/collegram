@@ -53,10 +53,10 @@ function Login() {
       .catch((error) => {
         // trigger toast message
         setValue("password", "");
-        // setError("password", {
-        //   type: "validate",
-        //   message: "نام کاربری یا رمز عبور اشتباه است",
-        // });
+        setError("password", {
+          type: "validate",
+          message: "نام کاربری یا رمز عبور اشتباه است",
+        });
       });
   };
 

@@ -15,6 +15,7 @@ import {
 } from "../utils/validation";
 import MainButton from "../components/MainButton";
 import { ISignupFormValues } from "../types/types";
+import { errorToast } from "../utils/customToast";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ function SignUp() {
   const {
     register,
     handleSubmit,
+    setError,
     getValues,
     formState: { errors, isSubmitting },
   } = useForm<ISignupFormValues>({
@@ -39,7 +41,7 @@ function SignUp() {
     // formData is object of our input names with theirvalues
     // to do => connect with api
 
-    await api
+    api
       .post("users/signup/", {
         username: formData.username,
         password: formData.password,
@@ -50,7 +52,21 @@ function SignUp() {
         navigate("/app/home");
       })
       .catch((error) => {
+        console.log(" herrte");
         //triger toast error message
+        if (error.error.errorCode === "USERNAME_TAKEN") {
+          setError("username", {
+            type: "validate",
+            message: "این نام کاربری قبلا استفاده شده است",
+          });
+        }
+        if (error.error.errorCode === "EMAIL_TAKEN") {
+          setError("email", {
+            type: "validate",
+            message: "این ایمیل قبلا استفاده شده است",
+          });
+        }
+        console.log(error.error);
       });
   };
 
