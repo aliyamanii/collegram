@@ -72,7 +72,7 @@ const MyPostsPage: React.FC = () => {
 
   return (
     <div
-      className="w-full h-full overflow-y-scroll no-scrollbar flex justify-center  pb-10 flex-wrap gap-4 "
+      className="w-full h-full overflow-y-scroll no-scrollbar flex  pb-10 flex-wrap gap-16 "
       dir="rtl"
     >
       {items.map((post) => (

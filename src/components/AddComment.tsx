@@ -30,8 +30,9 @@ function AddCommentComponent({ parentCommentId, postId }: IAddCommentProps) {
   }
 
   return (
-    <div className="flex flex-row-reverse items-center justify-between gap-5 p-5">
+    <form className="flex flex-row-reverse items-center justify-between gap-5 p-5">
       <AddCommentAvatar />
+
       <input
         type="text"
         className="rounded-lg h-9 px-2 py-4 grow"
@@ -39,10 +40,10 @@ function AddCommentComponent({ parentCommentId, postId }: IAddCommentProps) {
         onChange={(e) => setText(e.target.value)}
         dir="rtl"
       />
-      <button onClick={handleAddComment} disabled={isSubmmiting}>
+      <button type="submit" onClick={handleAddComment} disabled={isSubmmiting}>
         <img src={sendIcon} className="w-6 h-6" alt="" />
       </button>
-    </div>
+    </form>
   );
 }
 
