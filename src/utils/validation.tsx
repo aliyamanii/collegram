@@ -59,7 +59,7 @@ export const passwordValidation = () => {
       message: "فیلد پسورد اجباریست",
     },
     pattern: {
-      value: /^[a-z1-9]{0,}$/i,
+      value: /^[a-z0-9]{0,}$/i,
       message: "رمز عبور فقط شامل حروف بزرگ و کوجک انگلیسی و اعداد است",
     },
     minLength: {

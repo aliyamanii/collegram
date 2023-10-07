@@ -34,10 +34,10 @@ function Login() {
   });
 
   // to delete
-  const [rememberMe, setRememberMe] = useState(false);
-  const handleRememberChange = () => {
-    setRememberMe(!rememberMe);
-  };
+  // const [rememberMe, setRememberMe] = useState(false);
+  // const handleRememberChange = () => {
+  //   setRememberMe(!rememberMe);
+  // };
 
   const onSubmit: SubmitHandler<ILoginFormValues> = async (formData) => {
     await api
@@ -53,10 +53,10 @@ function Login() {
       .catch((error) => {
         // trigger toast message
         setValue("password", "");
-        setError("password", {
-          type: "validate",
-          message: "نام کاربری یا رمز عبور اشتباه است",
-        });
+        // setError("password", {
+        //   type: "validate",
+        //   message: "نام کاربری یا رمز عبور اشتباه است",
+        // });
       });
   };
 
@@ -112,8 +112,8 @@ function Login() {
             type="checkbox"
             id="remember__checkbox"
             className="hidden"
-            checked={rememberMe}
-            onChange={handleRememberChange}
+            checked={true}
+            // onChange={handleRememberChange}
           />
           <label
             htmlFor="remember__checkbox"
@@ -124,7 +124,7 @@ function Login() {
             </span>
             <div
               className={`w-[12px] h-[12px] rounded-[4px] ${
-                rememberMe ? "bg-white shadow-checkbox" : "bg-amber"
+                false ? "bg-white shadow-checkbox" : "bg-amber"
               } flex-shrink-0 ml-2 transition-all duration-300 hover:border`}
             />
           </label>
