@@ -53,16 +53,21 @@ const UserSinglePost: React.FC = () => {
 
   return (
     <div className="flex gap-6 h-full font-secondary  mt-16 " dir="rtl">
-      <div className="basis-1/2 h-[488px]">
-        {images.length > 1 ? (
-          <Carousel images={images} />
-        ) : (
-          <img
-            src={post.images[0].url}
-            alt={`Image ${id}`}
-            className="min-h-full min-w-full object-cover  rounded-[24px] bg-image-placeholder bg-center"
-          />
-        )}
+      <div
+        className="flex flex-col items-center gap-2 w-[488px] h-[488px] overflow-hidden rounded-3xl"
+        dir="ltr"
+      >
+        <div className="basis-1/2 aspect-square">
+          {images.length > 1 ? (
+            <Carousel images={images} />
+          ) : (
+            <img
+              src={images[0].url}
+              alt={`Image ${images[0].id}`}
+              className="w-full aspect-square object-cover rounded-[24px]"
+            />
+          )}
+        </div>
       </div>
       <div className="basis-1/2 flex flex-col gap-3 w-[500px] p-3">
         <div className="w-full  flex items-center justify-between">
