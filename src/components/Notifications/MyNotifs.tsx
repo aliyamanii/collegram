@@ -5,7 +5,7 @@ import { useMyNotificationQuery } from "../../api/notification";
 import MyFollowNotif from "./MyFollowNotif";
 import CommentLikeNotif from "./CommentLikeNotif";
 import PostLikeNotif from "./PostLikeNotif";
-import MyPostCommentNotif from "./MyPostCommentNotif";
+import MyPostCommentNotif from "./PostCommentNotif";
 
 const MyNotifsShow: React.FC = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);

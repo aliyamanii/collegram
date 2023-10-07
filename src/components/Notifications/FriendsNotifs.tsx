@@ -5,7 +5,7 @@ import { useFriendsNotificationQuery } from "../../api/notification";
 import MyFollowNotif from "./MyFollowNotif";
 import CommentLikeNotif from "./CommentLikeNotif";
 import PostLikeNotif from "./PostLikeNotif";
-import MyPostCommentNotif from "./MyPostCommentNotif";
+import MyPostCommentNotif from "./PostCommentNotif";
 import FriendsFollowNotif from "./FriendsFollowNotif";
 
 const FriendsNotifsShow: React.FC = () => {
