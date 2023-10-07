@@ -17,6 +17,8 @@ const PostCommentNotif: React.FC<IPostCommentNotif> = ({ notification }) => {
   const displayName =
     firstName || lastName ? `${firstName || ""} ${lastName || ""}` : username;
 
+  console.log(notification);
+
   return (
     <div className="flex gap-4 font-secondary">
       <Link
@@ -29,10 +31,10 @@ const PostCommentNotif: React.FC<IPostCommentNotif> = ({ notification }) => {
         />
       </Link>
       <div className="flex flex-col justify-center ">
-        <div className="flex  items-center gap-1">
+        <div className="flex items-center gap-1">
           <p>{displayName}</p>
-          <p>برای این عکس کامنت داده.</p>
-          <p className="text-xs ">{notification.comment.commentText}</p>
+          <p>برای این عکس کامنت داده:</p>
+          <p className="text-xs">{notification.comment.commentText}</p>
         </div>
         <p className="text-sm text-navy">{timeDifference}</p>
       </div>
