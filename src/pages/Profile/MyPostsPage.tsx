@@ -47,7 +47,7 @@ const MyPostsPage: React.FC = () => {
           </h1>
           <h3 className="text-lg text-navy ">
             از اینجا به تمام محتواهایی مثل پست، ذخیره‌ها، پیام‌ها و... دسترسی
-            داری کافیه بخش مرتبط رو از منوی سممت چپ انتخاب کنی.
+            داری کافیه بخش مرتبط رو از منوی سمت چپ انتخاب کنی.
           </h3>
 
           <p className="text-lg text-navy">حالا وقت گذاشتن اولین پست هست</p>
@@ -72,7 +72,7 @@ const MyPostsPage: React.FC = () => {
 
   return (
     <div
-      className="w-full h-full overflow-y-scroll no-scrollbar flex justify-around  pb-10 flex-wrap gap-4 "
+      className="w-full h-full overflow-y-scroll no-scrollbar flex justify-center  pb-10 flex-wrap gap-4 "
       dir="rtl"
     >
       {items.map((post) => (
