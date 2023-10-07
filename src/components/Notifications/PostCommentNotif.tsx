@@ -7,7 +7,7 @@ interface IPostCommentNotif {
   notification: PostCommentNofit;
 }
 
-const MyPostCommentNotif: React.FC<IPostCommentNotif> = ({ notification }) => {
+const PostCommentNotif: React.FC<IPostCommentNotif> = ({ notification }) => {
   const timeDifference = relativeTime(notification.createdAt);
 
   const {
@@ -39,4 +39,4 @@ const MyPostCommentNotif: React.FC<IPostCommentNotif> = ({ notification }) => {
   );
 };
 
-export default MyPostCommentNotif;
+export default PostCommentNotif;
