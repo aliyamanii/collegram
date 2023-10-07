@@ -35,8 +35,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import NotificationNavLinks from "./components/Notifications/NotificationNavLinks";
 import MyNotifs from "./components/Notifications/MyNotifs";
-import OtherNotifs from "./components/Notifications/OtherNotifs";
 import NotificationPage from "./pages/Profile/NotificationsPage";
+import FriendsNotifsShow from "./components/Notifications/FriendsNotifs";
 
 export const client = new QueryClient();
 
@@ -84,7 +84,7 @@ function App() {
                   element={<Navigate to="my-notifs" replace={true} />}
                 />
                 <Route path="my-notifs" element={<MyNotifs />} />
-                <Route path="other-notifs" element={<OtherNotifs />} />
+                <Route path="other-notifs" element={<FriendsNotifsShow />} />
               </Route>
               <Route path="list" element={<RelationsPage />}>
                 <Route
