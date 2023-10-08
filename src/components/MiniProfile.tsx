@@ -97,7 +97,7 @@ const MiniProfile: FC = () => {
             className="flex gap-1"
           >
             <p>{followings}</p>
-            <div>دنبال کننده</div>
+            <div>دنبال شونده</div>
           </Link>
           <div className="w-[1px] h-[10px] bg-navy"></div>
           <Link
@@ -106,7 +106,7 @@ const MiniProfile: FC = () => {
             className="flex gap-1"
           >
             <p>{followers}</p>
-            <div>دنبال شونده</div>
+            <div>دنبال کننده</div>
           </Link>
         </div>
         <div className="w-[201px] text-[14px] leading-[18.2px] text-center text-cloud">
