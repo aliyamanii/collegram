@@ -8,6 +8,7 @@ interface ButtonProps {
   type?: "button" | "submit" | "reset" | undefined;
   isSubmitting?: boolean;
   disabledMode?: boolean;
+  disable?: boolean;
 }
 
 const MainButton: React.FC<ButtonProps> = ({
@@ -17,6 +18,7 @@ const MainButton: React.FC<ButtonProps> = ({
   type = "button",
   isSubmitting,
   disabledMode,
+  disable,
 }) => {
   return (
     <button
@@ -25,7 +27,7 @@ const MainButton: React.FC<ButtonProps> = ({
       }`}
       onClick={onClick}
       type={type}
-      disabled={isSubmitting || disabledMode}
+      disabled={isSubmitting || disabledMode || disable}
     >
       {isSubmitting && (
         <img

@@ -2,6 +2,7 @@ import React from "react";
 import { FollowingStatesNotif } from "../../types/types";
 import { Link } from "react-router-dom";
 import { relativeTime } from "../../utils/relativeTime";
+import NotificationActionButtons from "./NotificationActionButtons";
 
 interface NotificationProps {
   notification: FollowingStatesNotif;
@@ -34,6 +35,10 @@ const MyFollowNotif: React.FC<NotificationProps> = ({ notification }) => {
               <p>{displayName}</p> <p>درخواست دوستی داده.</p>
             </div>
             <p className="text-sm text-navy">{timeDifference}</p>
+            <NotificationActionButtons
+              userId={notification.user.id}
+              initialCurrentMode={"RESPONSEREQUEST"}
+            />
           </div>
         </div>
       );
@@ -52,6 +57,14 @@ const MyFollowNotif: React.FC<NotificationProps> = ({ notification }) => {
               <p>{displayName}</p> <p>درخواست دوستی ات رو قبول کرد</p>
             </div>
             <p className="text-sm text-navy">{timeDifference}</p>
+            {(notification.pageStatus === "FOLLOWED" ||
+              notification.pageStatus === "PRIVATE" ||
+              notification.user.pageStatus === "PUBLIC") && (
+              <NotificationActionButtons
+                userId={notification.user.id}
+                initialCurrentMode={notification.pageStatus}
+              />
+            )}
           </div>
         </div>
       );
@@ -71,6 +84,14 @@ const MyFollowNotif: React.FC<NotificationProps> = ({ notification }) => {
             </div>
             <p className="text-sm text-navy" dir="ltr">
               {timeDifference}
+              {(notification.user.pageStatus === "FOLLOWED" ||
+                notification.user.pageStatus === "PRIVATE" ||
+                notification.user.pageStatus === "PUBLIC") && (
+                <NotificationActionButtons
+                  userId={notification.user.id}
+                  initialCurrentMode={notification.user.pageStatus}
+                />
+              )}
             </p>
           </div>
         </div>

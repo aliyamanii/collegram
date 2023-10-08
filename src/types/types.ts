@@ -46,6 +46,7 @@ export interface UserSummery {
 
 export interface UserPicturedSummary extends UserSummery {
   profileUrl: string;
+  pageStatus: PageStatus;
 }
 
 export interface INavLink {
@@ -165,6 +166,7 @@ export interface BaseNotif {
   targetUser: UserSummery;
   type: NotifTypes;
   createdAt: string;
+  pageStatus: "FOLLOWED" | "REQUESTED" | "PUBLIC" | "PRIVATE";
 }
 
 export interface FollowingStatesNotif extends BaseNotif {

@@ -316,3 +316,18 @@ export function useExploreDataQuery() {
     },
   });
 }
+
+export async function responseFollowRequest(userId: string, accept: boolean) {
+  const res = await api.put("/users/request", { userId, accept });
+  const data = res.data;
+  return data.data as { state: "ACCEPTED"; user: UserInfo };
+}
+
+export function useResponseFollowRequest(id: string, accept: boolean) {
+  return useMutation({
+    mutationFn: () => responseFollowRequest(id, accept),
+    onSuccess: () => {
+      client.invalidateQueries({ queryKey: ["user", id], type: "all" });
+    },
+  });
+}
