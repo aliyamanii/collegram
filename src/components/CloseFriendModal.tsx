@@ -1,5 +1,6 @@
 import { FC, useState } from "react";
 import sparkle from "../assets/photos/sparkle-dark.svg";
+import personIcon from "../assets/photos/person.svg";
 import MainButton from "./MainButton";
 import { useModal } from "../customhook/useModal";
 import { UserInfo, UserMeInfo } from "../types/types";
@@ -42,7 +43,7 @@ const CloseFriendModal: FC<CloseFriendModal> = ({ user, userId }) => {
       <div className=" flex flex-col gap-8">
         <div className="flex justify-between items-center gap-[100px]">
           <img
-            src={profileUrl}
+            src={profileUrl || personIcon}
             alt={`${displayName}'s Profile`}
             className="w-[80px] h-[80px] p-1 rounded-full object-cover "
           />

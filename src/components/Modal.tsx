@@ -4,6 +4,7 @@ import React, {
   createContext,
   useContext,
   useEffect,
+  useState,
 } from "react";
 import ReactDOM from "react-dom";
 import { ModalContext } from "../customhook/useModal";
@@ -30,7 +31,22 @@ function Modal({
       window.removeEventListener("keydown", handleEscapeKey);
     };
   }, [isOpen, onClose]);
-  if (!isOpen) return null;
+
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const handleTransitionEnd = () => {
+    if (!isOpen) {
+      setIsTransitioning(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      setIsTransitioning(true);
+    }
+  }, [isOpen]);
+
+  if (!isOpen && !isTransitioning) return null;
 
   return ReactDOM.createPortal(
     <>
@@ -42,7 +58,12 @@ function Modal({
         />
         <div
           id="modal-container"
-          className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[1000]"
+          className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[1000] ${
+            isOpen
+              ? "transition-opacity duration-300 ease-in-out opacity-100"
+              : "transition-opacity duration-300 ease-in-out opacity-0"
+          }`}
+          onTransitionEnd={handleTransitionEnd}
         >
           {children}
         </div>

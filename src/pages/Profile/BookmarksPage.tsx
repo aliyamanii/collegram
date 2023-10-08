@@ -30,7 +30,7 @@ const BookmarksPage: React.FC = () => {
       {/* {samplePosts.map((image) => ( */}
       {items.map((image) => (
         <div key={image.id} className="relative">
-          <Link to={`/app/profile/post/${image.id}`}>
+          <Link to={`/app/people/user/${image.userId}/post/${image.id}`}>
             <img
               src={image.image.url}
               alt={`Post ${image.id}`}

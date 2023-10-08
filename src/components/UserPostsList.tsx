@@ -30,14 +30,14 @@ function UserPostsList({ userId }: { userId: string }) {
 
   const items = data.pages.map((page) => page.items).flat(1);
   return (
-    <div className="w-full h-full overflow-y-scroll no-scrollbar flex justify-center flex-wrap gap-4">
+    <div className="w-full h-full overflow-y-scroll no-scrollbar flex  pb-10 flex-wrap gap-16">
       {items.map((post) => (
         <div key={post.id} className="relative">
           <Link to={`/app/people/user/${userId}/post/${post.id}`}>
             <img
               src={post.image.url}
               alt={`Post ${post.id}`}
-              className="w-[290px] h-[290px] object-cover  rounded-[24px] "
+              className="w-[290px] h-[290px] object-cover  rounded-[24px] hover:scale-95 transition-all duration-200"
             />
           </Link>
         </div>

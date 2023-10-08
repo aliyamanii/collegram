@@ -30,7 +30,7 @@ function AddCommentAvatar() {
   return (
     <div>
       <img
-        src={user.profileUrl}
+        src={user.profileUrl || personIcon}
         className="w-10 h-10 rounded-2xl object-cover  border"
         alt=""
       />

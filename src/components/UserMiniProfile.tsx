@@ -73,8 +73,9 @@ const MiniProfile: FC<MiniProfileProps> = ({ user, pageStatus }) => {
         <div className="flex justify-center items-center w-[114px] h-[40px]">
           <UserActionButton user={user} pageStatus={pageStatus} />
         </div>
-        <div>
-          <img src={pin} />
+        <div className="flex flex-col items-center text-sm text-navy">
+          <img src={pin} className="w-6" />
+          {user.postsCount} پست
         </div>
         <div className="w-[212px] h-[72px] flex items-center justify-center bg-bone gap-8 border border-solid border-[#CDCDCD]">
           <img

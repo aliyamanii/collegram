@@ -5,7 +5,7 @@ import { useFriendsNotificationQuery } from "../../api/notification";
 import MyFollowNotif from "./MyFollowNotif";
 import CommentLikeNotif from "./CommentLikeNotif";
 import PostLikeNotif from "./PostLikeNotif";
-import MyPostCommentNotif from "./MyPostCommentNotif";
+import PostCommentNotif from "./PostCommentNotif";
 import FriendsFollowNotif from "./FriendsFollowNotif";
 
 const FriendsNotifsShow: React.FC = () => {
@@ -52,7 +52,7 @@ const FriendsNotifsShow: React.FC = () => {
           return <PostLikeNotif notification={notif} />;
         }
         if (notif.type === "POST_COMMENT") {
-          return <div>Comment notif</div>;
+          return <PostCommentNotif notification={notif} />;
         }
         if (notif.type === "COMMENT_LIKE") {
           return <CommentLikeNotif notification={notif} />;

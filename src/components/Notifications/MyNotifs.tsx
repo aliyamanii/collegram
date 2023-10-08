@@ -5,7 +5,7 @@ import { useMyNotificationQuery } from "../../api/notification";
 import MyFollowNotif from "./MyFollowNotif";
 import CommentLikeNotif from "./CommentLikeNotif";
 import PostLikeNotif from "./PostLikeNotif";
-import MyPostCommentNotif from "./MyPostCommentNotif";
+import PostCommentNotif from "./PostCommentNotif";
 
 const MyNotifsShow: React.FC = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -55,7 +55,7 @@ const MyNotifsShow: React.FC = () => {
           return <PostLikeNotif notification={notif} />;
         }
         if (notif.type === "POST_COMMENT") {
-          return <div>Comment Notif</div>;
+          return <PostCommentNotif notification={notif} />;
         }
         if (notif.type === "COMMENT_LIKE") {
           return <CommentLikeNotif notification={notif} />;

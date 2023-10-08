@@ -1,6 +1,7 @@
 import React from "react";
 import { CommentsLikesNotif } from "../../types/types";
 import { Link } from "react-router-dom";
+import personIcon from "../../assets/photos/person.svg";
 
 interface CommentLikeNotificationProps {
   notification: CommentsLikesNotif;
