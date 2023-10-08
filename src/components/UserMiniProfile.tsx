@@ -62,12 +62,12 @@ const MiniProfile: FC<MiniProfileProps> = ({ user, pageStatus }) => {
         >
           <Link to="" id="following-button" className="flex gap-1">
             {followings}
-            <div>دنبال شونده</div>
+            <div>دنبال کننده</div>
           </Link>
           <div className="w-[1px] h-[10px] bg-navy"></div>
           <Link to="" id="followers-button" className="flex gap-1">
             {followers}
-            <div>دنبال کننده</div>
+            <div>دنبال شونده</div>
           </Link>
         </div>
         <div className="flex justify-center items-center w-[114px] h-[40px]">
