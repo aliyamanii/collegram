@@ -20,6 +20,7 @@ function SearchBar() {
     control,
     setError,
     clearErrors,
+    setValue,
   } = useForm<ISearchBar>({
     defaultValues: {
       searchTag: searchQuery || "",
@@ -30,6 +31,7 @@ function SearchBar() {
 
   const onSubmit: SubmitHandler<ISearchBar> = (form) => {
     navigate(`/app/search/${form.searchTag}`);
+    setValue("searchTag", "");
   };
 
   return (
