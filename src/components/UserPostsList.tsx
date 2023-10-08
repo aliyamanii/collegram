@@ -28,7 +28,10 @@ function UserPostsList({ userId }: { userId: string }) {
     );
   }
 
-  const items = data.pages.map((page) => page.items).flat(1);
+  const items = data.pages
+    .map((page) => page.items)
+    .flat(1)
+    .reverse();
   return (
     <div className="w-full h-full overflow-y-scroll no-scrollbar flex  pb-10 flex-wrap gap-16">
       {items.map((post) => (
