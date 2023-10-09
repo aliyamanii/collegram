@@ -7,6 +7,10 @@
   src: url("assets/fonts/Vazirmatn-Regular.ttf") format("opentype");
 }
 @font-face {
+  font-family: "dana";
+  src: url("assets/fonts/Dana-FaNum-Regular.ttf") format("opentype");
+}
+@font-face {
   font-family: "montserrat";
   src: url("https: ; //fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Roboto&display=swap")
     format("opentype");

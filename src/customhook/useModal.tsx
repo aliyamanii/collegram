@@ -12,7 +12,7 @@ export const useModal = () => {
 
   if (!currentModalValues) {
     throw new Error(
-      "useModal should be Called inside Modal componetns children"
+      "useModal should be Called inside Modal component's children"
     );
   }
   return currentModalValues;
