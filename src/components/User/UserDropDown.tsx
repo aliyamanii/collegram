@@ -1,0 +1,87 @@
+import React, { useEffect, useRef, useState } from "react";
+import Modal from "../Modals/Modal";
+import BlockModal from "../Modals/BlockModal";
+import CloseFriendModal from "../Modals/CloseFriendModal";
+import { UserInfo } from "../../types/types";
+import { RelationUserSummery } from "../../api/user";
+
+interface DropDownProps {
+  onClose: () => void;
+  user: UserInfo | RelationUserSummery;
+  userId: string;
+}
+
+const DropDown: React.FC<DropDownProps> = ({ onClose, user, userId }) => {
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const [modalType, setModalType] = useState<"block" | "closeFriend" | null>(
+    null
+  );
+
+  function openModal(type: "block" | "closeFriend") {
+    setModalType(type);
+  }
+
+  function closeModal() {
+    setModalType(null);
+  }
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
+      onClose();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("click", handleClickOutside);
+    return () => {
+      window.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
+  function handleMenuItemClick(arg0: string): void {
+    throw new Error("Function not implemented.");
+  }
+
+  return (
+    <div
+      ref={dropdownRef}
+      className="absolute left-[0px]  bottom-0 translate-y-full z-10   w-56 bg-vanilla border border-[#CDCDCD] rounded-s-3xl rounded-b-3xl shadow-lg text-right"
+    >
+      <ul>
+        <li
+          className="px-4 py-2 cursor-pointer hover:bg-[#f5e4ce] hover:rounded-tl-3xl transition-all duration-200"
+          onClick={() => openModal("block")}
+        >
+          بلاک کردن کاربر
+        </li>
+        <li
+          className="px-4 py-2 cursor-pointer hover:bg-[#f5e4ce] transition-all duration-200"
+          onClick={() => openModal("closeFriend")}
+        >
+          افزودن به دوستان نزدیک
+        </li>
+        <li
+          className="px-4 py-2 cursor-pointer hover:bg-[#f5e4ce] hover:rounded-b-3xl transition-all duration-200"
+          onClick={() => handleMenuItemClick("item2")}
+        >
+          پیام به کاربر
+        </li>
+      </ul>
+      {modalType === "block" && (
+        <Modal isOpen={true} onClose={closeModal}>
+          <BlockModal user={user} userId={userId} />
+        </Modal>
+      )}
+      {modalType === "closeFriend" && (
+        <Modal isOpen={true} onClose={closeModal}>
+          <CloseFriendModal user={user} userId={userId} />
+        </Modal>
+      )}
+    </div>
+  );
+};
+
+export default DropDown;

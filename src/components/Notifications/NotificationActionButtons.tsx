@@ -5,7 +5,7 @@ import {
   useUnFollowUserMutation,
   userCancelFollowRequestUser,
 } from "../../api/user";
-import MainButton from "../MainButton";
+import MainButton from "../Input/MainButton";
 import { errorToast, infoToast } from "../../utils/customToast";
 
 type ICurrentMode =
